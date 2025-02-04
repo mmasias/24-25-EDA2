@@ -3,7 +3,7 @@ public class Frame {
     private int x;
     private int y;
 
-    public Frame(Pixel[][] pixel, int x, int y) {
+    public Frame(int x, int y) {
         this.pixel= new Pixel[y][x];
         this.x = x;
         this.y = y;
