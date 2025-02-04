@@ -1,0 +1,38 @@
+@startuml diagrama_1
+
+class Pixel {
+    +ActualizarPixel()
+}
+
+class Frame {
+    +mostrarPixeles()
+    +resolucion()
+    +tamaño()
+}
+
+class Frame1 extends Frame {
+}
+
+class Frame2 extends Frame {
+}
+
+class DobleBuffer {
+}
+
+class Resultado {
+    +resultadosCombinado()
+    +mostrarResultados()
+}
+
+class Pantalla {
+    +alternarResultados()
+}
+
+Pixel --> Frame1
+Pixel --> Frame2
+Frame1 --> DobleBuffer
+Frame2 --> DobleBuffer
+DobleBuffer --> Resultado
+Resultado --> Pantalla
+Pantalla --> Resultado
+@enduml
