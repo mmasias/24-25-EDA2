@@ -1,7 +1,7 @@
 public class Pantalla {
     private Frame frame1;
     private Frame frame2;
-    private int currentFrame = 0;
+    private int frameActual = 0;
 
     public Pantalla(Frame frame1, Frame frame2) {
         this.frame1 = frame1;
@@ -9,11 +9,11 @@ public class Pantalla {
     }
 
     public void cambiarFrame() {
-        currentFrame = (currentFrame + 1) % 2;
+        frameActual = (frameActual + 1) % 2;
     }
 
     public void actualizarPantalla() {
-        if (currentFrame == 0) {
+        if (frameActual == 0) {
             frame1.renderizar();
         } else {
             frame2.renderizar();
