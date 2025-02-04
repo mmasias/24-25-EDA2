@@ -32,7 +32,19 @@ class Frame {
         }
     }
 
-    public void actualizarPixel(){}
+    public void actualizarPixel(int fila, int columna, char nuevoValor){
+        if (estaEnRango(fila, columna)) {
+            pixeles[fila][columna].setValor(nuevoValor);
+        } else {
+            System.out.println("Error: dimensiones fuera de rango.");
+        }
+
+    }
+
+    private boolean estaEnRango(int fila, int columna){
+        return fila >= 0 && fila < pixeles.length && columna >= 0 && columna < pixeles[0].length;
+    }
+
 
     public void resetear(){}
 
