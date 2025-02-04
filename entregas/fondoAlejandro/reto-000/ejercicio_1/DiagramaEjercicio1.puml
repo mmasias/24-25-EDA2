@@ -1,0 +1,29 @@
+@startuml
+
+class Pantalla {
+    int alto;
+    int ancho;
+    void mostrarEntrelazado();
+}
+
+class Buffer {
+    void entrelazarFrames();
+    void alternanciaRapida();
+}
+
+class Frames {
+    int frame1[][];
+    int frame2[][];
+    void actualizarFrame();
+}
+
+class Pixel {
+    int pixel;
+    void actualizarPixel();
+}
+
+Pantalla --> Buffer
+Buffer --> Frames
+Frames --> Pixel
+
+@enduml
