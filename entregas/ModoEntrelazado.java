@@ -1,10 +1,22 @@
 class Pixel {
-    private char numeral;
-    private char punto;
-    private char mas;
+    private char valor;
+
+    public Pixel() {
+        this.valor = ' ';
+    }
+
+    public Pixel(char valor){
+        this.valor = valor;
+    }
 
     
-    public char getValor(){}
+    public char getValor(){
+        return valor;
+    }
+
+    public void setValor(char nuevoValor){
+        this.valor = nuevoValor;
+    }
 }
 
 class Frame {
