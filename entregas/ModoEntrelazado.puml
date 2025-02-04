@@ -1,0 +1,46 @@
+@startuml ModoEntrelazado
+
+class Pixel {
+    - char numeral
+    - char punto
+    - char mas
+
+    +char getValor()
+}
+
+class Frame {
+    - Pixel[][] pixeles
+
+    + actualizarPixel()
+    + resetear()
+    + Pixel buscarPixel()
+    + Pixel obtenerPixel()
+}
+
+class Nodo {
+    - Frame dato
+    - Nodo anterior
+    - Nodo siguiente
+
+    + Nodo getNodo()
+}
+
+class Pantalla {
+    - Nodo[] datos
+    - Nodo cabeza
+
+    + asignarSiguienteFrame()
+
+    + Frame getFrame()
+
+    + validarNodoRepetido()
+
+    + mostrarFrame()
+
+}
+
+Pixel *-- Frame : recibe
+Frame *-- Nodo : envuelve
+Nodo *-- Pantalla : Lista de
+
+@enduml
