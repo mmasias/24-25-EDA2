@@ -1,5 +1,5 @@
 package Reto001.Ejercicio2;
 
-public class PixelList {
-    
+public class PixelList { 
+    Pixel pixel;
 }
