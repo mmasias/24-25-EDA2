@@ -1,0 +1,68 @@
+@startuml DiagramaClases
+
+class Pixel {
+    - int x
+    - int y
+    - int color
+    + setColor(int color)
+    + getColor(): int
+}
+
+class Frame {
+    - List<Pixel> pixels
+    + addPixel(Pixel pixel)
+    + getPixel(int index): Pixel
+    + clearFrame()
+}
+
+class Buffer {
+    - Frame frame1
+    - Frame frame2
+    - int activeFrame
+    - boolean running
+    + switchFrame()
+    + getCurrentFrame(): Frame
+    + toggleFrame()
+    + start()
+    + stop()
+}
+
+class Manager {
+    - Buffer buffer
+    + updatePixel(Pixel pixel)
+}
+
+class Node {
+    - Buffer buffer
+    - Manager manager
+    - Frame frame
+    + updatePixel(Pixel pixel)
+    + switchFrame()
+    + initialize()
+    + run()
+}
+
+class Lista {
+    - List<Node> nodes
+    + addNode(Node node)
+    + removeNode(Node node)
+    + getNode(int index): Node
+    + runAll()
+}
+
+class Renderer {
+    - Buffer buffer
+    + renderFrame()
+    + renderIntell()
+}
+
+Frame --> Pixel: "Contiene"
+Buffer --> Frame: "Contiene"
+Manager --> Buffer: "Utiliza"
+Node --> Buffer: "Utiliza"
+Node --> Manager: "Utiliza"
+Node --> Frame: "Utiliza"
+Lista --> Node: "Contiene"
+Renderer --> Lista: "Utiliza"
+
+@enduml
