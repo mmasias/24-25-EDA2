@@ -1,0 +1,52 @@
+@startuml
+class Pantalla {
+    - void AlternarFrame()
+    - MostrarFrameListActual()
+    - MostrarFrameListSiguiente()
+}
+
+class FrameList {
+    - NodoFrame primero
+    - NodoFrame segundo
+    - int tamaño
+}
+
+class NodoFrame {
+    - Anterior
+    - Siguiente
+    - Frame frame
+}
+
+class Frame {
+    - void pintar()
+    - int Altura
+    - int Anchura
+    - PixelList()
+}
+
+class PixelList {
+    - NodoPixel primero
+    - NodoPixel ultimo
+    - int tamaño
+    - get()
+    - set()
+}
+
+class NodoPixel {
+    - Anterior
+    - Siguiente
+    - Pixel pixel
+}
+
+class Pixel {
+    - char
+}
+
+Pantalla --> FrameList
+FrameList --> NodoFrame
+NodoFrame --> Frame
+Frame --> PixelList
+PixelList --> NodoPixel
+NodoPixel --> Pixel
+
+@enduml
