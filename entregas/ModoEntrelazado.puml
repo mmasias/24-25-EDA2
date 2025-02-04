@@ -1,11 +1,10 @@
 @startuml ModoEntrelazado
 
 class Pixel {
-    - char numeral
-    - char punto
-    - char mas
+    - char valor
 
-    +char getValor()
+    + char getValor()
+    + void setValor()
 }
 
 class Frame {
