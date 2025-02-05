@@ -1,3 +1,4 @@
+package srcEjercicio1;
 public class Pixel {
 
     private Color color;

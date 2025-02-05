@@ -1,3 +1,4 @@
+package srcEjercicio1;
 public class Frame {
     
     private Pixel[][] pixeles;

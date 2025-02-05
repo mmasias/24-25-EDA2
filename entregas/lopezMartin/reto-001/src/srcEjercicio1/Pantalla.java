@@ -1,3 +1,4 @@
+package srcEjercicio1;
 public class Pantalla{
 
     private Frame[] buffer;
@@ -5,7 +6,7 @@ public class Pantalla{
 
     public Pantalla(){
         this.grafica = new Grafica();
-        buffer = null;
+        buffer = new Frame[2];
     }
 
     public void mostrar(){
@@ -27,6 +28,8 @@ public class Pantalla{
                     System.out.println();
     
                 }
+            }else{
+                System.out.println("a");
             }
         }
     }

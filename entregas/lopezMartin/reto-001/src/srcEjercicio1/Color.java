@@ -1,3 +1,4 @@
+package srcEjercicio1;
 import java.util.Random;
 
 public class Color {
