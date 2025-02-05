@@ -71,6 +71,15 @@ class Frame {
         }
         return null;
     }
+
+    public void mostrarFrame(){
+        for(int i = 0;i<pixeles.length;i++){
+            for(int j = 0;j<pixeles[i].length;j++){
+                System.out.print(pixeles[i][j].getValor());
+            }
+            System.out.println();
+        }
+    }
 }
 
 class Nodo {
