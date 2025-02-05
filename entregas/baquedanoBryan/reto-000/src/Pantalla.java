@@ -7,7 +7,7 @@ public class Pantalla {
     public Pantalla(int timer){
         this.cabeza = null;
         this.cola = null;
-        this.timer = timer > 0 ? timer : 1000;
+        this.timer = timer > 0 ? timer : 100000;
     }
 
     public void alternanciaImpresion() {
@@ -51,6 +51,7 @@ public class Pantalla {
     
         System.out.println(); 
     }
+    
     
 
     public Frame getFrame() {
