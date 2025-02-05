@@ -65,7 +65,12 @@ class Frame {
         return null;
     }
 
-    public Pixel obtenerPixel(){}
+    public Pixel obtenerPixel(int fila, int columna){
+        if(estaEnRango(fila, columna)){
+            return pixeles[fila][columna];
+        }
+        return null;
+    }
 }
 
 class Nodo {
