@@ -3,10 +3,10 @@ package entregas.celayaIker.Ejercicio1;
 class Frame {
     private Pixel[] frame;
 
-    public Frame(int size) {
-        this.frame = new Pixel[size];
-        for (int i = 0; i < size; i++) {
-            this.frame[i] = new Pixel(0);
+    public Frame(int width, int height) {
+        frame = new Pixel[width * height];
+        for (int i = 0; i < width * height; i++) {
+            frame[i] = new Pixel(i);
         }
     }
 

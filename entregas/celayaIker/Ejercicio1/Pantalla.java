@@ -1,43 +1,37 @@
 package entregas.celayaIker.Ejercicio1;
 
 class Pantalla {
-    private int posicion;
     private Frame[] pantalla;
+    private int frameActual;
+    private final int WIDTH = 320;
+    private final int HEIGHT = 200;
 
-    public Pantalla(int numFrames, int frameSize) {
-        this.posicion = 0;
-        this.pantalla = new Frame[numFrames];
-        for (int i = 0; i < numFrames; i++) {
-            this.pantalla[i] = new Frame(frameSize);
-        }
-    }
-
-    public Frame generarFrame() {
-        return new Frame(pantalla[0].obtenerFrame().length);
-    }
-
-    public void addFrame(Frame nuevoFrame) {
-        if (posicion < pantalla.length) {
-            pantalla[posicion++] = nuevoFrame;
-        } else {
-            System.out.println("No se pueden agregar más frames.");
-        }
+    public Pantalla() {
+        pantalla = new Frame[2];
+        pantalla[0] = new Frame(WIDTH, HEIGHT);
+        pantalla[1] = new Frame(WIDTH, HEIGHT);
+        frameActual = 0;
     }
 
     public void mostrarFrame(int posicion) {
         if (posicion >= 0 && posicion < pantalla.length) {
-            System.out.print("Frame " + posicion + ": ");
-            pantalla[posicion].imprimir();
+            frameActual = posicion;
+            System.out.println("Mostrando Frame " + (frameActual + 1));
         } else {
-            System.out.println("Posición fuera de rango.");
+            System.out.println("Índice de frame inválido.");
         }
     }
 
-    public void modificarPixel(int frameIndex, int pos, int nuevoValor) {
-        if (frameIndex >= 0 && frameIndex < pantalla.length) {
-            pantalla[frameIndex].modificarPixel(pos, nuevoValor);
+    public void modificarPixel(int frame, int pos, int nuevoValor) {
+        if (frame >= 0 && frame < pantalla.length) {
+            pantalla[frame].modificarPixel(pos, nuevoValor);
         } else {
-            System.out.println("Índice de frame fuera de rango.");
+            System.out.println("Índice de frame inválido.");
         }
+    }
+
+    public void alternarFrames() {
+        frameActual = 1 - frameActual;
+        mostrarFrame(frameActual);
     }
 }
