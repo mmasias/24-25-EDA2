@@ -1,13 +1,73 @@
 public class Pantalla {
-    
-    public Nodo cabeza;
-    public Nodo cola;
+    private Nodo cabeza;
+    private Nodo cola;
     private int timer;
 
-    public Pantalla(int timer){
-        this.cabeza = null;
-        this.cola = null;
-        this.timer = timer > 0 ? timer : 100000;
+    public Pantalla(int timer) {
+        this.timer = timer > 0 ? timer : 1000;
+        configurarFramesFlor();
+    }
+
+    private void configurarFramesFlor() {
+        int filas = 15;
+        int columnas = 20;
+
+        Frame frame1 = new Frame(filas, columnas);
+        Frame frame2 = new Frame(filas, columnas);
+
+        String[] florParteSuperior = {
+            "    ·       ·     ·  ",
+            "            ·        ",
+            "   ·      ·    ·     ",
+            "                     ",
+            "       ·       ·     ",
+            "         @@@         ",
+            "   ·   @@@@@@@      ",
+            "      @@@@@@@@@      ",
+            "       @@@@@@@       ",
+            "         @@@         ",
+            "         ###         ",
+            "                     ",
+            "         ###         ",
+            "                     ",
+            "         ###         ",
+        };
+
+        String[] florParteInferior = {
+            "         ###         ",
+            "                     ",
+            "         ###         ",
+            "                     ",
+            "  @@@@@@@###@@@@@@@  ",
+            "                     ",
+            "    @@@@@###@@@@@    ",
+            "                     ",
+            "         ###         ",
+            "                     ",
+            "         ###         ",
+            "                     ",
+            "         ###         ",
+            "                     ",
+            "@@@@@@@@@###@@@@@@@@@",
+        };
+
+        for (int i = 0; i < filas; i++) {
+            for (int j = 0; j < columnas; j++) {
+                char simboloSuperior = florParteSuperior[i].charAt(j);
+                char simboloInferior = florParteInferior[i].charAt(j);
+
+                frame1.pixeles[i][j] = new Pixel(simboloSuperior, ' ', ' ');
+                frame2.pixeles[i][j] = new Pixel(simboloInferior, ' ', ' ');
+            }
+        }
+
+        Nodo nodo1 = new Nodo(frame1, null, null);
+        Nodo nodo2 = new Nodo(frame2, null, nodo1);
+        nodo1.siguiente = nodo2;
+        nodo2.anterior = nodo1;
+
+        this.cabeza = nodo1;
+        this.cola = nodo2;
     }
 
     public void alternanciaImpresion() {
@@ -15,67 +75,36 @@ public class Pantalla {
             System.out.println("Error: No hay suficientes Frames para alternar.");
             return;
         }
-    
+
         boolean mostrarPrimero = true;
-    
+
         while (true) { 
+            System.out.print("\033[H\033[2J"); 
+            System.out.flush();
+
             if (mostrarPrimero) {
                 imprimirFrameIndividual(cabeza.dato);
             } else {
                 imprimirFrameIndividual(cola.dato);
             }
-    
-            mostrarPrimero = !mostrarPrimero; 
-    
+
+            mostrarPrimero = !mostrarPrimero;
+
             try {
-                Thread.sleep(timer); 
+                Thread.sleep(timer);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
     }
-    
-    
 
     private void imprimirFrameIndividual(Frame frame) {
-        int filas = frame.pixeles.length;
-        int columnas = frame.pixeles[0].length;
-    
-        for (int i = 0; i < filas; i++) {
-            for (int j = 0; j < columnas; j++) {
-                Pixel p = frame.pixeles[i][j];
-                System.out.print(String.valueOf(p.getNumeral()) + " ");
+        for (int i = 0; i < frame.pixeles.length; i++) {
+            for (int j = 0; j < frame.pixeles[i].length; j++) {
+                System.out.print(frame.pixeles[i][j].getNumeral() + " ");
             }
-            System.out.println(); 
+            System.out.println();
         }
-    
-        System.out.println(); 
+        System.out.println();
     }
-    
-    
-
-    public Frame getFrame() {
-        return (cabeza != null) ? cabeza.dato : null;
-    }
-
-    public void buffer() {
-        System.out.println("Frame en cabeza:");
-        imprimirFrameIndividual(cabeza.dato);
-    
-        System.out.println("Frame en cola:");
-        imprimirFrameIndividual(cola.dato);
-    }
-
-    public void temporizador(int nuevoTimer) {
-        if (nuevoTimer > 0) {
-            this.timer = nuevoTimer;
-            System.out.println("Temporizador actualizado a: " + nuevoTimer + "ms");
-        } else {
-            System.out.println("Error: El tiempo debe ser mayor que 0.");
-        }
-    }
-    
-  
 }
-
-
