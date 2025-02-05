@@ -1,36 +1,44 @@
 @startuml
 
 class Pixel {
-    - Coordenada X
-    - Coordenada Y
-    - Color actual del pixel
-    + actualizarColor()
+    - x: int
+    - y: int
+    - colorActual: Color
+    + actualizarColor(color: Color): void
+    + obtenerCoordenadas(): (int, int)
+    + obtenerColor(): Color
 }
 
 class Frame {
-    - Matriz de píxeles
-    + actualizarPixel()
-    + reiniciarPixeles()
-    + obtenerDimensiones()
+    - pixeles: Pixel[][]
+    - ancho: int
+    - alto: int
+    + actualizarPixel(x: int, y: int, color: Color): void
+    + reiniciarPixeles(): void
+    + obtenerDimensiones(): (int, int)
+    + obtenerPixel(x: int, y: int): Pixel
 }
 
 class DoubleBuffer {
-    - Frame activo
-    - Frame en espera
-    + alternarFrames()
-    + obtenerFrameActivo()
-    + obtenerFrameEspera()
+    - frameActivo: Frame
+    - frameEnEspera: Frame
+    + alternarFrames(): void
+    + obtenerFrameActivo(): Frame
+    + obtenerFrameEspera(): Frame
+    + renderizarFrame(): void
 }
 
 class TemporalColorBlender {
-    - Tabla de combinación de colores
-    - Tasa de alternancia
-    + calcularColorResultado()
-    + establecerPatrones()
+    - tablaCombinacionColores: Map<Color, Color> // Mapa de combinaciones de colores
+    - tasaAlternancia: float
+    + calcularColorResultado(color1: Color, color2: Color): Color
+    + establecerPatrones(patrones: List<Color>): void
+    + obtenerPatrones(): List<Color>
 }
 
-Pixel -> Frame : Contiene
-Frame -> DoubleBuffer : Gestiona
-DoubleBuffer -> TemporalColorBlender : Utiliza
+Pixel -> Frame : contiene
+Frame -> DoubleBuffer : gestiona
+DoubleBuffer -> TemporalColorBlender : utiliza
 
 @enduml
+
