@@ -1,0 +1,50 @@
+@startuml
+
+class Pantalla {
+    int alto;
+    int ancho;
+    void duplicarFrames();
+    void mostrarDuplicado();
+}
+
+class ColoresBase {
+    char negro = '.';
+    char blanco = '#';
+    char cyan = '+';
+    char magenta = '*';
+}
+
+class PatronesColor {
+    char gris = '@';
+    char cyanBajaInt = ':';
+    char magentaBajaInt = ';';
+    char cyanAltaInt = '=';
+    char magentaAltaInt = '&';
+    char blancoMediaInt = '$';
+}
+
+class Alternancia {
+    void combinarColoresBase();
+    void alternarColores();
+    void temporizado();
+}
+
+class Frames {
+    int frame1[][];
+    int frame2[][];
+    void actualizarFrame();
+}
+
+class Pixel {
+    int pixel;
+    void actualizarPixel();
+}
+
+Pantalla --> ColoresBase
+Pantalla --> PatronesColor
+ColoresBase --> Alternancia
+PatronesColor --> Alternancia
+Alternancia --> Frames
+Frames --> Pixel
+
+@enduml
