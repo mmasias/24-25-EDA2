@@ -1,0 +1,67 @@
+@startuml
+class Cola {
+    - NodoFrame primero
+    - NodoFrame ultimo
+    - int tamaño
+    + Cola()
+    + void enqueue(Frame frame)
+    + Frame[] desenqueue()
+    + Frame[] peek()
+    - boolean tieneDosFrames()
+}
+
+class NodoFrame {
+    - Frame frame
+    - NodoFrame siguiente
+    + NodoFrame(Frame frame)
+    + Frame getFrame()
+    + NodoFrame getSiguiente()
+    + void setSiguiente(NodoFrame siguiente)
+}
+
+class Frame {
+    - Pixel[][] pixeles
+    + Frame()
+    + void rellenarPixeles()
+    + Pixel[][] devolverPixeles()
+}
+
+class Pixel {
+    - Color color
+    + Pixel()
+    + Color devolverColor()
+}
+
+class Color {
+    - char representacion
+    + Color()
+    + char devolverRepresentacion()
+}
+
+class Grafica {
+    - final int tasaHZ
+    - Cola colaFrames
+    + Grafica()
+    - void generarFrames()
+    + Frame[] devolverDosFrames()
+}
+
+class Pantalla {
+    - Frame[] frames
+    - Grafica grafica
+    + void mostrar()
+}
+
+class Main {
+    + main(String[] args)
+}
+
+Cola "1" --> "*" NodoFrame
+NodoFrame "1" --> "1" Frame
+NodoFrame "1" --> "1" NodoFrame : siguiente
+Frame "1" --> "*" Pixel
+Pixel "1" --> "1" Color
+Grafica "1" --> "1" Cola
+Pantalla "1" --> "1" Grafica
+Main "1" --> "1" Pantalla
+@enduml
