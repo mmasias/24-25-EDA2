@@ -5,7 +5,7 @@ int obetenerDato();
 void setDato(int valor);
 }
 
-class Examen {
+class Frame {
 Pixel[] frame;
 void modificarPixel(int pos, int vuevoValor);
 void traducir(Pixel pixel);
