@@ -1,6 +1,6 @@
 public class Frame {
     
-    private Pixel[][] pixeles;
+    public Pixel[][] pixeles;
     
     public Frame(int filas, int columnas) {
         this.pixeles = new Pixel[filas][columnas];
