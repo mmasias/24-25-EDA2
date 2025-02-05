@@ -1,23 +1,19 @@
 public class Pixel {
-    private char asterisco;
-    private char punto;
-    private char mas;
+    private char color; 
 
     public Pixel() {
-        this.asterisco = '*';
-        this.punto = '.';
-        this.mas = '+';
+        this.color = ' '; 
     }
 
-    public char getAsterisco() {
-        return asterisco;
+    public Pixel(char color) {
+        this.color = color;
     }
 
-    public char getPunto() {
-        return punto;
+    public char getColor() {
+        return color;
     }
-
-    public char getMas() {
-        return mas;
+    
+    public void setColor(char color) {
+        this.color = color;
     }
 }
