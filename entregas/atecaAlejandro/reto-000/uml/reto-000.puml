@@ -1,0 +1,37 @@
+@startuml
+
+class Pixel {
+    - boolean estado
+    - String color
+    + Pixel(boolean estado, String color)
+    + boolean getEstado()
+    + void setEstado(boolean estado)
+    + String getColor()
+    + void setColor(String color)
+}
+
+class Frame {
+    - int x
+    - int y
+    - Pixel[][] pixels
+    + Frame(int x, int y)
+    + void setPixel(int x, int y, boolean estado, String color)
+    + Pixel getPixel(int x, int y)
+    + void clearFrame(boolean estado, String color)
+}
+
+class DisplayManager {
+    - Frame buffer1
+    - Frame buffer2
+    - int frameActual
+    + DisplayManager(int x, int y)
+    + void cambiarFrame()
+    + void dibujarPixel(int x, int y, boolean estado, String color)
+    + Frame renderFrame()
+}
+
+DisplayManager "1" -- "1" Frame : buffer1
+DisplayManager "1" -- "1" Frame : buffer2
+Frame "*" -- "*" Pixel
+
+@enduml
