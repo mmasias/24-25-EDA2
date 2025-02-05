@@ -1,6 +1,6 @@
 public class Pantalla {
-    private Nodo dato;
-    private Nodo cabeza;
+    private frame1;
+   
 
     public Pantalla() {
         this.dato = null;
