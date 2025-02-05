@@ -3,21 +3,21 @@
 class Pixel{
   int dato;
   int obtenerDato();
-  void setDato()
+  void setDato(int valor)
 }
 
 class Frame{
   Pixel[] frame;
   void modificarPixel(int pos, int nuevoValor);
-  void traducri(Pixel pixel);
+  void traducir(Pixel pixel);
   void imprimir();
 }
 
 class Pantalla{
   int posicion;
-  Framep[] pantalla;
+  Frame[] pantalla;
   Frame generarFrame();
-  void addFrame(generarFrame());
+  void addFrame(generarFrame(), int posicion);
   void mostrarFrame(int posicion);
   void modificarPixel(int frame, int pos, int nuevoValor);
 }

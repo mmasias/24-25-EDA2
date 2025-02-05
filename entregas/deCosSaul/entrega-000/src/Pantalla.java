@@ -2,7 +2,7 @@ class Pantalla {
   int posicion;
   Frame[] pantalla = new Frame[2];
 
-  public Frame generarFrame(int posicion) {
+  public Frame generarFrame() {
     Frame frame = new Frame(21);
 
     for (int i = 0; i < 21; i++) {
@@ -14,8 +14,8 @@ class Pantalla {
 
   }
 
-  public void addFrame(int pos) {
-    pantalla[pos] = generarFrame(pos);
+  public void addFrame(int posicion) {
+    pantalla[posicion] = generarFrame();
   }
 
   public void mostrarFrame(int posicion) {

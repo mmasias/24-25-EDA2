@@ -1,5 +1,5 @@
 class Frame {
-  private Pixel[] frame;
+  Pixel[] frame;
 
   public Frame(int size) {
     frame = new Pixel[size];
@@ -19,7 +19,7 @@ class Frame {
 
   public void imprimir() {
     for (int i = 0; i < frame.length; i++) {
-      System.out.print(traducir(frame[i]));
+      System.out.println(traducir(frame[i]));
       if (i % 7 == 0) {
         System.out.println();
       }
