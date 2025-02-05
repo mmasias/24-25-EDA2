@@ -21,7 +21,7 @@ void mostrarFrame(int posicion);
 void modificarPixel(int frame, int pos, int nuevoValor);
 }
 
-Pantalla --> Examen
-Examen --> Pixel
+Pantalla --> Frame
+Frame --> Pixel
 
 @enduml
