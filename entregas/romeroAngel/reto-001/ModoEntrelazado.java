@@ -87,6 +87,12 @@ class Nodo {
     private Nodo anterior;
     private Nodo siguiente;
 
+    public Nodo(Frame dato){
+        this.dato = dato;
+        this.anterior = null;
+        this.siguiente = null;
+    }
+
     public Nodo getNodo(){}
 
 }
