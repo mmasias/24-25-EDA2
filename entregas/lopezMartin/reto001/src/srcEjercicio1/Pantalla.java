@@ -11,13 +11,13 @@ public class Pantalla{
 
     public void mostrar(){
 
-        grafica.generarFrames();
-
         while(true){
+
+            grafica.generarFrames();
+
             buffer = grafica.devolverDosFrames();
-
+            
             if(buffer[0]!=null && buffer[1]!=null){
-
                 for (int i = 0; i < 3; i++) {
                     for (int j = 0; j < 7; j++) {
                         System.out.print(buffer[0].devolverPixeles()[i][j].devolverColor().devolverRepresentacion() + " ");
@@ -28,9 +28,18 @@ public class Pantalla{
                     System.out.println();
     
                 }
+                
             }else{
-                System.out.println("a");
+                System.out.println("No hay dos frames aún, espera");
             }
+            pause();
+        }
+    }
+
+    private static void pause() {
+        try {
+            Thread.sleep(750);
+        } catch (InterruptedException e) {
         }
     }
 }

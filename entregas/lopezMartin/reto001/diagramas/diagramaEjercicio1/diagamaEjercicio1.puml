@@ -1,13 +1,14 @@
 @startuml
 
 class Main{
-    +main(String[] args)
+    +main(String[] args): void
 }
 
 class Pantalla {
     -buffer: Frame[]
     -grafica: Grafica
-    +mostrar()
+    +mostrar(): void
+    -pause(): void
 }
 
 class Grafica {
@@ -15,7 +16,7 @@ class Grafica {
     -tasaHZ=60: final int
     -colaFrames: Cola
     +Grafica()
-    +generarFrames()
+    +generarFrames(): void
     +devolverDosFrames(): Frame[]
 }
 
@@ -24,7 +25,7 @@ class Cola {
     -ultimo: NodoFrame
     -tamaño: int
     +Cola()
-    +enqueue()
+    +enqueue(): void
     +dequeue(): Frame[]
     +peek(): Frame[]
     -tieneDosFrames(): bolean
@@ -34,13 +35,13 @@ class NodoFrame {
     -siguiente: NodoFrame
     +NodoFrame()
     +getSiguiente(): NodoFrame
-    +setSiguiente(NodoFrame frame)
+    +setSiguiente(NodoFrame nodo): void
 }
 
 class Frame {
     -pixeles: Pixel[][]
     +Frame()
-    +rellenarPixeles()
+    +rellenarPixeles(): void
     +devolverPixeles(): Pixel[][]
 }
 
