@@ -108,6 +108,14 @@ class Nodo {
     public Frame getFrame(){
         return this.dato;
     }
+
+    public void enlazarAnterior(Nodo anterior){
+        this.anterior = anterior;
+    }
+
+    public void enlazarSiguiente(Nodo siguiente){
+        this.siguiente = siguiente;
+    }
 }
 
 class Pantalla {
@@ -122,8 +130,6 @@ class Pantalla {
             cabeza = cabeza.getSiguiente();
         }
     }
-
-    
 
     public Frame getFrame(){}
 
