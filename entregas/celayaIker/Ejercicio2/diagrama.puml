@@ -9,8 +9,7 @@ class Pixel{
 class Frame{
   Pixel[] frame;
   void modificarPixel(int pos, int nuevoValor);
-  void traducir(Pixel pixel);
-  void imprimir();
+  Pixel[] obtenerFrame();
 }
 
 class Pantalla{
@@ -18,8 +17,8 @@ class Pantalla{
   Frame[] pantalla;
   Frame generarFrame();
   void addFrame(generarFrame());
-  void mostrarFrame(int posicion);
-  void modificarPixel(int frame, int pos, int nuevoValor);
+  void imprimir(traducir());
+  Frame traducir(pantalla(0),pantalla(1));
 }
 
 Frame --> Pixel
