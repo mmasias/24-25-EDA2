@@ -1,0 +1,48 @@
+@startuml Diagrama
+
+class Entrelazado {
+    + editarFrame()
+    + imprimirPrimerFrame()
+    + imprimirSegundoFrame()
+    + dondeImprimirFrame()
+}
+
+class Pixeles {
+    + gestionarNodo()
+    - primerFrame
+    - segundoFrame
+    - editarFrame()
+}
+
+class BufferFrame {
+    + getNodo()
+    - int[][] primerFrame
+    - int[][] segundoFrame
+    + editarFrame()
+    + convertirPrimerFrame()
+    + convertirSegundoFrame()
+    + imprimirPrimerFrame()
+    + imprimirSegundoFrame()
+}
+
+class Nodo {
+    - Nodo siguiente
+    - Nodo anterior
+    - int[][] frame
+}
+
+class Lista {
+    - Nodo siguiente
+    - Nodo anterior
+    + anadirNodo()
+    + gestionarNodo()
+    + eliminarNodo()
+}
+
+Entrelazado --> Pixeles
+Pixeles --> BufferFrame
+BufferFrame --> Nodo
+Nodo --> Lista
+
+@enduml
+
