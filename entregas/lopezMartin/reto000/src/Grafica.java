@@ -27,7 +27,7 @@ public class Grafica {
     }
 
     public Frame[] devolverDosFrames(){
-        return colaFrames.desenqueue();
+        return colaFrames.dequeue();
     }
     
 }

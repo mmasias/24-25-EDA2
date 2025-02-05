@@ -24,7 +24,7 @@ public class Cola {
         this.tamaño++;
     }
 
-    public Frame[] desenqueue(){
+    public Frame[] dequeue(){
         if (tieneDosFrames()) {
             Frame[] frames = new Frame[2];
             NodoFrame actual = primero;

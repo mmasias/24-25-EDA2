@@ -23,7 +23,7 @@ class Cola {
     +enqueue(): void
     +dequeue(): Frame[]
     +peek(): Frame[]
-    -tieneDosFrames(): bolean
+    -tieneDosFrames(): boolean
 }
 
 class NodoFrame {
