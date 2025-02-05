@@ -46,7 +46,13 @@ class Frame {
     }
 
 
-    public void resetear(){}
+    public void resetear(){
+        for(int i = 0;i<pixeles.length;i++){
+            for(int j = 0;j<pixeles[i].length;j++){
+                pixeles[i][j].setValor(' ');
+            }
+        }
+    }
 
     public Pixel buscarPixel(){}
 
