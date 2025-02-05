@@ -18,9 +18,9 @@ public class SuperposicionTemporal {
 
         agregarReglaColor("Negro", "Blanco", "Gris");
         agregarReglaColor("Rojo", "Azul", "Morado");
-        agregarReglaColor("Rojo", "Amarillo", "Naranja");
+        agregarReglaColor("Rojo", "Amarillo", "Orange");
         agregarReglaColor("Azul", "Amarillo", "Verde");
-        agregarReglaColor("Negro", "Rojo", "Marrón Oscuro");
+        agregarReglaColor("Negro", "Rojo", "DkBrwn");
         agregarReglaColor("Blanco", "Azul", "Celeste");
     }
 
