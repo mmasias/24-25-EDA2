@@ -7,8 +7,7 @@ public class Pantalla{
         this.grafica = new Grafica();
     
         while(true){
-            frames = grafica.devolverDosFrames();
-    
+            Frame[] frames = grafica.devolverDosFrames();
             if(frames != null && frames[0] != null && frames[1] != null){
                 for (int i = 0; i < 3; i++) {
                     for (int j = 0; j < 7; j++) {
@@ -20,10 +19,16 @@ public class Pantalla{
                     System.out.println();
                 }
             } else {
-                System.out.println("Aún no se han generado los frames suficientes.");
+                System.out.println("No hay suficientes frames aún.");
+                try {
+                    Thread.sleep(2000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }
+    
     
 
     public static void main(String[] args) {

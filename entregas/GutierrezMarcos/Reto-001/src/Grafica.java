@@ -13,18 +13,19 @@ public class Grafica {
     }
 
     private void generarFrames(){
-
         Timer temporizador = new Timer();
         
         TimerTask tarea = new TimerTask() {
             @Override
             public void run() {
                 colaFrames.enqueue();
+                colaFrames.enqueue();
             }
         };
         temporizador.scheduleAtFixedRate(tarea, 0, 1000);
-
     }
+    
+    
 
     public Frame[] devolverDosFrames(){
         return colaFrames.desenqueue();

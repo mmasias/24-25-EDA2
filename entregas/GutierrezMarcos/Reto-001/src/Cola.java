@@ -10,56 +10,41 @@ public class Cola {
         this.tamaño = 0;
     }
 
-    public void enqueue(){
-        if(this.tamaño==0){
-            NodoFrame nuevoNodo = new NodoFrame();
+    public synchronized void enqueue(){
+        NodoFrame nuevoNodo = new NodoFrame();
+        if(tamaño == 0){
             primero = nuevoNodo;
-        }else{
-            NodoFrame actual = primero;
-            while(actual.getSiguiente()!=null){
-                actual = actual.getSiguiente();
-            }
-            actual.setSiguiente();
-        }
-        this.tamaño++;
-    }
-
-    public Frame[] desenqueue(){
-        if (tamaño >= 2) {
-            Frame[] frames = new Frame[2];
-            frames[0] = primero;
-            frames[1] = primero.getSiguiente();
-    
-            if (primero.getSiguiente() != null) {
-                primero = primero.getSiguiente().getSiguiente();
-            } else {
-                primero = null;
-            }
-            tamaño -= 2;
-            return frames;
+            ultimo = nuevoNodo;
         } else {
-            return null;
+            ultimo.setSiguiente(nuevoNodo);
+            ultimo = nuevoNodo;
         }
+        tamaño++;
+        notifyAll();
     }
-    
 
-    public Frame[] peek(){
-        if (tieneDosFrames()) {
-            Frame[] frames = new Frame[2];
-            NodoFrame actual = primero;
-            while (actual.getSiguiente() != null && actual.getSiguiente().getSiguiente() != null) {
-                actual = actual.getSiguiente();
+    public synchronized Frame[] desenqueue(){
+        while(tamaño < 2) {
+            try {
+                wait();
+            } catch(InterruptedException e) {
+                Thread.currentThread().interrupt();
+                return null;
             }
-            frames[0] = actual.getSiguiente();
-            frames[1] = actual.getSiguiente().getSiguiente();
-            return frames;
-        }else{
-            return null;
         }
+        Frame[] frames = new Frame[2];
+        frames[0] = primero;
+        frames[1] = primero.getSiguiente();
+        
+        if (primero.getSiguiente() != null) {
+            primero = primero.getSiguiente().getSiguiente();
+        } else {
+            primero = null;
+        }
+        tamaño -= 2;
+        if(tamaño == 0) {
+            ultimo = null;
+        }
+        return frames;
     }
-
-    private boolean tieneDosFrames(){
-        return tamaño>=2;
-    }
-    
 }

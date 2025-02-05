@@ -1,5 +1,4 @@
-public class NodoFrame extends Frame{
-    
+public class NodoFrame extends Frame {
     private NodoFrame siguiente;
 
     public NodoFrame(){
@@ -11,8 +10,7 @@ public class NodoFrame extends Frame{
         return this.siguiente;
     }
 
-    public void setSiguiente(){
-        this.siguiente = new NodoFrame();
+    public void setSiguiente(NodoFrame nodo){
+        this.siguiente = nodo;
     }
-
 }
