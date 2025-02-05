@@ -12,7 +12,7 @@ Frame traducir(pantalla(0), pantalla(1));
 class Frame {
 Pixel[] frame;
 void modificarPixel(int pos, int vuevoValor);
-Pixel[]obtenerFrame;
+Pixel[] obtenerFrame();
 
 }
 
