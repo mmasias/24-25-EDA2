@@ -29,8 +29,6 @@ public class Pantalla{
         }
     }
     
-    
-
     public static void main(String[] args) {
         new Pantalla().mostrar();
     }

@@ -19,7 +19,6 @@ public class Grafica {
             @Override
             public void run() {
                 colaFrames.enqueue();
-                colaFrames.enqueue();
             }
         };
         temporizador.scheduleAtFixedRate(tarea, 0, 1000);
