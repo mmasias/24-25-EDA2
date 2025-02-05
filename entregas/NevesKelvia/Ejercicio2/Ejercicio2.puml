@@ -1,0 +1,42 @@
+@startuml
+
+class Frames {
+    + frame1()
+    + frame2()
+}
+
+class Alternancia {
+    + alternar()
+    + moverVertical()
+    + timer()
+
+}
+
+class ImprimirPantalla {
+    + imprimirTodo()
+}
+
+class Colores {
+    + negro()
+    + blanco()
+    + cyan()
+    + magenta()
+    + representacion()
+}
+
+class Pintar {
+    + combinar()
+    + imprimirCombo()
+}
+
+class Pixel {
+    + getPixel
+}
+
+Frames --> Alternancia : gestiona
+Frames --> ImprimirPantalla : envía datos
+Frames --> Colores : usa
+Frames --> Pintar : coordina
+Pintar --> Pixel : modifica
+
+@enduml
