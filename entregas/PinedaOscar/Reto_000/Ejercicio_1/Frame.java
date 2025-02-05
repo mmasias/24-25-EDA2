@@ -1,4 +1,4 @@
-package entregas.Oscar_Reto_000.Ejercicio_1;
+package entregas.PinedaOscar.Reto_000.Ejercicio_1;
 class Frame {
     private Pixel[][] pixeles;
     private int resolucion;

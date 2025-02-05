@@ -1,4 +1,4 @@
-package entregas.Oscar_Reto_000.Ejercicio_2;
+package entregas.PinedaOscar.Reto_000.Ejercicio_2;
 
 class Resultados {
     private Frame frame1;
