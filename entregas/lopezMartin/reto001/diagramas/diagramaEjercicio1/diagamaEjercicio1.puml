@@ -7,6 +7,7 @@ class Main{
 class Pantalla {
     -buffer: Frame[]
     -grafica: Grafica
+    +Pantalla()
     +mostrar(): void
     -pause(): void
 }
