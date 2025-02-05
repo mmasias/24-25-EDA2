@@ -1,99 +1,44 @@
 public class Pixel {
-    private char value;
 
-    public Pixel(char value) {
-        this.value = value;
-    }
+    private static final int WIDTH = 20;
+    private static final int HEIGHT = 10;
 
-    public char getValue() {
-        return value;
-    }
-
-    public void setValue(char value) {
-        this.value = value;
-    }
-}
-
-class Frame {
-    private Pixel[][] pixels;
-    private int x, y;
-
-    public Frame(int x, int y) {
-        this.x = x;
-        this.y = y;
-        this.pixels = new Pixel[x][y];
-        initializePixels();
-    }
-
-    private void initializePixels() {
-        for (int i = 0; i < x; i++) {
-            for (int j = 0; j < y; j++) {
-                pixels[i][j] = new Pixel(' ');
+    private static char[][] generateFrame(int offset) {
+        char[][] frame = new char[HEIGHT][WIDTH];
+        for (int y = 0; y < HEIGHT; y++) {
+            for (int x = 0; x < WIDTH; x++) {
+                frame[y][x] = ((x + y + offset) % 2 == 0) ? '#' : ' ';
             }
         }
+        return frame;
     }
 
-    public Pixel getPixel(int x, int y) {
-        return pixels[x][y];
-    }
-
-    public void setPixel(int x, int y, Pixel pixel) {
-        pixels[x][y] = pixel;
-    }
-}
-
-class DataBase {
-    private Frame[] frames;
-    private Frame activeFrame;
-
-    public DataBase(int numberOfFrames, int width, int height) {
-        frames = new Frame[numberOfFrames];
-        for (int i = 0; i < numberOfFrames; i++) {
-            frames[i] = new Frame(width, height);
+    private static char[][] combineFrames(char[][] frame1, char[][] frame2) {
+        char[][] combinedFrame = new char[HEIGHT][WIDTH * 2];
+        for (int y = 0; y < HEIGHT; y++) {
+            for (int x = 0; x < WIDTH; x++) {
+                combinedFrame[y][x * 2] = frame1[y][x];
+                combinedFrame[y][x * 2 + 1] = frame2[y][x];
+            }
         }
-        activeFrame = frames[0];
+        return combinedFrame;
     }
 
-    public void addFrame(Frame frame) {
-    }
-
-    public void switchFrame(int index) {
-        if (index >= 0 && index < frames.length) {
-            activeFrame = frames[index];
-        }
-    }
-
-    public Frame getActiveFrame() {
-        return activeFrame;
-    }
-}
-
-class Display {
-    private Pixel[][] displayPixels;
-
-    public Display(int width, int height) {
-        displayPixels = new Pixel[width][height];
-    }
-
-    public void render() {
-        for (int i = 0; i < displayPixels.length; i++) {
-            for (int j = 0; j < displayPixels[i].length; j++) {
-                if (displayPixels[i][j] != null) {
-                    System.out.print(displayPixels[i][j].getValue() + " ");
-                } else {
-                    System.out.print(". ");
-                }
+    private static void printFrame(char[][] frame) {
+        for (int y = 0; y < HEIGHT; y++) {
+            for (int x = 0; x < frame[y].length; x++) {
+                System.out.print(frame[y][x]);
             }
             System.out.println();
         }
     }
 
-    public void updateDataBase(DataBase db) {
-        Frame frame = db.getActiveFrame();
-        for (int i = 0; i < displayPixels.length; i++) {
-            for (int j = 0; j < displayPixels[i].length; j++) {
-                displayPixels[i][j] = frame.getPixel(i, j);
-            }
-        }
+    public static void main(String[] args) {
+        char[][] frame1 = generateFrame(0);
+        char[][] frame2 = generateFrame(1);
+
+        char[][] combinedFrame = combineFrames(frame1, frame2);
+
+        printFrame(combinedFrame);
     }
 }

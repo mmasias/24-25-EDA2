@@ -3,8 +3,14 @@ skinparam classAttributeIconSize 0
 
 class Pixel {
     - value: char
+    - WIDTH: int
+    - HEIGHT: int
     + getValue(): char
     + setValue(value: char)
+    + generateFrame(offset: int): char[][]
+    + combineFrames(frame1: char[][], frame2: char[][]): char[][]
+    + printFrame(frame: char[][])
+    + main(args: String[])
 }
 
 class Frame {
