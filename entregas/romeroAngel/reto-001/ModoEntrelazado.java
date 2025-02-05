@@ -97,6 +97,17 @@ class Nodo {
         return this;
     }
 
+    public Nodo getAnteriorNodo(){
+        return this.anterior;
+    }
+    
+    public Nodo getSiguienteNodo(){
+        return this.siguiente;
+    }
+
+    public Frame getFrame(){
+        return this.dato;
+    }
 }
 
 class Pantalla {
