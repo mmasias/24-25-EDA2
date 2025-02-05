@@ -1,0 +1,34 @@
+@startuml
+
+class Frames {
+    + frame[][]
+    + frame1()
+    + frame2()
+}
+
+class Alternancia {
+    + alternarHorizontal()
+    + frame1()
+    + frame2()
+    + siguiente()
+    + timer()
+}
+
+class ImprimirPantalla {
+    + imprimir()
+}
+
+class Representacion {
+    + dibujar()
+}
+
+class Pixel {
+    + getPixel()
+}
+
+Frames --|> Alternancia
+Frames --|> ImprimirPantalla
+Frames --|> Representacion
+Representacion --|> Pixel
+
+@enduml
