@@ -14,22 +14,25 @@ class Pixel {
 }
 
 class Frame1 {
-  -char[][]
+  -char[][] contenido
   PosicionFrame(Pixel, ColoresCompuestos)
 }
 
 class Frame2 {
-  -char[][]
-  PosicionFrame(Pixel, ColoresCompuesto)
+  -char[][] contenido
+  PosicionFrame(Pixel, ColoresCompuestos)
 }
 
 class ResultadoVisual {
-  -char[][]
-  combinar(Frame1, Frame2)
+  -char[][] contenido
+  +ResultadoVisual(int, int)
+  +combinar(Frame1, Frame2)
+  -char combinarColores(char, char)
+  -void mostrarResultado()
 }
 
 class ColoresCompuestos {
-  -char[][]
+  -char[][] 
   ListaColores()
 }
 
