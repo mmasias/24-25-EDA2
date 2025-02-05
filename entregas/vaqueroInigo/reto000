@@ -1,0 +1,36 @@
+@startuml
+
+class Pixel {
+    - Coordenada X
+    - Coordenada Y
+    - Color actual del pixel
+    + actualizarColor()
+}
+
+class Frame {
+    - Matriz de píxeles
+    + actualizarPixel()
+    + reiniciarPixeles()
+    + obtenerDimensiones()
+}
+
+class DoubleBuffer {
+    - Frame activo
+    - Frame en espera
+    + alternarFrames()
+    + obtenerFrameActivo()
+    + obtenerFrameEspera()
+}
+
+class TemporalColorBlender {
+    - Tabla de combinación de colores
+    - Tasa de alternancia
+    + calcularColorResultado()
+    + establecerPatrones()
+}
+
+Pixel -> Frame : Contiene
+Frame -> DoubleBuffer : Gestiona
+DoubleBuffer -> TemporalColorBlender : Utiliza
+
+@enduml
