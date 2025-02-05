@@ -1,45 +1,27 @@
 package entregas.celayaIker.Ejercicio2;
 
 class Pantalla {
-    private int posicion;
     private Frame[] pantalla;
+    private int frameActual;
 
-    public Pantalla(int numFrames, int frameSize) {
-        this.posicion = 0;
-        this.pantalla = new Frame[numFrames];
-        for (int i = 0; i < numFrames; i++) {
-            this.pantalla[i] = new Frame(frameSize);
-        }
+    public Pantalla() {
+        pantalla = new Frame[2];
+        pantalla[0] = new Frame(320, 200);
+        pantalla[1] = new Frame(320, 200);
+        frameActual = 0;
     }
 
-    public Frame generarFrame() {
-        return new Frame(pantalla[0].obtenerFrame().length);
+    public void mostrarFrame(int posicion) {
+        frameActual = posicion;
+        System.out.println("Mostrando Frame " + (frameActual + 1));
     }
 
-    public void addFrame(Frame nuevoFrame) {
-        if (posicion < pantalla.length) {
-            pantalla[posicion++] = nuevoFrame;
-        } else {
-            System.out.println("No se pueden agregar más frames.");
-        }
+    public void modificarPixel(int frame, int x, int y, int nuevoValor) {
+        pantalla[frame].modificarPixel(x, y, nuevoValor);
     }
 
-    public void imprimir() {
-        for (int i = 0; i < pantalla.length; i++) {
-            System.out.print("Frame " + i + ": ");
-            for (Pixel p : pantalla[i].obtenerFrame()) {
-                System.out.print(p.obtenerDato() + " ");
-            }
-            System.out.println();
-        }
-    }
-
-    public Frame traducir(Frame origen, Frame destino) {
-        int size = origen.obtenerFrame().length;
-        Frame nuevoFrame = new Frame(size);
-        for (int i = 0; i < size; i++) {
-            nuevoFrame.modificarPixel(i, (origen.obtenerFrame()[i].obtenerDato() + destino.obtenerFrame()[i].obtenerDato()) / 2);
-        }
-        return nuevoFrame;
+    public void alternarColores() {
+        frameActual = 1 - frameActual;
+        mostrarFrame(frameActual);
     }
 }

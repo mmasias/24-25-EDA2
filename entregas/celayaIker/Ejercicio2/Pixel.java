@@ -3,10 +3,6 @@ package entregas.celayaIker.Ejercicio2;
 class Pixel {
     private int dato;
 
-    public Pixel(int dato) {
-        this.dato = dato;
-    }
-
     public int obtenerDato() {
         return dato;
     }

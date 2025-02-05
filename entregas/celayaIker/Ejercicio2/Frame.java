@@ -1,24 +1,22 @@
 package entregas.celayaIker.Ejercicio2;
 
 class Frame {
-    private Pixel[] frame;
+    private Pixel[][] frame;
 
-    public Frame(int size) {
-        this.frame = new Pixel[size];
-        for (int i = 0; i < size; i++) {
-            this.frame[i] = new Pixel(0);
+    public Frame(int width, int height) {
+        frame = new Pixel[width][height];
+        for (int i = 0; i < width; i++) {
+            for (int j = 0; j < height; j++) {
+                frame[i][j] = new Pixel();
+            }
         }
     }
 
-    public void modificarPixel(int pos, int nuevoValor) {
-        if (pos >= 0 && pos < frame.length) {
-            frame[pos].setDato(nuevoValor);
-        } else {
-            System.out.println("Posición fuera de rango.");
-        }
+    public void modificarPixel(int x, int y, int nuevoValor) {
+        frame[x][y].setDato(nuevoValor);
     }
 
-    public Pixel[] obtenerFrame() {
+    public Pixel[][] obtenerFrame() {
         return frame;
     }
 }
