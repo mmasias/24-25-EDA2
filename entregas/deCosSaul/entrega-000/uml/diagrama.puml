@@ -22,6 +22,6 @@ class Pantalla{
   void modificarPixel(int frame, int pos, int nuevoValor);
 }
 
-Pixel --> Frame
-Frame --> Pantalla
+Pantalla --> Frame
+Frame --> Pixel
 @enduml
