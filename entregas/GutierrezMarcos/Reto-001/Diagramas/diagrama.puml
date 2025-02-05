@@ -1,60 +1,68 @@
 @startuml
+' Clase Pantalla
 class Pantalla {
-    - Frame[] frames
-    - Grafica grafica
-    + void Mostrar()
+  - Frame[] frames
+  - Grafica grafica
+  + mostrar() : void
+  + main(String[] args) : void
 }
-a
+
+' Clase Grafica
 class Grafica {
-    - final int memoriaKB = 16
-    - final int hertz = 60
-    - Cola frames
-    + Grafica()
-    + void generarFrame()
-    + Frame[] devolverFrames()
+  - int memoriaKB
+  - int tasaHZ
+  - Cola colaFrames
+  + Grafica()
+  - generarFrames() : void
+  + devolverDosFrames() : Frame[]
 }
 
+' Clase Cola
 class Cola {
-    - NodoFrame primero
-    - NodoFrame ultimo
-    - int tamano
-    + Cola()
-    + void enqueue()
-    + Frame[] dequeue()
-    + Frame[] peek()
-    + boolean verificar()
+  - NodoFrame primero
+  - NodoFrame ultimo
+  - int tamaño
+  + Cola()
+  + enqueue() : void
+  + desenqueue() : Frame[]
 }
 
+' Clase NodoFrame extiende Frame
 class NodoFrame {
-    - NodoFrame siguiente
-    + NodoFrame()
-    + NodoFrame getSiguiente()
-    + void setSiguiente()
+  - NodoFrame siguiente
+  + NodoFrame()
+  + getSiguiente() : NodoFrame
+  + setSiguiente(nodo : NodoFrame) : void
 }
 
+' Clase Frame
 class Frame {
-    - Pixel[][] pixeles
-    + Frame()
-    + void rellenarPixeles()
-    + Pixel[][] devolverPixeles()
+  - Pixel[][] pixeles
+  + Frame()
+  + rellenarPixeles() : void
+  + devolverPixeles() : Pixel[][]
 }
 
+' Clase Pixel
 class Pixel {
-    - Color color
-    + Pixel()
-    + Color devolverColor()
+  - Color color
+  + Pixel()
+  + devolverColor() : Color
 }
 
+' Clase Color
 class Color {
-    - char[] representacion
-    + Color()
-    + char devolverRepresentacion()
+  - char representacion
+  + Color()
+  + devolverRepresentacion() : char
 }
 
-Pantalla --> Grafica
-Grafica --> Cola
-Cola --> NodoFrame
-NodoFrame --> Frame
-Frame --> Pixel
-Pixel --> Color
+' Relaciones
+Pantalla --> Grafica : usa
+Grafica --> Cola : tiene
+Cola --> NodoFrame : contiene
+NodoFrame --|> Frame
+Frame --> Pixel : contiene *
+Pixel --> Color : contiene
+
 @enduml
