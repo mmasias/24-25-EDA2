@@ -54,7 +54,16 @@ class Frame {
         }
     }
 
-    public Pixel buscarPixel(){}
+    public Pixel buscarPixel(char valor){
+        for(int i = 0;i<pixeles.length;i++){
+            for(int j = 0;j<pixeles[i].length;j++){
+                if(pixeles[i][j].getValor() == valor){
+                    return pixeles[i][j];
+                }
+            }
+        }
+        return null;
+    }
 
     public Pixel obtenerPixel(){}
 }
