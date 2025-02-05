@@ -1,0 +1,27 @@
+@startuml
+
+class Pixel{
+  int dato;
+  int obtenerDato();
+  void setDato(int valor)
+}
+
+class Frame{
+  Pixel[] frame;
+  void modificarPixel(int pos, int nuevoValor);
+  void traducir(Pixel pixel);
+  void imprimir();
+}
+
+class Pantalla{
+  int posicion;
+  Frame[] pantalla;
+  Frame generarFrame();
+  void addFrame(generarFrame(), int posicion);
+  void mostrarFrame(int posicion);
+  void modificarPixel(int frame, int pos, int nuevoValor);
+}
+
+Pantalla --> Frame
+Frame --> Pixel
+@enduml
