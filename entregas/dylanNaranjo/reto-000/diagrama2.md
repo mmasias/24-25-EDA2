@@ -37,5 +37,6 @@ Este diagrama UML representa la estructura y relación entre clases utilizadas p
 
 ### 🖼️ Diagrama UML
 
-![Diagrama UML](/entregas/reto-000_dylanNaranjo/img/diagramaEjercicio2.svg)
+![Diagrama UML](/entregas/dylanNaranjo/reto-000/img/diagramaEjercicio2.svg)
 
+![Diagrama UML - Examen](/entregas/dylanNaranjo/reto-000/img/Ejercicio%202.jpg)

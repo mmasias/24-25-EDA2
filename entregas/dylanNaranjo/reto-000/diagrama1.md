@@ -37,5 +37,7 @@ Este diagrama UML representa la estructura de clases para un sistema de gestión
 
 ### 🖼️ Diagrama UML
 
-![Diagrama UML](/entregas/reto-000_dylanNaranjo/img/diagramaEjercicio1.svg)
+![Diagrama UML](/entregas/dylanNaranjo/reto-000/img/diagramaEjercicio1.svg)
+
+![Diagrama UML-Examen](/entregas/dylanNaranjo/reto-000/img/Ejercicio1%20.jpg)
 
