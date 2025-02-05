@@ -1,0 +1,36 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+class Pixel {
+    - value: char
+    + getValue(): char
+    + setValue(value: char)
+}
+
+class Frame {
+    - pixels: Pixel[][]
+    - x: int
+    - y: int
+    + getPixel(x, y)
+    + setPixel(x, y, pixel: Pixel)
+}
+
+class DataBase {
+    - frames: Frame[]
+    - activeFrame: Frame
+    + addFrame(frame: Frame)
+    + switchFrame(index: int)
+    + getActiveFrame(): Frame
+}
+
+class Display {
+    - displayPixels: Pixel[][]
+    + render()
+    + updateDataBase(db: DataBase)
+}
+
+Display --> DataBase : usa
+DataBase --> Frame : contiene
+Frame --> Pixel : contiene
+
+@enduml
