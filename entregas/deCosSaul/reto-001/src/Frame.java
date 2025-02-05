@@ -20,7 +20,7 @@ class Frame {
   public void imprimir() {
     for (int i = 0; i < frame.length; i++) {
       System.out.print(traducir(frame[i]));
-      if (i % 7 == 0) {
+      if ((i + 1) % 7 == 0) {
         System.out.println();
       }
     }
