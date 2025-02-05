@@ -1,0 +1,40 @@
+@startuml Ejercicio1
+class Pixel {
+  +actualizarPixel()
+  +colorPixel
+}
+
+class Color {
+  +baseColor
+}
+
+class Frame {
+  +tamano
+  +resolucion
+  +color
+  +mostrar()
+  +pintar()
+}
+
+class DoubleBuffer {
+  +frame1
+  +frame2
+}
+
+class Resultado {
+  +frame1
+  +frame2
+  +mostrarResultado()
+}
+
+class Pantalla {
+  +alternarFrames()
+  +mostrarResultado()
+}
+
+Pixel --> Color
+Frame *-- Pixel
+DoubleBuffer *-- Frame
+Resultado *-- Frame
+Pantalla *-- Resultado
+@enduml
