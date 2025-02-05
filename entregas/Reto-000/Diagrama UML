@@ -1,0 +1,74 @@
+@startuml
+title Ejercicio 1
+
+class Pixel {
+    - x : int
+    - y : int
+    - color : int
+    + setColor()
+    + getColor()
+}
+
+class Frame {
+    - pixel : Pixel
+    - Pixel [][]
+    + SetPixel()
+    + GetPixel()
+    + ClearFrame()
+}
+
+class Buffer {
+    - Frame1 : Frame
+    - Frame2 : Frame
+    - ActiveFrame : int
+    - Interval : int
+    + SwitchFrame()
+    + CombineFrames()
+    + Start()
+    + Stop()
+    + ToggleFrame()
+}
+
+class InputManager {
+    - buffer : Buffer
+    + UpdatePixel()
+}
+
+class Nodo {
+    - Buffer : Buffer
+    - InputManager : InputManager
+    - Frame : Frame
+    + Initialize()
+    + run()
+    + UpdatePixel()
+    + SwitchFrames()
+}
+
+class Lista {
+    - Nodos : Nodo[]
+    + addNodo(nodo : Nodo) : void
+    + removeNodo(nodo : Nodo) : void
+    + getNodo(int) : Nodo
+    + forEachNodo(action : Function) : void
+    + runAll() : void
+}
+
+class Renderer {
+    - Lista : Lista
+    + MostrarLista()
+}
+
+Frame  --> Pixel : "Usa"
+Buffer  --> Frame : "Usa"
+InputManager --> Buffer : "Usa"
+Nodo --> Buffer : "Contiene"
+Nodo --> InputManager
+Nodo --> Frame
+Lista --> Nodo : "Contiene"
+Renderer --> Lista : "Usa"
+
+Frame -[hidden]-> Buffer
+Buffer -[hidden]-> InputManager
+Nodo -[hidden]-> Lista
+Lista -[hidden]-> Renderer
+@enduml
