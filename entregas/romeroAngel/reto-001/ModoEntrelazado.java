@@ -97,11 +97,11 @@ class Nodo {
         return this;
     }
 
-    public Nodo getAnteriorNodo(){
+    public Nodo getAnterior(){
         return this.anterior;
     }
     
-    public Nodo getSiguienteNodo(){
+    public Nodo getSiguiente(){
         return this.siguiente;
     }
 
@@ -113,7 +113,17 @@ class Nodo {
 class Pantalla {
     private Nodo cabeza;
 
-    public void asignarSiguienteFrame(){}
+    public Pantalla(){
+        this.cabeza = null;
+    }
+
+    public void asignarSiguienteFrame(){
+        if (cabeza != null) {
+            cabeza = cabeza.getSiguiente();
+        }
+    }
+
+    
 
     public Frame getFrame(){}
 
