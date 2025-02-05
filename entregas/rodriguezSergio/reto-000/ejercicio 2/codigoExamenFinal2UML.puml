@@ -1,0 +1,33 @@
+@startuml
+
+class BufferPantalla {
+    - ancho: int
+    - alto: int
+    - frame1: int[][]
+    - frame2: int[][]
+    + BufferPantalla(ancho: int, alto: int)
+    + actualizarPixel(frame: int[][], x: int, y: int, valor: int): void
+    + aplicarSuperposicionTemporal(superposicionTemporal: SuperposicionTemporal): void
+}
+
+class SuperposicionTemporal {
+    - coloresBase: String[]
+    - coloresCompuestos: String[]
+    - tablaColores: Map<String, String>
+    - reglasColores: List<String>
+    + agregarColor(color: String): void
+    + agregarReglaColor(color1: String, color2: String, colorCompuesto: String): void
+    + obtenerColorResultado(color1: String, color2: String): String
+    + superposicionTemporal(frame1: int[][], frame2: int[][]): int[][]
+}
+
+class Renderizador {
+    - bufferPantalla: BufferPantalla
+    + Renderizador(bufferPantalla: BufferPantalla)
+    + renderizar(): void
+}
+
+BufferPantalla --> SuperposicionTemporal
+BufferPantalla --> Renderizador
+
+@enduml
