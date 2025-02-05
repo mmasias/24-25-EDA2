@@ -1,0 +1,44 @@
+@startuml
+class Interfaz {
+    Frame1 = Frame
+    Frame2 = Frame
+    int FrameActual
+
+    + Pantalla(Frame1, Frame2, FrameActual)
+    + void CambiaFrame()
+    + void actualizarPantalla()
+    + char[ ] Combinaframes()
+}
+
+class Frame {
+    int Altura
+    int Anchura
+    Pixel[ ] [ ] Pixeles
+
+    + Frame(int altura, int anchura)
+    + SetPixel(int x, int y, char color)
+    + void renderizar()
+}
+
+class Pixel {
+    int x
+    int y
+    char color
+
+    + Pixel(int x, int y, char color)
+    + void SetColor(char color)
+    + char GetColor()
+}
+
+class Superposicion {
+    ColorImagen = Map<char, Map<char, char>>
+    
+    + superposicionTemporal()
+    + char Combinacolores(char color1, char color2)
+}
+
+Interfaz --> Frame : usa
+Interfaz --> Superposicion : usa
+Frame o-- Pixel : contiene
+
+@enduml
