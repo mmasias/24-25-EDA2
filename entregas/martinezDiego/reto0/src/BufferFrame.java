@@ -1,4 +1,4 @@
-package entregas.martinezDiego.reto0;
+package entregas.martinezDiego.reto0.src;
 
 class BufferFrame {
     private int[][] primerFrame;
