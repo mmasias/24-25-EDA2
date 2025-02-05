@@ -1,0 +1,60 @@
+class Pixel {
+    - int x
+    - int y
+    - int color
+    + setColor(int color)
+    + getColor(): int
+}
+
+class Frame {
+    - List<Pixel> pixels
+    + getPixel(int index): Pixel
+    + clearFrame()
+}
+
+class Buffer {
+    - Frame frame1
+    - Frame frame2
+    - int actualFrame
+    + start()
+    + stop()
+    + switchFrame()
+    + toggleFrame()
+
+}
+
+class Manager {
+    - Buffer buffer
+    + updatePixel(Pixel pixel)
+}
+
+class Node {
+    - Buffer buffer
+    - Manager manager
+    + switchFrame()
+    + updatePixel(Pixel pixel)
+    + initialize()
+}
+
+class Lista {
+    - List<Node> nodes
+    + addNode(Node node)
+    + removeNode(Node node)
+    + getNode(int index): Node
+
+}
+
+class Render {
+    - Lista Lista
+    + mostrarLista()
+}
+
+Frame --> Pixel: "Usa"
+Buffer --> Frame: "Usa"
+Buffer--> Manager: "Usa"
+Node --> Buffer: "Contiene"
+Node --> Manager: "Contiene"
+Lista --> Node: "Contiene"
+Render --> Lista: "Usa"
+
+@enduml
