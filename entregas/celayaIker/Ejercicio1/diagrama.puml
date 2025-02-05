@@ -15,7 +15,7 @@ class Frame{
 
 class Pantalla{
   int posicion;
-  Framep[] pantalla;
+  Frame[] pantalla;
   Frame generarFrame();
   void addFrame(generarFrame());
   void mostrarFrame(int posicion);
