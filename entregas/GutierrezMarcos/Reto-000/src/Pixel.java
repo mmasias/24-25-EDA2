@@ -1,12 +1,13 @@
-
 public class Pixel {
-    private Color color;
-    
-    public Pixel() {
 
+    private Color color;
+
+    public Pixel(){
+        color = new Color();
     }
-    public Color devolverColor() {
+
+    public Color devolverColor(){
+        return this.color;
+    }
     
-    return color;
-    }
 }
