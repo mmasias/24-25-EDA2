@@ -1,47 +1,41 @@
 public class Cola {
+
     private NodoFrame primero;
     private NodoFrame ultimo;
     private int tamaño;
 
-    public Cola() {
+    public Cola(){
         this.primero = null;
         this.ultimo = null;
         this.tamaño = 0;
     }
 
-    public void enqueue(Frame frame) {
-        NodoFrame nuevoNodo = new NodoFrame(frame);
-        if (this.tamaño == 0) {
+    public void enqueue(){
+        NodoFrame nuevoNodo = new NodoFrame();
+        if(tamaño == 0){
             primero = nuevoNodo;
             ultimo = nuevoNodo;
         } else {
             ultimo.setSiguiente(nuevoNodo);
             ultimo = nuevoNodo;
         }
-        this.tamaño++;
+        tamaño++;
     }
 
-    public Frame[] desenqueue() {
-        if (!tieneDosFrames()) return null;
-        
+    public Frame[] desenqueue(){
         Frame[] frames = new Frame[2];
-        frames[0] = primero.getFrame();
-        frames[1] = primero.getSiguiente().getFrame();
+        frames[0] = primero;
+        frames[1] = primero.getSiguiente();
         
-        primero = primero.getSiguiente().getSiguiente();
-        if (primero == null) {
+        if (primero.getSiguiente() != null) {
+            primero = primero.getSiguiente().getSiguiente();
+        } else {
+            primero = null;
+        }
+        tamaño -= 2;
+        if(tamaño == 0) {
             ultimo = null;
         }
-        this.tamaño -= 2;
         return frames;
-    }
-
-    public Frame[] peek() {
-        if (!tieneDosFrames()) return null;
-        return new Frame[]{primero.getFrame(), primero.getSiguiente().getFrame()};
-    }
-
-    private boolean tieneDosFrames() {
-        return tamaño >= 2;
     }
 }

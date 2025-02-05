@@ -1,11 +1,15 @@
 import java.util.Random;
 
 public class Color {
+
     private char representacion;
 
     public Color() {
         char[] representaciones = {'.', '#', '+', '*'};
-        this.representacion = representaciones[new Random().nextInt(representaciones.length)];
+
+        int indice = new Random().nextInt(representaciones.length);
+
+        this.representacion = representaciones[indice];
     }
 
     public char devolverRepresentacion() {

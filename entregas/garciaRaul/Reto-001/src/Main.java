@@ -1,6 +1,8 @@
-public class Main {
+ class Main{
     public static void main(String[] args) {
-        Pantalla pantalla = new Pantalla();
-        pantalla.mostrar();
+        new Pantalla().mostrar();
     }
-}
+ }
+
+ 
+   

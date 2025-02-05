@@ -1,20 +1,21 @@
 public class Frame {
+    
     private Pixel[][] pixeles;
 
-    public Frame() {
+    public Frame(){
         pixeles = new Pixel[3][7];
         rellenarPixeles();
     }
 
-    private void rellenarPixeles() {
-        for (int i = 0; i < pixeles.length; i++) {
-            for (int j = 0; j < pixeles[i].length; j++) {
+    public void rellenarPixeles(){
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 7; j++) {
                 pixeles[i][j] = new Pixel();
             }
         }
     }
 
-    public Pixel[][] devolverPixeles() {
+    public Pixel[][] devolverPixeles(){
         return this.pixeles;
     }
 }

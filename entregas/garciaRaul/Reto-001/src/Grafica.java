@@ -2,25 +2,32 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class Grafica {
+
+    private final int memoriaKB = 16;
     private final int tasaHZ = 60;
     private Cola colaFrames;
 
-    public Grafica() {
+    public Grafica(){
         this.colaFrames = new Cola();
         generarFrames();
     }
 
-    private void generarFrames() {
+    private void generarFrames(){
         Timer temporizador = new Timer();
-        temporizador.scheduleAtFixedRate(new TimerTask() {
+        
+        TimerTask tarea = new TimerTask() {
             @Override
             public void run() {
-                colaFrames.enqueue(new Frame());
+                colaFrames.enqueue();
             }
-        }, 0, 1000 / tasaHZ);
+        };
+        temporizador.scheduleAtFixedRate(tarea, 0, 1000);
     }
+    
+    
 
-    public Frame[] devolverDosFrames() {
+    public Frame[] devolverDosFrames(){
         return colaFrames.desenqueue();
     }
+    
 }

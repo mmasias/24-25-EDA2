@@ -1,21 +1,16 @@
-public class NodoFrame {
-    private Frame frame;
+public class NodoFrame extends Frame {
     private NodoFrame siguiente;
 
-    public NodoFrame(Frame frame) {
-        this.frame = frame;
+    public NodoFrame(){
+        super();
         this.siguiente = null;
     }
 
-    public Frame getFrame() {
-        return this.frame;
-    }
-
-    public NodoFrame getSiguiente() {
+    public NodoFrame getSiguiente(){
         return this.siguiente;
     }
 
-    public void setSiguiente(NodoFrame siguiente) {
-        this.siguiente = siguiente;
+    public void setSiguiente(NodoFrame nodo){
+        this.siguiente = nodo;
     }
 }
