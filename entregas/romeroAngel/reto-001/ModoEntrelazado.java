@@ -111,7 +111,6 @@ class Nodo {
 }
 
 class Pantalla {
-    private Nodo[] datos;
     private Nodo cabeza;
 
     public void asignarSiguienteFrame(){}
