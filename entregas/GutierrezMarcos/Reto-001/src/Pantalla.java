@@ -20,11 +20,6 @@ public class Pantalla{
                 }
             } else {
                 System.out.println("No hay suficientes frames aún.");
-                try {
-                    Thread.sleep(2000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
             }
         }
     }

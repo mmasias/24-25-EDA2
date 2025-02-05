@@ -10,7 +10,7 @@ public class Cola {
         this.tamaño = 0;
     }
 
-    public synchronized void enqueue(){
+    public void enqueue(){
         NodoFrame nuevoNodo = new NodoFrame();
         if(tamaño == 0){
             primero = nuevoNodo;
@@ -20,18 +20,9 @@ public class Cola {
             ultimo = nuevoNodo;
         }
         tamaño++;
-        notifyAll();
     }
 
-    public synchronized Frame[] desenqueue(){
-        while(tamaño < 2) {
-            try {
-                wait();
-            } catch(InterruptedException e) {
-                Thread.currentThread().interrupt();
-                return null;
-            }
-        }
+    public Frame[] desenqueue(){
         Frame[] frames = new Frame[2];
         frames[0] = primero;
         frames[1] = primero.getSiguiente();
