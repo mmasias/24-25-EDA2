@@ -3,7 +3,7 @@
 class Pixel{
   int dato;
   int obtenerDato();
-  void setDato()
+  void setDato();
 }
 
 class Frame{
