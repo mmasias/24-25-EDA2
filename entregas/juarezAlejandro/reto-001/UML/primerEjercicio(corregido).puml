@@ -1,0 +1,49 @@
+@startuml
+class Pantalla {
+  -String clase
+  +Pantalla(String)
+  +getFrame(Frame1 frame1, Frame2 frame2, ResultadoCombinado resultado)
+}
+
+class Buffer {
+  +mostrarFrameEscogido(Frame1 frame1, Frame2 frame2, ResultadoCombinado resultado)
+}
+
+class Pixel {
+  -char[][] elementos
+  +Pixel(int ancho, int alto)
+  +listaElementos(): char[][]
+}
+
+class Frame1 {
+  -char[][] contenido
+  +Frame1(int ancho, int alto)
+  +posicionFrame(Pixel pixel)
+  +posicionFrame()
+}
+
+class Frame2 {
+  -char[][] contenido
+  +Frame2(int ancho, int alto)
+  +posicionFrame(Pixel pixel)
+  +posicionFrame()
+}
+
+class ResultadoCombinado {
+  -char[][] contenido
+  +ResultadoCombinado(int ancho, int alto)
+  +combinar(Frame1 frame1, Frame2 frame2)
+}
+
+class Main {
+  +main(String[] args)
+}
+
+Pantalla --> Buffer
+Buffer --> Frame1
+Buffer --> Frame2
+Buffer --> ResultadoCombinado
+Pixel --> Frame1
+Pixel --> Frame2
+Main --> Pantalla
+@enduml

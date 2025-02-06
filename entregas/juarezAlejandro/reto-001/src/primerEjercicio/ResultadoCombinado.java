@@ -12,7 +12,7 @@ public class ResultadoCombinado {
             for (int j = 0; j < frame1.contenido[0].length; j++) {
                 System.out.print(frame1.contenido[i][j] + " ");
             }
-            System.out.print(" ");
+            System.out.print("");
             for (int j = 0; j < frame2.contenido[0].length; j++) {
                 System.out.print(frame2.contenido[i][j] + " ");
             }
