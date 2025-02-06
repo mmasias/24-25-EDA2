@@ -2,7 +2,6 @@
 
 title Diagrama de Clases - Sistema de Pantalla y Frames
 
-' Clase que representa la pantalla y sus operaciones de visualización
 class Pantalla {
   - AlternarFrame(): void
   - AlterarColor(): void
@@ -13,22 +12,18 @@ class Pantalla {
   - MostrarFrameListSiguiente(): void
 }
 
-' Clase que gestiona una lista de frames
 class FrameList {
   - primero: NodoFrame
   - segundo: NodoFrame
   - tamaño: int
 }
 
-' Nodo que forma parte de la lista de frames
 class NodoFrame {
   - anterior: NodoFrame
   - siguiente: NodoFrame
   - frame: Frame
 }
 
-' Representa cada frame con sus operaciones de pintado y dimensiones,
-' y contiene una lista de píxeles
 class Frame {
   - PintarNegro(): void
   - PintarBlanco(): void
@@ -40,25 +35,21 @@ class Frame {
   - pixelList: PixelList
 }
 
-' Lista de píxeles que componen el frame o la pantalla
 class PixelList {
   - primero: NodoPixel
   - ultimo: NodoPixel
   - pixel: Pixel
 }
 
-' Nodo que forma parte de la lista de píxeles
 class NodoPixel {
   - pixel: Pixel
   - siguiente: NodoPixel
 }
 
-' Clase que representa un píxel con su resultado (por ejemplo, color o estado)
 class Pixel {
   - resultado: char
 }
 
-' Relaciones entre clases
 FrameList --> NodoFrame
 NodoFrame --> Frame
 Frame --> Pantalla

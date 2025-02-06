@@ -2,28 +2,24 @@
 
 title Diagrama de Clases - Ejercicio 1
 
-' Clase que representa la pantalla y sus operaciones
 class Pantalla {
   - AlternarFrame(): void
   - MostrarFrameListActual(): void
   - MostrarFrameListSiguiente(): void
 }
 
-' Clase que gestiona la lista de frames
 class FrameList {
   - primero: NodoFrame
   - segundo: NodoFrame
   - tamaño: int
 }
 
-' Nodo que forma parte de la lista de frames
 class NodoFrame {
   - anterior: NodoFrame
   - siguiente: NodoFrame
   - frame: Frame
 }
 
-' Clase que representa un frame con dimensiones y su lista de píxeles
 class Frame {
   - pintar(): void
   - Altura: int
@@ -31,7 +27,6 @@ class Frame {
   - pixelList: PixelList
 }
 
-' Clase que gestiona la lista de píxeles de un frame
 class PixelList {
   - primero: NodoPixel
   - ultimo: NodoPixel
@@ -40,19 +35,16 @@ class PixelList {
   + set(index: int, pixel: Pixel): void
 }
 
-' Nodo que forma parte de la lista de píxeles
 class NodoPixel {
   - anterior: NodoPixel
   - siguiente: NodoPixel
   - pixel: Pixel
 }
 
-' Clase que representa un píxel
 class Pixel {
   - valor: char
 }
 
-' Relaciones entre clases
 Pantalla --> FrameList
 FrameList --> NodoFrame
 NodoFrame --> Frame
