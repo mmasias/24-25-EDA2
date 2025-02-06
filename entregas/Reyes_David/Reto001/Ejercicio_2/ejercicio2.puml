@@ -1,0 +1,37 @@
+@startuml
+class Pixel {
+    - char color
+    + Pixel(char color)
+    + getColor(): char
+    + setColor(char color)
+    + combinarColores(char color1, char color2): char
+}
+
+class Frame {
+    - Pixel[3][4] pixels
+    + Frame()
+    + setPixel(int x, int y, char color)
+    + getPixel(int x, int y): char
+    + mostrarFrame()
+}
+
+class DobleBuffer {
+    - Frame frame1
+    - Frame frame2
+    + DobleBuffer(Frame f1, Frame f2)
+    + combinarFrames(): Frame
+}
+
+class Pantalla {
+    + mostrarResultado(Frame resultado)
+}
+
+class Main {
+    + main(String[] args)
+}
+
+Pixel --> Frame
+Frame --> DobleBuffer
+DobleBuffer --> Pantalla
+Main --> Pantalla
+@enduml
