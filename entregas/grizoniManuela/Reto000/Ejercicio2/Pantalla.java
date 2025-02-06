@@ -1,4 +1,4 @@
-package Reto001.Ejercicio2;
+package Reto000.Ejercicio2;
 
 public class Pantalla {
     private void MostrarColorNegro(){}

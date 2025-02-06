@@ -1,4 +1,4 @@
-package Reto001.Ejercicio1;
+package Reto000.Ejercicio1;
 
 public class FrameList {
     private NodoFrame primero;

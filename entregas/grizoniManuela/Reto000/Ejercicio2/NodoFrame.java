@@ -1,4 +1,4 @@
-package Reto001.Ejercicio1;
+package Reto000.Ejercicio2;
 
 public class NodoFrame {
     NodoFrame anterior, seguiente; 
