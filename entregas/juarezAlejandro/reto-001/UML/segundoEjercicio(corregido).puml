@@ -1,49 +1,59 @@
 @startuml
 class Pantalla {
-  -String class
-  -GetFrame()
+  -String clase
+  +Pantalla(String)
+  +getFrame(Frame1 frame1, Frame2 frame2, ResultadoVisual resultado)
 }
 
 class Buffer {
-  -mostrarFrameEscogido(Frame1, Frame2, ResultadoVisual)
+  +mostrarFrameEscogido(Frame1 frame1, Frame2 frame2, ResultadoVisual resultado)
+}
+
+class ColoresCompuestos {
+  -char[][] colores
+  +ColoresCompuestos(int ancho, int alto)
+  +listaColores(): char[][]
 }
 
 class Pixel {
-  -char[][] 
-  ListaElementos()
+  -char[][] elementos
+  +Pixel(int ancho, int alto)
+  +listaElementos(): char[][]
 }
 
 class Frame1 {
   -char[][] contenido
-  PosicionFrame(Pixel, ColoresCompuestos)
+  +Frame1(int ancho, int alto)
+  +posicionFrame(Pixel pixel, ColoresCompuestos colores)
+  +posicionFrame()
 }
 
 class Frame2 {
   -char[][] contenido
-  PosicionFrame(Pixel, ColoresCompuestos)
+  +Frame2(int ancho, int alto)
+  +posicionFrame(Pixel pixel, ColoresCompuestos colores)
+  +posicionFrame()
 }
 
 class ResultadoVisual {
   -char[][] contenido
-  +ResultadoVisual(int, int)
-  +combinar(Frame1, Frame2)
-  -char combinarColores(char, char)
-  -void mostrarResultado()
+  +ResultadoVisual(int ancho, int alto)
+  +combinar(Frame1 frame1, Frame2 frame2)
+  -combinarColores(char c1, char c2): char
+  -mostrarResultado()
 }
 
-class ColoresCompuestos {
-  -char[][] 
-  ListaColores()
+class Main {
+  +main(String[] args)
 }
 
 Pantalla --> Buffer
 Buffer --> Frame1
 Buffer --> Frame2
 Buffer --> ResultadoVisual
-Frame1 --> ResultadoVisual
-Frame2 --> ResultadoVisual
-Pixel --> Frame1
-Pixel --> Frame2
 ColoresCompuestos --> Frame1
 ColoresCompuestos --> Frame2
+Pixel --> Frame1
+Pixel --> Frame2
+Main --> Pantalla
 @enduml
