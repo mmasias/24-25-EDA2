@@ -1,0 +1,41 @@
+@startuml
+class Pixel {
+    +ActualizarPixel()
+}
+
+class Frame {
+    +mostrarPixeles()
+    +resolucion()
+    +tamaño()
+}
+
+class Frame1 extends Frame
+class Frame2 extends Frame
+
+class DobleBuffer {
+    +almacenarFrames()
+    +alternarFrames()
+}
+
+class Resultado {
+    +resultadosCombinado()
+    +mostrarResultados()
+}
+
+class Pantalla {
+    +alternarResultados()
+}
+
+class Main {
+    +main(String[] args)
+}
+
+Pixel --> Frame
+Frame1 --> Frame
+Frame2 --> Frame
+DobleBuffer --> Frame1
+DobleBuffer --> Frame2
+Resultado --> DobleBuffer
+Pantalla --> Resultado
+Main --> Pantalla
+@enduml
