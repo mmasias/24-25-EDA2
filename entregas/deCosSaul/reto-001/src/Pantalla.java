@@ -1,6 +1,5 @@
 class Pantalla {
-  int posicion;
-  Frame[] pantalla = new Frame[2];
+  private Frame[] pantalla = new Frame[2];
 
   public Frame generarFrame(int posicion) {
     Frame frame = new Frame(21);
