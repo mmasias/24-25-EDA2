@@ -1,0 +1,62 @@
+@startuml
+
+class Pantalla {
+    -frames: Frame[]
+    -grafica: Grafica
+    +mostrar(): void
+}
+
+class Grafica {
+    -memoriaKB=16: final int
+    -tasaHZ=60: final int
+    -colaFrames: Cola
+    +Grafica()
+    -generarFrames(): void
+    +devolverDosFrames(): Frame[]
+}
+
+class Cola {
+    -primero: NodoFrame
+    -ultimo: NodoFrame
+    -tamaño: int
+    +Cola()
+    +enqueue(): void
+    +dequeue(): Frame[]
+    +peek(): Frame[]
+    -tieneDosFrames(): boolean
+}
+
+class NodoFrame {
+    -siguiente: NodoFrame
+    +NodoFrame()
+    +getSiguiente(): NodoFrame
+    +setSiguiente(): void
+}
+
+class Frame {
+    -pixeles: Pixel[][]
+    +Frame()
+    +rellenarPixeles(): void
+    +devolverPixeles(): Pixel[][]
+}
+
+class Pixel {
+    -color: Color
+    +Pixel()
+    +devolverColor(): Color
+}
+
+class Color {
+    -representacion: char
+    +Color()
+    +devolverRepresentacion(): char
+}
+
+Pantalla --> Grafica: "Contiene"
+Grafica --> Cola: "Contiene"
+Cola --> NodoFrame: "Utiliza"
+NodoFrame --> Frame: "Hereda de"
+Frame --> Pixel: "Contiene"
+Pixel --> Color: "Contiene"
+
+@enduml
