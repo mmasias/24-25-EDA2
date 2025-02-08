@@ -151,7 +151,19 @@ class Pantalla {
         return (cabeza != null) ? cabeza.getFrame() : null;
     }
 
-    public void validarNodoRepetido(){}
+    public boolean validarNodoRepetido(Frame frame){
+        if (cabeza == null) return false;
+
+        Nodo actual = cabeza;
+        do {
+            if (actual.getFrame() == frame){
+            return true;
+            }
+            actual = actual.getSiguiente();
+        } while (actual!=cabeza);
+
+        return false;
+    }
 
     public void mostrarFrame(){
         if (cabeza == null || cabeza.getFrame()== null) {
