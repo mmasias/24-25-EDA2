@@ -1,4 +1,3 @@
-// Clase Pixel
 public class Pixel {
     private char value;
 
@@ -15,7 +14,6 @@ public class Pixel {
     }
 }
 
-// Clase Frame
 class Frame {
     private Pixel[][] pixels;
     private int x, y;
@@ -30,7 +28,7 @@ class Frame {
     private void initializePixels() {
         for (int i = 0; i < x; i++) {
             for (int j = 0; j < y; j++) {
-                pixels[i][j] = new Pixel(' '); // Valor por defecto
+                pixels[i][j] = new Pixel(' ');
             }
         }
     }
@@ -44,21 +42,16 @@ class Frame {
     }
 }
 
-// Clase DataBase
-class DataBase {
+class DobleBuffer {
     private Frame[] frames;
     private Frame activeFrame;
 
-    public DataBase(int numberOfFrames, int width, int height) {
+    public DobleBuffer(int numberOfFrames, int width, int height) {
         frames = new Frame[numberOfFrames];
         for (int i = 0; i < numberOfFrames; i++) {
             frames[i] = new Frame(width, height);
         }
         activeFrame = frames[0];
-    }
-
-    public void addFrame(Frame frame) {
-        // Lógica para agregar un nuevo frame (simplificada)
     }
 
     public void switchFrame(int index) {
@@ -93,7 +86,7 @@ class Display {
         }
     }
 
-    public void updateDataBase(DataBase db) {
+    public void updateDataBase(DobleBuffer db) {
         Frame frame = db.getActiveFrame();
         for (int i = 0; i < displayPixels.length; i++) {
             for (int j = 0; j < displayPixels[i].length; j++) {
