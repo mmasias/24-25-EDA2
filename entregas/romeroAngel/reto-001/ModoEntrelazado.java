@@ -151,7 +151,9 @@ class Pantalla {
         }
     }
 
-    public Frame getFrame(){}
+    public Frame getFrame(){
+        return (cabeza != null) ? cabeza.getFrame() : null;
+    }
 
     public void validarNodoRepetido(){}
 
