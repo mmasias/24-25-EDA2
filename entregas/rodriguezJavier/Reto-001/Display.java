@@ -12,7 +12,7 @@ class Display {
                 if (displayPixels[i][j] != null) {
                     System.out.print(displayPixels[i][j].getValue() + " ");
                 } else {
-                    System.out.print(". ");
+                    System.out.print("# ");
                 }
             }
             System.out.println();
@@ -20,7 +20,7 @@ class Display {
     }
 
     public static void main(String[] args) {
-        Display display = new Display(10, 10);
+        Display display = new Display(10, 20);
         display.render();
     }
 }
