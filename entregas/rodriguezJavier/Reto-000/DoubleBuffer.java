@@ -20,4 +20,8 @@ class DobleBuffer {
     public Frame getActiveFrame() {
         return activeFrame;
     }
+
+    public Frame combineFrames(){
+        return activeFrame;
+    }
 }
