@@ -7,15 +7,6 @@ class Frame {
         this.x = x;
         this.y = y;
         this.pixels = new Pixel[x][y];
-        initializePixels();
-    }
-
-    private void initializePixels() {
-        for (int i = 0; i < x; i++) {
-            for (int j = 0; j < y; j++) {
-                pixels[i][j] = new Pixel(' ');
-            }
-        }
     }
 
     public Pixel getPixel(int x, int y) {
