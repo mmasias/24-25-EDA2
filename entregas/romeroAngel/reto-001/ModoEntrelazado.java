@@ -131,6 +131,26 @@ class Pantalla {
         }
     }
 
+    
+    
+    public void agregarFrame(Frame nuevoFrame){
+        Nodo nuevoNodo = new Nodo(nuevoFrame);
+
+        if (cabeza == null) {
+            cabeza = nuevoNodo;
+            cabeza.enlazarSiguiente(cabeza);
+            cabeza.enlazarAnterior(cabeza);
+        } else {
+            Nodo ultimo = cabeza.getAnterior();
+        
+            ultimo.enlazarSiguiente(nuevoNodo);
+            nuevoNodo.enlazarAnterior(ultimo);
+
+            cabeza.enlazarAnterior(nuevoNodo);
+            nuevoNodo.enlazarSiguiente(cabeza);
+        }
+    }
+
     public Frame getFrame(){}
 
     public void validarNodoRepetido(){}
