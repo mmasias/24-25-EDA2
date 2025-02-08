@@ -15,12 +15,13 @@ class Frame {
     + setPixel(x, y, pixel: Pixel)
 }
 
-class DataBase {
-    - frames: Frame[]
+class DoubleBuffer {
+    - frame1: Frame[]
+    - frame2: Frame[]
     - activeFrame: Frame
-    + addFrame(frame: Frame)
-    + switchFrame(index: int)
     + getActiveFrame(): Frame
+    + combineFrames(frame: Frame)
+    + switchFrame(index: int)
 }
 
 class Display {
@@ -29,8 +30,8 @@ class Display {
     + updateDataBase(db: DataBase)
 }
 
-Display --> DataBase : usa
-DataBase --> Frame : contiene
-Frame --> Pixel : contiene
+Pixel --> Frame
+Frame --> DoubleBuffer
+DoubleBuffer --> Display
 
 @enduml
