@@ -186,4 +186,10 @@ class Pantalla {
         } while (actual!=cabeza);
     }
 
+    public void imprimirPantalla(){
+        if (cabeza == null || cabeza.getSiguiente() == null) {
+            System.out.println("No hay suficientes Frames para imprimir.");
+            return;
+        }
+    }
 }
