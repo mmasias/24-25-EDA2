@@ -93,10 +93,6 @@ class Nodo {
         this.siguiente = null;
     }
 
-    public Nodo getNodo(){
-        return this;
-    }
-
     public Nodo getAnterior(){
         return this.anterior;
     }
