@@ -165,4 +165,17 @@ class Pantalla {
         cabeza.getFrame().mostrarFrame();
     }
 
+    public void mostrarTodosLosFrames(){
+        if (cabeza==null) {
+            System.out.println("Lista vacia.");
+            return;
+        }
+
+        Nodo actual = cabeza;
+        do {
+            actual.getFrame().mostrarFrame();
+            actual = actual.getSiguiente();
+        } while (actual!=cabeza);
+    }
+
 }
