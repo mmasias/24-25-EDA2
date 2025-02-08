@@ -157,6 +157,12 @@ class Pantalla {
 
     public void validarNodoRepetido(){}
 
-    public void mostrarFrame(){}
+    public void mostrarFrame(){
+        if (cabeza == null || cabeza.getFrame()== null) {
+            System.out.println("No hay un frame para mostrar");
+            return;
+        }
+        cabeza.getFrame().mostrarFrame();
+    }
 
 }
