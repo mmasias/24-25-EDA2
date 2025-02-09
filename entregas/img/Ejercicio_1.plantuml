@@ -1,39 +1,42 @@
 @startuml
-class Pantalla {
-    - dato: nodo
-    - cabeza: nodo
-    + printFrame(): void
-    + asigneNextFrame(): frame
-    + verifyBuffer(): void
-    + printIndividualFrame():void
-    + getFrames(): frame
+
+class InterlacedDisplay {
+  - int width
+  - int height
+  - DoubleBuffer buffer
+  + InterlacedDisplay(int width, int height)
+  + reset() : void
+  + setPixel(int x, int y, char color) : void
+  + render() : void
 }
 
-class Nodo {
-    - dato: frame
-    - siguiente: nodo
-    - anterior: nodo
-    + getNodo()
+class DoubleBuffer {
+  - Frame[] frame
+  - int currentFrame
+  + DoubleBuffer(int width, int height)
+  + getCurrentFrame() : Frame
+  + getBackFrame() : Frame
+  + swap() : void
 }
 
 class Frame {
-    - pixel: pixel[][]
-    + getPixel():pixels
-    + reset():void
-    + setPixel():pixel
-    + findPixel():pixel
+  - Pixel[][] pixel
+  + Frame(int width, int height)
+  + reset() : void
+  + setPixel(int x, int y, char color) : void
+  + getPixel(int x, int y) : Pixel
 }
 
 class Pixel {
-    - char: asterisco
-    - char: punto
-    - char: más
-    + getAsterisco():char
-    + getPunto():char
-    + getMas():char
+  - char color
+  + Pixel()
+  + Pixel(char color)
+  + getColor() : char
+  + setColor(char color) : void
 }
 
-Pantalla --> Nodo
-Nodo --> Frame
-Frame --> Pixel
+InterlacedDisplay -down-> DoubleBuffer 
+DoubleBuffer -down-> Frame 
+Frame -down-> Pixel 
+
 @enduml
