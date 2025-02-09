@@ -26,7 +26,6 @@ public class Color {
       var engine = new RendererEngine(buffer);
       engine.setMode(RendererEngine.RenderMode.EXTENDED);
 
-      // Process frame instructions
       for (var instruction : frame) {
         if (instruction != null) {
           engine.addInstruction(instruction);
@@ -34,10 +33,8 @@ public class Color {
       }
       engine.processFrame();
 
-      // Get frames from buffer
       Frame left = engine.getNextFrame();
 
-      // Render if frames exist
       if (left != null) {
         System.out.print("\033[H\033[2J");
         System.out.flush();
