@@ -1,0 +1,54 @@
+@startuml
+class Pixel {
+    - char simbolo
+    + Pixel(char simbolo)
+    + char getSimbolo()
+    + void setSimbolo(char simbolo)
+}
+
+class Frame {
+    - Pixel[][] pixeles
+    + Frame(int filas, int columnas)
+    + void setPixel(int x, int y, char simbolo)
+    + Pixel getPixel(int x, int y)
+}
+
+class NodoFrame {
+    - Frame dato
+    - NodoFrame siguiente
+    + NodoFrame(Frame dato)
+}
+
+class ListaFrame {
+    - NodoFrame cabeza
+    - NodoFrame cola
+    - int tamaño
+    + ListaFrame()
+    + void agregar(Frame frame)
+    + Frame obtener(int indice)
+    + int getTamaño()
+}
+
+class Animacion {
+    - ListaFrame frames
+    - int timer
+    + Animacion(int timer)
+    + void agregarFrame(Frame frame)
+    + void reproducir()
+}
+
+class Pantalla {
+    + static void mostrarFrames(Frame frame1, Frame frame2)
+    + static String ajustarLongitud(String linea, int longitud)
+}
+
+class Main {
+    + static void main(String[] args)
+}
+
+Frame "*" -- "1" Pixel : contiene
+ListaFrame "*" -- "*" NodoFrame : maneja
+Animacion "1" -- "1" ListaFrame : maneja
+Pantalla "1" -- "*" Frame : imprime
+Main --> Animacion : inicia
+@enduml
