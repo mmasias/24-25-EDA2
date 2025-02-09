@@ -1,26 +1,15 @@
-public class Pixel{
+public class Pixel {
+    private char simbolo;
 
-    private char numeral;
-    private char punto;
-    private char mas;
-
-    public Pixel(char numeral, char punto, char mas){
-        this.numeral = numeral;
-        this.punto = punto;
-        this.mas = mas;
+    public Pixel(char simbolo) {
+        this.simbolo = simbolo;
     }
 
-    public char getNumeral(){
-        return this.numeral;
+    public char getSimbolo() {
+        return simbolo;
     }
-    
-    public char getPunto(){
-        return this.punto;
-    }
-    
-    public char getMas(){
-        return this.mas;
-    }
-    
 
+    public void setSimbolo(char simbolo) {
+        this.simbolo = simbolo;
+    }
 }
