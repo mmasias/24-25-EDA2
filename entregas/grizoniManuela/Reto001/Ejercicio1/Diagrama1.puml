@@ -21,7 +21,7 @@ class NodoFrame {
 }
 
 class Frame {
-  - pintar(): void
+  - Pintar(): void
   - Altura: int
   - Anchura: int
   - pixelList: PixelList
