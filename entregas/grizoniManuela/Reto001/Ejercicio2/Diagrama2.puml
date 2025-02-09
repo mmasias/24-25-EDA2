@@ -1,7 +1,5 @@
 @startuml
 
-title Diagrama de Clases - Sistema de Pantalla y Frames
-
 class Pantalla {
   - AlternarFrame(): void
   - AlterarColor(): void
@@ -54,7 +52,7 @@ FrameList --> NodoFrame
 NodoFrame --> Frame
 Frame --> Pantalla
 Pantalla --> PixelList
-PixelList --> Pixel
+PixelList --> NodoPixel
+NodoPixel --> Pixel
 
 @enduml
-
