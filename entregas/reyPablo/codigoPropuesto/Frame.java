@@ -58,7 +58,7 @@ public class Frame {
     public Pixel getPixel(Coordenada coordenada) {
 
         return this.pixels[coordenada.getY()][coordenada.getX()];
-        
+
     }
 
 }

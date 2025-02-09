@@ -32,7 +32,7 @@ public class Escena {
         return null;
     }
 
-    public int numeroFrames(){
+    public int numeroFrames() {
         return frames.length;
     }
 }
