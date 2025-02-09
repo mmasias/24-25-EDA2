@@ -1,0 +1,45 @@
+@startuml examenFinal
+
+class Frame {
+    - datosPixel: Pixel[][]
+    - altura: int
+    - anchura: int
+    + Frame(datosPixel: Pixel[][], altura: int, anchura: int)
+    + setPixel(x: int, y: int, color: char): void
+    + getPixel(x: int, y: int): char
+    + renderizar(): void
+    + getAltura(): int
+    + getAnchura(): int
+}
+
+class Pixel {
+    - x: int
+    - y: int
+    - color: char
+    + Pixel(x: int, y: int, color: char)
+    + setColor(color: char): void
+    + getColor(): char
+}
+
+class Entrelazado {
+    - colorTabla: Map<Character, Map<Character, Character>>
+    + Entrelazado()
+    + combinarColores(c1: char, c2: char): char
+    - agregarCombinacion(c1: char, c2: char, res: char): void
+}
+
+class Pantalla {
+    - frame1: Frame
+    - frame2: Frame
+    - frameActual: int
+    + Pantalla(frame1: Frame, frame2: Frame)
+    + cambiarFrame(): void
+    + actualizarPantalla(): void
+    + combinarFrames(): char[][]
+}
+
+Frame *-- Pixel : "contiene"
+Pantalla --> Frame : "usa 2 instancias de"
+Pantalla --> Entrelazado : "usa"
+
+@enduml
