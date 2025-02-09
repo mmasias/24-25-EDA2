@@ -1,0 +1,42 @@
+@startuml
+
+class InterlacedDisplay {
+  - int width
+  - int height
+  - DoubleBuffer buffer
+  + InterlacedDisplay(int width, int height)
+  + reset() : void
+  + setPixel(int x, int y, char color) : void
+  + render() : void
+}
+
+class DoubleBuffer {
+  - Frame[] frame
+  - int currentFrame
+  + DoubleBuffer(int width, int height)
+  + getCurrentFrame() : Frame
+  + getBackFrame() : Frame
+  + swap() : void
+}
+
+class Frame {
+  - Pixel[][] pixel
+  + Frame(int width, int height)
+  + reset() : void
+  + setPixel(int x, int y, char color) : void
+  + getPixel(int x, int y) : Pixel
+}
+
+class Pixel {
+  - char color
+  + Pixel()
+  + Pixel(char color)
+  + getColor() : char
+  + setColor(char color) : void
+}
+
+InterlacedDisplay -down-> DoubleBuffer 
+DoubleBuffer -down-> Frame 
+Frame -down-> Pixel 
+
+@enduml
