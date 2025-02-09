@@ -1,27 +1,35 @@
 @startuml
-
-class Pixel{
-  int dato;
-  int obtenerDato();
-  void setDato();
+class Pantalla {
+    - Frame[] pantalla
+    - int frameActual
+    - final int WIDTH = 7
+    - final int HEIGHT = 3
+    --
+    + Pantalla()
+    + void mostrarFrame(int posicion)
+    + void modificarPixel(int x, int y, int nuevoValor)
+    + void alternarFrames()
+    + void combinarFrames()
+    - String simbolo(int valor)
 }
 
-class Frame{
-  Pixel[] frame;
-  void modificarPixel(int pos, int nuevoValor);
-  void traducir(Pixel pixel);
-  void imprimir();
+class Frame {
+    - Pixel[] frame
+    --
+    + Frame(int width, int height)
+    + void modificarPixel(int pos, int nuevoValor)
+    + Pixel obtenerPixel(int pos)
+    + void imprimir()
 }
 
-class Pantalla{
-  int posicion;
-  Frame[] pantalla;
-  Frame generarFrame();
-  void addFrame(generarFrame());
-  void mostrarFrame(int posicion);
-  void modificarPixel(int frame, int pos, int nuevoValor);
+class Pixel {
+    - int dato
+    --
+    + Pixel(int dato)
+    + int obtenerDato()
+    + void setDato(int dato)
 }
 
-Frame --> Pixel
 Pantalla --> Frame
+Frame --> Pixel
 @enduml
