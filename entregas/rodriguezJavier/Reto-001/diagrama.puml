@@ -1,0 +1,37 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+class Pixel {
+    - value: char
+    + getValue(): char
+    + setValue(value: char)
+}
+
+class Frame {
+    - pixels: Pixel[][]
+    - x: int
+    - y: int
+    + getPixel(x, y)
+    + setPixel(x, y, pixel: Pixel)
+}
+
+class DoubleBuffer {
+    - frame1: Frame[]
+    - frame2: Frame[]
+    - activeFrame: Frame
+    + getActiveFrame(): Frame
+    + combineFrames(frame: Frame)
+    + switchFrame(index: int)
+}
+
+class Display {
+    - displayPixels: Pixel[][]
+    + render()
+    + main(args: String[])
+}
+
+Pixel --> Frame
+Frame --> DoubleBuffer
+DoubleBuffer --> Display
+
+@enduml
