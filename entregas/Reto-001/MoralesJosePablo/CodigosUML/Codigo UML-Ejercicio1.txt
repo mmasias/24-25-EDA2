@@ -1,0 +1,48 @@
+@startuml
+
+class Pantalla {
+  -String clase
+  +Pantalla(String)
+  +iniciarAplicacion()
+  +getFrame(Frame1 frame1, Frame2 frame2, ResultadoVisual resultado)
+}
+
+class Pixel {
+  - char[][]
+  + Pixel (int ancho, int alto)
+  + listaElementos(): char[][]
+}
+
+class Buffer {
+  + void mostrarFrameSeleccionado(Frame1 frame1, Frame2 frame2, ResultadoVisual resultado)
+}
+
+class Frame1 {
+  - char[][]
+  + Frame1(int ancho, int alto)
+  + posicionFrame (Pixel pixel)
+  + posicionFrame()
+}
+
+class Frame2 {
+  - char[][]
+  + Frame2 (int ancho, int alto)
+  + posicionFrame (Pixel pixel)
+  + posicionFrame()
+}
+
+class ResultadoVisual {
+  - char[][]
+  + ResultadoVisual(int ancho, int alto)
+  + combinar (Frame1 frame1, Frame2 frame2)
+}
+
+' Relaciones con multiplicidad
+Pantalla --> Buffer
+Buffer --> ResultadoVisual
+Frame1 --> ResultadoVisual
+Frame2 --> ResultadoVisual
+Pixel  --> Frame1
+Pixel --> Frame2
+
+@enduml
