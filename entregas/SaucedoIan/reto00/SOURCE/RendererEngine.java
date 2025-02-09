@@ -1,60 +1,83 @@
-
 import java.util.LinkedList;
 
 public class RendererEngine {
-  private Object frame;
-  private String mode;
-  private LinkedList<Instruction> instructionsList = new LinkedList<>();
-  private BufferFrame bufferFrame;
+  private static final int FRAME_WIDTH = 20;
+  private LinkedList<Instruction> instructions;
+  private BufferFrame buffer;
+  private RenderMode mode;
 
-  public RendererEngine(BufferFrame bufferFrame) {
-    this.bufferFrame = bufferFrame;
+  public enum RenderMode {
+    COLOR, // Single colored frame
+    EXTENDED // Two frames side-by-side
   }
 
-  public void Node(Object frame) {
-    this.frame = frame;
+  public RendererEngine(BufferFrame buffer) {
+    this.buffer = buffer;
+    this.instructions = new LinkedList<>();
+    this.mode = RenderMode.COLOR;
   }
 
-  public void DrawFrame() {
-    if (mode == "extended" && !instructionsList.isEmpty()) {
-      Frame frameObj = new Frame();
+  public void processFrame() {
+    if (instructions.isEmpty())
+      return;
 
-      for (Instruction instr : instructionsList) {
-        int frameNumber = instr.SizeExtension ? 2 : 1;
-        frameObj.updatePixel(frameNumber, instr.posX, instr.posY, instr.pixelChar);
+    if (mode == RenderMode.COLOR) {
+      processColorMode();
+    } else {
+      processExtendedMode();
+    }
+    instructions.clear();
+  }
+
+  private void processColorMode() {
+    Frame frame = new Frame();
+    for (Instruction instr : instructions) {
+      int x = instr.getPosX();
+      int y = instr.getPosY();
+      char pixel = instr.getPixelChar();
+
+      if (x < FRAME_WIDTH) {
+        frame.updatePixel(x, y, pixel);
       }
+    }
+    buffer.addFrame(frame);
+  }
 
-      bufferFrame.addFrame(frameObj);
+  private void processExtendedMode() {
+    Frame leftFrame = new Frame();
+    Frame rightFrame = new Frame();
 
-    } else {
-      System.out.println("Error: RendererEngine mode or instructions not set");
+    for (Instruction instr : instructions) {
+      int x = instr.getPosX();
+      int y = instr.getPosY();
+      char pixel = instr.getPixelChar();
+
+      if (x < FRAME_WIDTH) {
+        leftFrame.updatePixel(x, y, pixel);
+        if (pixel != ' ') {
+          rightFrame.updatePixel(FRAME_WIDTH - x - 1, y, pixel);
+        }
+      }
+    }
+    buffer.addFrame(leftFrame);
+    buffer.addFrame(rightFrame);
+  }
+
+  public void addInstruction(Instruction instruction) {
+    if (instruction != null) {
+      instructions.add(instruction);
     }
   }
 
-  public Frame SendFrame() {
-    if (!bufferFrame.isEmpty()) {
-      return bufferFrame.getFrame();
-    } else {
-      System.out.println("No frame in buffer to send.");
-      return null;
-    }
+  public Frame getNextFrame() {
+    return buffer.getFrame();
   }
 
-  public void SelectRenderMode() {
-    if (mode != null) {
-      System.out.println("Render mode selected: " + mode);
-    } else {
-      System.out.println("No render mode set.");
-    }
-  }
-
-  public void ReceiveInstruction(Object instruction) {
-    if (instruction instanceof Instruction) {
-      instructionsList.add((Instruction) instruction);
-    }
-  }
-
-  public void setMode(String mode) {
+  public void setMode(RenderMode mode) {
     this.mode = mode;
+  }
+
+  public boolean hasFrames() {
+    return !buffer.isEmpty();
   }
 }

@@ -1,33 +1,60 @@
 public class Pixel {
-  public String AsciiArray;
-  public String color;
+  public enum Color {
+    NEGRO('.', "n"),
+    BLANCO('#', "b"),
+    CYAN('+', "c"),
+    MAGENTA('*', "m"),
+    EMPTY(' ', "");
 
-  public static final char NEGRO = '.';
-  public static final char BLANCO = '#';
-  public static final char CYAN = '+';
-  public static final char MAGENTA = '*';
+    private final char symbol;
+    private final String code;
 
-  public String GetPixel() {
-    if (AsciiArray != null && !AsciiArray.isEmpty()) {
-      return AsciiArray;
-    } else if (color != null) {
-      switch (color.toLowerCase()) {
-        case "n":
-          return String.valueOf(NEGRO);
-        case "b":
-          return String.valueOf(BLANCO);
-        case "c":
-          return String.valueOf(CYAN);
-        case "m":
-          return String.valueOf(MAGENTA);
-        default:
-          return " ";
-      }
+    Color(char symbol, String code) {
+      this.symbol = symbol;
+      this.code = code;
     }
-    return " ";
+
+    public char getSymbol() {
+      return symbol;
+    }
+
+    public String getCode() {
+      return code;
+    }
   }
 
-  public String GetColor() { 
-    return color;
+  private String asciiValue;
+  private Color pixelColor;
+
+  public Pixel() {
+    this.pixelColor = Color.EMPTY;
+    this.asciiValue = " ";
+  }
+
+  public void setAsciiValue(String value) {
+    this.asciiValue = value != null ? value : " ";
+  }
+
+  public void setColor(String colorCode) {
+    if (colorCode != null) {
+      for (Color c : Color.values()) {
+        if (c.getCode().equals(colorCode.toLowerCase())) {
+          this.pixelColor = c;
+          return;
+        }
+      }
+    }
+    this.pixelColor = Color.EMPTY;
+  }
+
+  public String getPixelValue() {
+    if (asciiValue != null && !asciiValue.isEmpty()) {
+      return asciiValue;
+    }
+    return String.valueOf(pixelColor.getSymbol());
+  }
+
+  public String getColorCode() {
+    return pixelColor.getCode();
   }
 }

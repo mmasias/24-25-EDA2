@@ -1,55 +1,81 @@
 @startuml
 class Renderer {
-    -frame
-    +Show(frame)
+    -RESET_COLOR: String
+    -BLACK: String
+    -WHITE: String
+    -CYAN: String
+    -MAGENTA: String
+    -leftFrame: Frame
+    -rightFrame: Frame
+    -mode: RenderMode
+    +setMode(mode: RenderMode)
+    +renderFrames(frame: Frame)
+    +renderFrames(left: Frame, right: Frame)
+    -renderColorMode(frame: Frame)
+    -renderExtendedMode(left: Frame, right: Frame)
+    -getColorCode(pixel: char): String
 }
 
-class FrameManager {
-    -frame
-    +bufferFrame
-    +refreshRate
-    +Fetch(frame)
-    +Send(frame)
-    +Receive(frame)
+enum RenderMode {
+    COLOR
+    EXTENDED
+}
+
+class Frame {
+    -HEIGHT: int
+    -WIDTH: int
+    -frame: char[][]
+    +updatePixel(x: int, y: int, value: char)
+    +getFrame(): char[][]
 }
 
 class RendererEngine {
-    +Node(frame)
-    +Frame
-    +mode
-    +Instructions
-    +DrawFrame()
-    +SendFrame()
-    +SelectRenderMode()
-    +ReceiveInstruction(instructionList)
+    -FRAME_WIDTH: int
+    -instructions: LinkedList<Instruction>
+    -buffer: BufferFrame
+    -mode: RenderMode
+    +processFrame()
+    +addInstruction(instruction: Instruction)
+    +getNextFrame(): Frame
+    +setMode(mode: RenderMode)
+    +hasFrames(): boolean
 }
 
 class Instruction {
-    +Color
-    +SizeExtension
-    +Position(x, y)
-    +HasColor()
-    +CreateInstruction()
-    +SendInstruction()
+    -color: char
+    -posX: int
+    -posY: int
+    -pixelChar: char
+    +createInstruction(pixel: Pixel, x: int, y: int)
+    +getPosX(): int
+    +getPosY(): int
+    +getPixelChar(): char
+    +getColor(): char
 }
 
 class Pixel {
-    +AsciiArray
-    +color
-    +GetPixel()
-    +GetColor()
+    -asciiValue: String
+    -pixelColor: Color
+    +setAsciiValue(value: String)
+    +setColor(colorCode: String)
+    +getPixelValue(): String
+    +getColorCode(): String
 }
 
 class BufferFrame {
-    -bufferFrameQueue
-    +addFrame(frame)
-    +getFrame()
-    +isEmpty()
+    -bufferFrameQueue: Queue<Frame>
+    +addFrame(frame: Frame)
+    +getFrame(): Frame
+    +isEmpty(): boolean
 }
 
-Renderer --> FrameManager
-RendererEngine --> Renderer
-RendererEngine --> Instruction
-RendererEngine --> Pixel
+Renderer --> Frame
+Renderer --> RenderMode
 RendererEngine --> BufferFrame
+RendererEngine --> Instruction
+RendererEngine --> Frame
+RendererEngine --> RenderMode
+Instruction --> Pixel
+BufferFrame --> Frame
+
 @enduml

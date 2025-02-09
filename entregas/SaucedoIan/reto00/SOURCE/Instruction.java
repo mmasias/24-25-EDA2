@@ -1,24 +1,30 @@
 public class Instruction {
-  public char Color;
-  public boolean SizeExtension; 
-  public int posX, posY; 
-  public char pixelChar; 
+  private char color;
+  private int posX, posY;
+  private char pixelChar;
 
-  public boolean hasColor() {
-    return Color != 0; 
+  public void createInstruction(Pixel pixel, int x, int y) {
+    if (pixel != null) {
+      this.pixelChar = pixel.getPixelValue().charAt(0);
+      this.posX = x;
+      this.posY = y;
+      this.color = pixel.getColorCode().charAt(0);
+    }
   }
 
-
-  public void createInstruction(Pixel p, int x, int y, boolean isExtended) { 
-    String ascii = p.GetPixel();
-    char c = (ascii != null && !ascii.isEmpty()) ? ascii.charAt(0) : ' ';
-    this.pixelChar = c;
-    this.posX = x;
-    this.posY = y;
-    this.SizeExtension = isExtended;
+  public int getPosX() {
+    return posX;
   }
 
-  public void SendInstruction() {
-  
+  public int getPosY() {
+    return posY;
+  }
+
+  public char getPixelChar() {
+    return pixelChar;
+  }
+
+  public char getColor() {
+    return color;
   }
 }
