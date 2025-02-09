@@ -1,0 +1,57 @@
+@startuml Diagrama
+
+class Pixel {
+    - int x
+    - int y
+    - String color
+    + Pixel(int x, int y, String color)
+    + int getX()
+    + void setX(int x)
+    + int getY()
+    + void setY(int y)
+    + String getColor()
+    + void setColor(String color)
+}
+
+class Frame {
+    - Pixel[][] pixels
+    - int ancho
+    - int alto
+    + Frame(int ancho, int alto)
+    - void inicializarPixels()
+    + Pixel obtenerPixel(int x, int y)
+    + void establecerPixel(int x, int y, String color)
+    + int getAncho()
+    + int getAlto()
+}
+
+class ControlDeEnlazado {
+    - Frame frame1
+    - Frame frame2
+    - Frame frameRestante
+    + void establecerFrames(Frame f1, Frame f2)
+    - void combinarFrames()
+    + Frame getFrameRestante()
+}
+
+class Pantalla {
+    - List<Frame> frames
+    + Pantalla()
+    + void mostrarFrame(Frame frame)
+    - char obtenerSimbolo(String color)
+    + void agregarFrame(Frame frame)
+}
+
+class Main {
+    + static void main(String[] args)
+}
+
+Pixel "1" *-- "many" Frame
+Frame "1" *-- "1" ControlDeEnlazado
+ControlDeEnlazado "1" *-- "1" Frame
+Pantalla "1" *-- "many" Frame
+Main --> Frame
+Main --> ControlDeEnlazado
+Main --> Pantalla
+
+@enduml
