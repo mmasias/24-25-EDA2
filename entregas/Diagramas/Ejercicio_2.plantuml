@@ -1,0 +1,41 @@
+@startuml
+class Pantalla {
+    - dato: Nodo
+    - cabeza: Nodo
+    + TemporizadaImpresion(): void
+    + AlternanciaImpresion(): void
+    + ImprimirFrameIndividual(): void
+    + ImprimirFrame(): void
+    + AsignarSiguienteFrame(Frame): void
+    + VerificarBuffers(): void
+    + ObtenerFrames(): Frame
+}
+
+class Nodo {
+    - dato: Frame
+    - siguiente: Nodo
+    - anterior: Nodo
+    + ObtenerNodo(): void
+}
+
+class Frame {
+    - pixel: Pixel[][]
+    + ObtenerPixel(): Pixel
+    + Reseleccionar(): void
+    + ActualizarPixel(): Pixel
+    + EncontrarPixel(): Pixel
+}
+
+class Pixel {
+    - char: negro
+    - char: blanco
+    - char: cyan
+    - char: magenta
+    + ObtenerColor(): String
+    + ObtenerColorCompuesto(): String
+}
+
+Pantalla --> Nodo 
+Nodo -->  Frame 
+Frame --> Pixel
+@enduml
