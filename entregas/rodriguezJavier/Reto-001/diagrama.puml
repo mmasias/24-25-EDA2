@@ -27,7 +27,7 @@ class DoubleBuffer {
 class Display {
     - displayPixels: Pixel[][]
     + render()
-    + updateDataBase(db: DataBase)
+    + main(args: String[])
 }
 
 Pixel --> Frame
