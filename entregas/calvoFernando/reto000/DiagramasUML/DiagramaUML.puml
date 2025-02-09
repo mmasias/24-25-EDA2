@@ -1,0 +1,68 @@
+@startuml
+' Clase Pantalla
+class Pantalla {
+  - Frame[] frames
+  - Grafica grafica
+  + mostrar() : void
+  + main(String[] args) : void
+}
+
+' Clase Grafica
+class Grafica {
+  - int memoriaKB
+  - int tasaHZ
+  - Cola colaFrames
+  + Grafica()
+  - generarFrames() : void
+  + devolverDosFrames() : Frame[]
+}
+
+' Clase Cola
+class Cola {
+  - NodoFrame primero
+  - NodoFrame ultimo
+  - int tamaño
+  + Cola()
+  + enqueue() : void
+  + desenqueue() : Frame[]
+}
+
+' Clase NodoFrame extiende Frame
+class NodoFrame {
+  - NodoFrame siguiente
+  + NodoFrame()
+  + getSiguiente() : NodoFrame
+  + setSiguiente(nodo : NodoFrame) : void
+}
+
+' Clase Frame
+class Frame {
+  - Pixel[][] pixeles
+  + Frame()
+  + rellenarPixeles() : void
+  + devolverPixeles() : Pixel[][]
+}
+
+' Clase Pixel
+class Pixel {
+  - Color color
+  + Pixel()
+  + devolverColor() : Color
+}
+
+' Clase Color
+class Color {
+  - char representacion
+  + Color()
+  + devolverRepresentacion() : char
+}
+
+' Relaciones
+Pantalla --> Grafica : usa
+Grafica --> Cola : tiene
+Cola --> NodoFrame : contiene
+NodoFrame --|> Frame
+Frame --> Pixel : contiene *
+Pixel --> Color : contiene
+
+@enduml
