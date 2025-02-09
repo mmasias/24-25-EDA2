@@ -1,3 +1,4 @@
+package Ej01;
 public class Pixel {
 
     private Color color;

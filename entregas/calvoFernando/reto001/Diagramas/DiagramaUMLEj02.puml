@@ -1,0 +1,73 @@
+@startuml
+
+class Main{
+    +main(String[] args): void
+}
+
+class Pantalla {
+    -buffer: Frame[]
+    -grafica: Grafica
+    -tablaCombinaciones: final char[][]
+    +Pantalla()
+    +mostrar(): void
+    -pause(): void
+    -mezclarColores(Color colorFrame1, Color colorFrame2): char
+}
+
+class Grafica {
+    -memoriaKB=16: final int
+    -tasaHZ=60: final int
+    -colaFrames: Cola
+    +Grafica()
+    +generarFrames(): void
+    +devolverDosFrames(): Frame[]
+}
+
+class Cola {
+    -primero: NodoFrame
+    -ultimo: NodoFrame
+    -tamaño: int
+    +Cola()
+    +enqueue(): void
+    +dequeue(): Frame[]
+    +peek(): Frame[]
+    -tieneDosFrames(): bolean
+}
+
+class NodoFrame {
+    -siguiente: NodoFrame
+    +NodoFrame()
+    +getSiguiente(): NodoFrame
+    +setSiguiente(NodoFrame nodo): void
+}
+
+class Frame {
+    -pixeles: Pixel[][]
+    +Frame()
+    +rellenarPixeles(): void
+    +devolverPixeles(): Pixel[][]
+}
+
+class Pixel {
+    -color: Color
+    +Pixel()
+    +devolverColor(): Color
+}
+
+class Color {
+    -representacion: char
+    -valor: int
+    +Color()
+    +devolverRepresentacion(): char
+    +devolverValor(): int
+}
+
+Main --> Pantalla: "Llama a"
+Pantalla --> Grafica: "Contiene"
+Grafica --> Cola: "Genera una"
+Cola --> NodoFrame: "Almacena"
+NodoFrame --> Frame: "Hereda de"
+Frame --> Pixel: "Tiene una matriz de"
+Pixel --> Color: "Tiene un"
+
+@enduml

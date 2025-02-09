@@ -1,3 +1,4 @@
+package Ej01;
 import java.util.Random;
 
 public class Color {

@@ -1,3 +1,5 @@
+package Ej02;
+
 public class Frame {
 
     private Pixel[][] pixeles;

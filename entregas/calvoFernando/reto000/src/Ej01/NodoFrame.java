@@ -1,3 +1,4 @@
+package Ej01;
 public class NodoFrame extends Frame{
 
     private NodoFrame siguiente;
