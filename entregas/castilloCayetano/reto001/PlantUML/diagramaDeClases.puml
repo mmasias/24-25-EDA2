@@ -1,0 +1,37 @@
+@startuml
+
+class Pixel {
+    - color: char
+    + getColor(): char
+    + setColor(char): void
+    + blendColors(char, char): char
+}
+
+class Frame {
+    - width: int
+    - height: int
+    - pixels: Pixel[][]
+    + setPixel(int, int, char): void
+    + getPixel(int, int): char
+    + printFrame(String): void
+}
+
+class TemporalBlending {
+    - frames: Queue<Frame>
+    - width: int
+    - height: int
+    + setPixel(int, int, char): void
+    + cycleFrames(): void
+    + printBlendedFrame(): void
+}
+
+class App {
+    + main(String[]): void
+}
+
+Frame <-- "many" Pixel : contains
+TemporalBlending -- "many" Frame : manages
+App ..> Frame : uses
+App ..> TemporalBlending : uses
+
+@enduml
