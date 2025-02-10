@@ -1,0 +1,65 @@
+@startuml
+
+class GestorPantalla {
+    - pantallaEntrelazada: PantallaEntrelazada
+    + GestorPantalla(ancho: int, alto: int)
+    + establecerPixelFrame1(coordenada: Coordenada, color: int): void
+    + establecerPixelFrame2(coordenada: Coordenada, color: int): void
+    + cambiarFrame(): void
+    + renderizarFrame(indice: int): void
+    + obtenerSalidaEntrelazada(): char[][]
+}
+
+class PantallaEntrelazada {
+    - listaFrames: ListaCircularFrames
+    - ancho: int
+    - alto: int
+    + PantallaEntrelazada(ancho: int, alto: int)
+    + establecerPixel(coordenada: Coordenada, color: char, frameIndex: int): void
+    + cambiarFrameActivo(): void
+    + renderizarFrame(indice: int): void
+    + obtenerSalidaEntrelazada(): char[][]
+    - combinar colores(color1: char, color2: char): char
+}
+
+class ListaCircularFrames {
+    - frames: Frame[]
+    - indiceActual: int
+    + ListaCircularFrames(cantidadFrames: int, ancho: int, alto: int)
+    + obtenerFrame(indice: int): Frame
+    + siguiente(): void
+}
+
+class Frame {
+    - pixeles: Pixel[][]
+    + Frame(ancho: int, alto: int)
+    + establecerPixel(coordenada: Coordenada, color: char): void
+    + obtenerPixel(coordenada: Coordenada): Pixel
+    + obtenerPixeles(): char[][]
+}
+
+class Pixel {
+    - color: int
+    + Pixel(color: char)
+    + establecerColor(color: char): void
+    + obtenerColor(): char
+}
+
+class Coordenada {
+    - x: int
+    - y: int
+    + Coordenada(x: int, y: int)
+    + obtenerX(): int
+    + obtenerY(): int
+}
+
+GestorPantalla -d-> PantallaEntrelazada
+PantallaEntrelazada -l-> ListaCircularFrames
+ListaCircularFrames -d-> Frame
+Frame -d-> Pixel
+
+Coordenada <-l- Frame
+Coordenada <-u- PantallaEntrelazada
+Coordenada <-u- GestorPantalla
+
+@enduml
