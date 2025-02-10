@@ -1,5 +1,5 @@
 public class Frame {
-    
+
     private Pixel[][] pixeles;
 
     public Frame(){
