@@ -201,5 +201,19 @@ class Pantalla {
 
         int filas = frame1.getPixeles().length;
         int columnas = frame1.getPixeles()[0].length;
+
+        for(int i = 0;i<filas;i++){
+            StringBuilder linea = new StringBuilder();
+            for(int j = 0;j<columnas;j++){
+                linea.append(frame1.getPixel(i,j).getValor());
+            }
+
+            for(int j = 0;j<columnas;j++){
+                linea.append(frame2.getPixel(i,j).getValor())
+            }
+            
+            System.out.println(linea.toString());
+        }
     }
+
 }
