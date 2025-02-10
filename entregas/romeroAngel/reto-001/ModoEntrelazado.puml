@@ -3,18 +3,23 @@
 class Pixel {
     - char valor
 
+    + Pixel()
+    + Pixel(char valor)
     + char getValor()
-    + void setValor()
+    + void setValor(char nuevoValor)
 }
 
 class Frame {
     - Pixel[][] pixeles
 
-    + actualizarPixel()
-    + boolean estaEnRango()
-    + resetear()
-    + Pixel buscarPixel()
-    + Pixel obtenerPixel()
+    + Frame(int filas, int columnas)
+    + void actualizarPixel(int fila, int columna, char nuevoValor)
+    + boolean estaEnRango(int fila, int columna)
+    + void resetear()
+    + Pixel buscarPixel(int fila, int columna)
+    + Pixel getPixel(int fila, int columna)
+    + Pixel[][] getPixeles()
+    + void mostrarFrame
 }
 
 class Nodo {
@@ -22,20 +27,26 @@ class Nodo {
     - Nodo anterior
     - Nodo siguiente
 
-    + Nodo getNodo()
+    + Nodo(Frame dato)
+    + Nodo getAnterior()
+    + Nodo getSiguiente()
+    + Frame geFrame()
+    + void enlazarAnterior(Nodo anterior)
+    + void enlazarSiguiente(Nodo siguiente)
 }
 
 class Pantalla {
-    - Nodo[] datos
     - Nodo cabeza
 
-    + asignarSiguienteFrame()
-
+    + Pantalla()
+    + void asignarSiguienteFrame()
+    + void agregarFrame(Frame nuevoFrame)
     + Frame getFrame()
+    + boolean validarNodoRepetido(Frame frame)
+    + void mostrarFrame()
+    + void mostrarTodosLosFrames()
+    + void imprimirPantalla()
 
-    + validarNodoRepetido()
-
-    + mostrarFrame()
 
 }
 
