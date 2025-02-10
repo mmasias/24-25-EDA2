@@ -29,11 +29,9 @@ public class Resolucion {
     
     public void renderizar() {
         for (int y = 0; y < alto; y++) {
-            // Renderizar frame izquierdo
             for (int x = 0; x < ancho/2; x++) {
                 System.out.print(frameIzquierdo[x][y].getColor() + "|");
             }
-            // Renderizar frame derecho
             for (int x = 0; x < ancho/2; x++) {
                 System.out.print(frameDerecho[x][y].getColor() + "|");
             }
