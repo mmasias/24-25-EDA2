@@ -15,5 +15,4 @@ public class Resolucion {
         return this.alto;
     }
 
-
 }
