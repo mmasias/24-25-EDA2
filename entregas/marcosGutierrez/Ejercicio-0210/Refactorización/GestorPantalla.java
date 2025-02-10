@@ -1,15 +1,15 @@
-public class GestorPantalla {
-    private final Resolucion resolucion;
-    
+class GestorPantalla {
+    private PantallaEntrelazada pantallaEntrelazada;
+
     public GestorPantalla(Resolucion resolucion) {
-        this.resolucion = resolucion;
+        pantallaEntrelazada = new PantallaEntrelazada(resolucion);
     }
-    
-    public void setPixel(Coordenada coordenada, int color) {
-        resolucion.setPixel(coordenada, color);
+
+    public void establecerPixel(Coordenada coordenada, int color) {
+        pantallaEntrelazada.establecerPixel(coordenada, color);
     }
-    
+
     public void renderizar() {
-        resolucion.renderizar();
+        pantallaEntrelazada.renderizar();
     }
 }

@@ -1,11 +1,11 @@
 public class Pixel {
     private int color;
     
-    public void setColor(int color) {
+    public void establecerColor(int color) {
         this.color = color;
     }
     
-    public int getColor() {
+    public int obtenerColor() {
         return color;
     }
 }

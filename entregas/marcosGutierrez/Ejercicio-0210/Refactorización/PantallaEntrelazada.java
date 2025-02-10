@@ -1,17 +1,16 @@
-
 public class PantallaEntrelazada {
-    private int ancho;
-    private int alto;
+    Resolucion resolucion;
 
     private ListaCircularFrames listaFrames;
 
-    public PantallaEntrelazada(int ancho, int alto) {
-        this.ancho = ancho;
-        this.alto = alto;
-        listaFrames = new ListaCircularFrames(2, ancho / 2, alto);
+    public PantallaEntrelazada(Resolucion resolucion) {
+        this.resolucion = resolucion;
+        listaFrames = new ListaCircularFrames(2, resolucion.getAncho() / 2, resolucion.getAlto());
     }
 
     public void renderizar() {
+        int alto = resolucion.getAlto();
+        int ancho = resolucion.getAncho();
         for (int fila = 0; fila < alto; fila++) {
 
             for (int i = 0; i < listaFrames.tamaño(); i++) {
@@ -27,7 +26,8 @@ public class PantallaEntrelazada {
     }
 
     public void establecerPixel(Coordenada coordenada, int color) {
-        
+        int ancho = resolucion.getAncho();
+
         int dondeEsta = coordenada.obtenerX() > (ancho / 2) ? 1 : 0;
         Coordenada coordenadaRelativa = new Coordenada(coordenada.obtenerX()-(ancho/2)*dondeEsta,coordenada.obtenerY());
 
