@@ -1,5 +1,5 @@
 # 24-25-EDA2
 
-## Evaluaciones
-
+- [Temario](https://github.com/mmasias/EDA2)
 - [Retos](/retos/README.md)
+- [Ejercicios](/ejercicios/README.md)
