@@ -1,0 +1,72 @@
+@startuml
+class Cola {
+    - NodoFrame primero
+    - NodoFrame ultimo
+    - int tamaño
+    + Cola()
+    + void enqueue()
+    + Frame[] dequeue()
+    + Frame[] peek()
+    - boolean tieneDosFrames()
+}
+
+class NodoFrame {
+    - NodoFrame siguiente
+    + NodoFrame()
+    + NodoFrame getSiguiente()
+    + void setSiguiente(NodoFrame nodo)
+}
+
+class Frame {
+    - Pixel[][] pixeles
+    + Frame()
+    + void rellenarPixeles()
+    + Pixel[][] devolverPixeles()
+}
+
+class Color {
+    - char representacion
+    - int valor
+    + Color()
+    + char devolverRepresentacion()
+    + int devolverValor()
+}
+
+class Pixel {
+    - Color color
+    + Pixel()
+    + Color devolverColor()
+}
+
+class Grafica {
+    - final int memoriaKB = 16
+    - final int tasaHZ = 60
+    - Cola colaFrames
+    + Grafica()
+    + void generarFrames()
+    + Frame[] devolverDosFrames()
+}
+
+class Pantalla {
+    - Frame[] buffer
+    - Grafica grafica
+    - final char[][] tablaCombinaciones
+    + Pantalla()
+    + void mostrar()
+    - static void pause()
+    - char mezclarColores(Color colorFrame1, Color colorFrame2)
+}
+
+class Main {
+    + static void main(String[] args)
+}
+
+Cola "1" *-- "*" NodoFrame
+NodoFrame --|> Frame
+Frame "*" *-- "*" Pixel
+Pixel "1" *-- "1" Color
+Grafica "1" *-- "1" Cola
+Pantalla "1" *-- "1" Grafica
+Pantalla "1" *-- "2" Frame
+Main "1" *-- "1" Pantalla
+@enduml
