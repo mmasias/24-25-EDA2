@@ -1,8 +1,8 @@
 public class GestorPantalla {
     private PantallaEntrelazada pantallaEntrelazada;
 
-    public GestorPantalla(int dimension) {
-        pantallaEntrelazada = new PantallaEntrelazada(dimension);
+    public GestorPantalla(Resolucion resolucion) {
+        pantallaEntrelazada = new PantallaEntrelazada(resolucion);
     }
 
     public void establecerPixel(Coordenada coordenada, int color) {
