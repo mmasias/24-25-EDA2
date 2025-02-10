@@ -6,10 +6,10 @@ public class Color {
 
   public static void main(String[] args) {
     char[] palette = new char[] {
-        '.', // NEGRO
-        '#', // BLANCO
-        '+', // CYAN
-        '*' // MAGENTA
+        '.',
+        '#',
+        '+',
+        '*'
     };
 
     InstructionCreator creator = new InstructionCreator();

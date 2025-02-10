@@ -14,24 +14,23 @@ public class ExtendedInstructionCreator {
       for (int x = 0; x < TOTAL_WIDTH; x++) {
         Pixel pixel = new Pixel();
 
-        // House roof (triangle)
         if (y == 2 && x >= 15 && x <= 25) {
           pixel.setAsciiValue("^");
           pixel.setColor("m");
         }
-        // House walls
+
         else if (y >= 3 && y <= 7 && x >= 13 && x <= 27) {
-          // Door
+
           if (y >= 5 && y <= 7 && x >= 18 && x <= 22) {
             pixel.setAsciiValue("|");
             pixel.setColor("b");
           }
-          // Windows
+
           else if (y == 4 && (x == 15 || x == 25)) {
             pixel.setAsciiValue("*");
             pixel.setColor("c");
           }
-          // Regular walls
+
           else {
             pixel.setAsciiValue("#");
             pixel.setColor("n");

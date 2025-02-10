@@ -7,8 +7,8 @@ public class RendererEngine {
   private RenderMode mode;
 
   public enum RenderMode {
-    COLOR, // Single colored frame
-    EXTENDED // Two frames side-by-side
+    COLOR,
+    EXTENDED
   }
 
   public RendererEngine(BufferFrame buffer) {
