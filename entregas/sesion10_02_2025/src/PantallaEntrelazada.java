@@ -1,12 +1,12 @@
 
 public class PantallaEntrelazada {
+    
     private Resolucion resolucion;
-
     private ListaCircularFrames listaFrames;
 
     public PantallaEntrelazada(Resolucion resolucion) {
         this.resolucion = resolucion;
-        listaFrames = new ListaCircularFrames(2, resolucion.getMitadAncho(), resolucion.getAlto());
+        listaFrames = new ListaCircularFrames(2, new Resolucion(resolucion.getMitadAncho(), resolucion.getAlto()));
     }
 
     public void renderizar() {
