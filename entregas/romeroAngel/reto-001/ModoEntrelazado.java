@@ -2,7 +2,7 @@ class Pixel {
     private char valor;
 
     public Pixel() {
-        this.valor = ' ';
+        this.valor = '.';
     }
 
     public Pixel(char valor){
@@ -205,11 +205,13 @@ class Pantalla {
         for(int i = 0;i<filas;i++){
             StringBuilder linea = new StringBuilder();
             for(int j = 0;j<columnas;j++){
-                linea.append(frame1.getPixel(i,j).getValor());
+                linea.append(frame1.getPixel(i,j).getValor()).append(" ");
             }
 
+            linea.append(" ");
+
             for(int j = 0;j<columnas;j++){
-                linea.append(frame2.getPixel(i,j).getValor())
+                linea.append(frame2.getPixel(i,j).getValor()).append(" ");
             }
             
             System.out.println(linea.toString());
