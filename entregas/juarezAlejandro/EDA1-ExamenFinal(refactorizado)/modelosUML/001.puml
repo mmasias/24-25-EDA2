@@ -1,0 +1,59 @@
+@startuml
+
+class GestorPantalla {
+  - pantallaEntrelazada: PantallaEntrelazada
+  + establecerPixel(coordenada: Coordenada, color: int): void
+  + renderizar(): void
+}
+
+class PantallaEntrelazada {
+  - listaFrames: ListaCircularFrames
+  + establecerPixel(coordenada: Coordenada, color: int): void
+  + cambiarFrameActivo(): void
+  + obtenerSalidaEntrelazada(): Pixel[][]
+  + traducirCoordenada(coordenada: Coordenada): Coordenada
+  + renderizar(): void
+}
+
+class ListaCircularFrames {
+  - frames: Frame[]
+  - indiceActual: int
+  + agregarFrame(frame: Frame): void
+  + obtenerActual(): Frame
+  + siguiente(): void
+  + tamaño(): int
+}
+
+class Frame {
+  - pixeles: Pixel[][]
+  + establecerPixel(coordenada: Coordenada, color: int): void
+  + obtenerPixel(coordenada: Coordenada): Pixel
+}
+
+class Pixel {
+  - color: int
+  + establecerColor(color: int): void
+  + obtenerColor(): int
+}
+
+class Coordenada {
+  - x: int
+  - y: int
+  + Coordenada(x: int, y: int)
+  + obtenerX(): int
+  + obtenerY(): int
+  + establecerX(x: int): void
+  + establecerY(y: int): void
+}
+
+GestorPantalla -d-> PantallaEntrelazada
+PantallaEntrelazada -l-> ListaCircularFrames
+PantallaEntrelazada .d.> Frame
+ListaCircularFrames -d-> Frame
+Frame -d-> Pixel
+
+Coordenada <-l- Frame
+Coordenada <-u- PantallaEntrelazada
+Coordenada <-u- GestorPantalla
+
+@enduml
