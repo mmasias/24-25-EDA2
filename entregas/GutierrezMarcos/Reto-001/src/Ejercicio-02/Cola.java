@@ -1,4 +1,3 @@
-package srcEjercicio2;
 public class Cola {
 
     private NodoFrame primero;

@@ -1,4 +1,3 @@
-package srcEjercicio2;
 public class Pantalla{
 
     private Frame[] buffer;
