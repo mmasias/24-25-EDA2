@@ -1,3 +1,5 @@
+package ejercicio1;
+
 class PantallaEntrelazada {
     private ListaCircularFrames listaFrames;
     private int ancho;

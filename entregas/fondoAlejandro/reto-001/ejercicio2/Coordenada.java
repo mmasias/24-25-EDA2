@@ -1,4 +1,4 @@
-package ejercicio1;
+package ejercicio2;
 
 class Coordenada {
     private int x;

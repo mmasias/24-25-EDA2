@@ -1,4 +1,4 @@
-package ejercicio1;
+package ejercicio2;
 
 class ListaCircularFrames {
     private Frame[] frames;
@@ -10,10 +10,6 @@ class ListaCircularFrames {
             frames[i] = new Frame(ancho, alto);
         }
         indiceActual = 0;
-    }
-
-    public Frame obtenerActual() {
-        return frames[indiceActual];
     }
 
     public Frame obtenerFrame(int indice) {

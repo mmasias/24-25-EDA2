@@ -1,4 +1,4 @@
-package ejercicio1;
+package ejercicio2;
 
 class GestorPantalla {
     private PantallaEntrelazada pantallaEntrelazada;
@@ -7,11 +7,11 @@ class GestorPantalla {
         pantallaEntrelazada = new PantallaEntrelazada(ancho, alto);
     }
 
-    public void establecerPixelFrame1(Coordenada coordenada, int color) {
+    public void establecerPixelFrame1(Coordenada coordenada, char color) {
         pantallaEntrelazada.establecerPixel(coordenada, color, 0);
     }
 
-    public void establecerPixelFrame2(Coordenada coordenada, int color) {
+    public void establecerPixelFrame2(Coordenada coordenada, char color) {
         pantallaEntrelazada.establecerPixel(coordenada, color, 1);
     }
 
@@ -23,7 +23,7 @@ class GestorPantalla {
         pantallaEntrelazada.renderizarFrame(indice);
     }
 
-    public Pixel[][] obtenerSalidaEntrelazada() {
+    public char[][] obtenerSalidaEntrelazada() {
         return pantallaEntrelazada.obtenerSalidaEntrelazada();
     }
 }

@@ -1,3 +1,5 @@
+package ejercicio1;
+
 class Pixel {
     private int color;
 

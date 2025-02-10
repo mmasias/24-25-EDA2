@@ -1,3 +1,5 @@
+package ejercicio1;
+
 import java.util.Random;
 
 class Main {
