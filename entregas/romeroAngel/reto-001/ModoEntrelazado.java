@@ -65,11 +65,15 @@ class Frame {
         return null;
     }
 
-    public Pixel obtenerPixel(int fila, int columna){
+    public Pixel getPixel(int fila, int columna){
         if(estaEnRango(fila, columna)){
             return pixeles[fila][columna];
         }
         return null;
+    }
+
+    public Pixel[][] getPixeles (){
+        return pixeles;
     }
 
     public void mostrarFrame(){
@@ -191,5 +195,11 @@ class Pantalla {
             System.out.println("No hay suficientes Frames para imprimir.");
             return;
         }
+
+        Frame frame1 =  cabeza.getFrame();
+        Frame frame2 = cabeza.getSiguiente().getFrame();
+
+        int filas = frame1.getPixeles().length;
+        int columnas = frame1.getPixeles()[0].length;
     }
 }
