@@ -8,8 +8,8 @@ public class Dimensiones {
         this.alto = alto;    
     }
 
-    public Dimensiones dividirDimensiones(int divisor) {
-        return new Dimensiones(ancho / divisor, alto / divisor);
+    public Dimensiones dividirDimensionAncho(int divisor) {
+        return new Dimensiones(ancho / divisor, alto);
     }
 
     public int obtenerAncho() {

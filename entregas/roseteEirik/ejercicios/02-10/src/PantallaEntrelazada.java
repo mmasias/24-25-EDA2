@@ -6,7 +6,7 @@ public class PantallaEntrelazada {
 
     public PantallaEntrelazada(Dimensiones dimensiones) {
 
-        listaFrames = new ListaCircularFrames(2, dimensiones.dividirDimensiones(2));
+        listaFrames = new ListaCircularFrames(2, dimensiones.dividirDimensionAncho(2));
     }
 
     public void renderizar() {
