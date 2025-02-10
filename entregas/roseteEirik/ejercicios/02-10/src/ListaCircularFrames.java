@@ -5,11 +5,11 @@ public class ListaCircularFrames {
     private int indiceActual;
     private int tamaño;
 
-    public ListaCircularFrames(int tamaño, int ancho, int alto) {
+    public ListaCircularFrames(int tamaño, Dimensiones dimensiones) {
         this.tamaño = tamaño;
         this.frames = new Frame[tamaño];
         for (int i = 0; i < tamaño; i++) {
-            frames[i] = new Frame(ancho, alto);
+            frames[i] = new Frame(dimensiones);
         }
         indiceActual = 0;
     }
