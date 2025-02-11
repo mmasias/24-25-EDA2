@@ -14,6 +14,26 @@ public class Main {
         pantalla.getEscena().getFrame().establecerPixel(new Coordenada(0, 0), Pixel.CYAN);
         pantalla.getEscena().siguiente();
         pantalla.getEscena().getFrame().establecerPixel(new Coordenada(0, 0), Pixel.BLANCO);
-        pantalla.renderizar();
-    }
+       // pantalla.renderizar();
+
+        PantallaSuperpuesta pantallaSuperpuesta = new PantallaSuperpuesta(7, 3);
+        pantallaSuperpuesta.getEscena().getFrame().establecerPixel(new Coordenada(0, 0), Pixel.MAGENTA);
+        pantallaSuperpuesta.getEscena().getFrame().establecerPixel(new Coordenada(6, 2), Pixel.BLANCO);
+        pantallaSuperpuesta.getEscena().getFrame().establecerPixel(new Coordenada(5, 2), Pixel.MAGENTA);
+        pantallaSuperpuesta.getEscena().siguiente();
+        pantallaSuperpuesta.getEscena().getFrame().establecerPixel(new Coordenada(0, 0), Pixel.BLANCO);
+        pantallaSuperpuesta.getEscena().getFrame().establecerPixel(new Coordenada(6, 2), Pixel.NEGRO);
+        pantallaSuperpuesta.getEscena().getFrame().establecerPixel(new Coordenada(5, 2), Pixel.CYAN);
+        pantallaSuperpuesta.renderizar();
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    }   
 }

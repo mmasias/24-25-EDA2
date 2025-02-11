@@ -1,11 +1,8 @@
-public class PantallaEntrelazada {
-    private int ancho;
-    private int alto;
+public class PantallaEntrelazada extends Pantalla {
     private Escena escena;
 
     public PantallaEntrelazada(int ancho, int alto) {
-        this.ancho = ancho;
-        this.alto = alto;
+        super(ancho,alto);
         this.escena = new Escena(ancho, alto, 2);
     }
     public void renderizar(){
@@ -26,5 +23,5 @@ public class PantallaEntrelazada {
     public Escena getEscena() {
         return escena;
     }
-    
+
 }
