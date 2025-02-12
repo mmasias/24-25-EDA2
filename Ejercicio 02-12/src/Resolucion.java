@@ -1,4 +1,5 @@
 public class Resolucion {
+    
     private int ancho;
     private int alto;
 
