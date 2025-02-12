@@ -1,16 +1,14 @@
-public class Coordenada{
+public class Coordenada {
     private int x;
     private int y;
-
-    public Coordenada(int x, int y){
-        this.x=x;
-        this.y=y;
+    public Coordenada(int x, int y) {
+        this.x = x;
+        this.y = y;
     }
-
-    public int obtenerX(){
+    public int getX() {
         return x;
     }
-    public int obtenerY(){
+    public int getY() {
         return y;
     }
 }

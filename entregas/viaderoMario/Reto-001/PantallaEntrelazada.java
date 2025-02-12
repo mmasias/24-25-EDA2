@@ -1,42 +1,27 @@
-public class PantallaEntrelazada {
-    private int ancho;
-    private int alto;
-    private ListaCircularFrames listaFrames;
-    
-    public PantallaEntrelazada(int ancho,int alto){
-        this.ancho=ancho;
-        this.alto=alto;
-        listaFrames = new ListaCircularFrames(ancho, alto, 0);
-    }
+public class PantallaEntrelazada extends Pantalla {
+    private Escena escena;
 
-    public void establecerPixel(Coordenada coordenada, int color,int frame){
-        listaFrames.obtenerFrame(frame).establecerPixel(coordenada, color);
-     
+    public PantallaEntrelazada(int ancho, int alto) {
+        super(ancho,alto);
+        this.escena = new Escena(ancho, alto, 2);
     }
     public void renderizar(){
-        char[][]combinacion={
+        for (int i = 0; i < alto; i++) {
+            for (int j = 0; j < ancho*escena.nFrames(); j++) {
+                if (j==ancho) {
+                    this.escena.siguiente();
+                }
+                
+                
+                System.out.print(this.escena.getFrame().getPixel(new Coordenada(j%ancho,i)).getCaracter());
 
-            {'.','@',':',';'},
-            {'@','#','=','&'},
-            {':','=','+','$'},
-            {';','&','$','*'}
-
-
-
-        };
-
-        Pixel[][] f1 = listaFrames.obtenerFrame(0).getPixeles();
-        Pixel[][] f2 = listaFrames.obtenerFrame(1).getPixeles();
-
-        for (int i = 0; i < f1.length; i++) {
-            for (int j = 0; j < f1[i].length; j++) {
-                Pixel p1 = listaFrames.obtenerFrame(0).obtenerPixel(new Coordenada(i, j));
-                Pixel p2 = listaFrames.obtenerFrame(1).obtenerPixel(new Coordenada(i, j));
-                System.out.print(combinacion[p1.obtenerColor()][p2.obtenerColor()]);
             }
+            this.escena.siguiente();
             System.out.println();
-            
         }
     }
-    
+    public Escena getEscena() {
+        return escena;
+    }
+
 }
