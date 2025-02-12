@@ -1,4 +1,5 @@
 public class Demo {
+    
     public static void main(String[] args) {
         Resolucion resolucion = new Resolucion(8, 3);
         GestorPantalla pantalla = new GestorPantalla(resolucion);
