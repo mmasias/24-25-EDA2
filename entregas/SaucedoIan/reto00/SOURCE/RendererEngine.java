@@ -1,8 +1,9 @@
 import java.util.LinkedList;
+import java.util.List;
 
 public class RendererEngine {
   private static final int FRAME_WIDTH = 20;
-  private LinkedList<Instruction> instructions;
+  private List<Instruction> instructions;
   private BufferFrame buffer;
   private RenderMode mode;
 

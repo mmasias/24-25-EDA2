@@ -1,9 +1,21 @@
+import java.util.HashMap;
+import java.util.Map;
+
 public class Renderer {
     private static final String RESET_COLOR = "\033[0m";
     private static final String BLACK = "\033[39m";
     private static final String WHITE = "\033[37m";
     private static final String CYAN = "\033[36m";
     private static final String MAGENTA = "\033[35m";
+
+    private static final Map<Character, String> colorMap = new HashMap<>();
+
+    static {
+        colorMap.put('#', BLACK);
+        colorMap.put('@', WHITE);
+        colorMap.put('*', CYAN);
+        colorMap.put('+', MAGENTA);
+    }
 
     public enum RenderMode {
         COLOR,
@@ -71,12 +83,6 @@ public class Renderer {
     }
 
     private String getColorCode(char pixel) {
-        return switch (pixel) {
-            case '#' -> BLACK;
-            case '@' -> WHITE;
-            case '*' -> CYAN;
-            case '+' -> MAGENTA;
-            default -> RESET_COLOR;
-        };
+        return colorMap.getOrDefault(pixel, RESET_COLOR);
     }
 }

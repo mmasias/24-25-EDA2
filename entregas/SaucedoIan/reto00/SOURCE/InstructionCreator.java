@@ -7,8 +7,7 @@ public class InstructionCreator {
     private static final int STAR_POINTS = 5;
     private static final double INNER_RATIO = 0.4;
 
-    public List<List<Instruction>> createInstructions(int totalRows, int totalCols, int frames, int refreshRate,
-            char[] colors) {
+    public List<List<Instruction>> createInstructions(int totalRows, int totalCols, int frames, int refreshRate, char[] colors) {
         List<List<Instruction>> allInstructions = new ArrayList<>();
         int centerY = totalRows / 2;
         int centerX = FRAME_WIDTH / 2;
@@ -30,8 +29,7 @@ public class InstructionCreator {
                     int frameX = isRightFrame ? x - FRAME_WIDTH : x;
 
                     double angle = Math.atan2(y - centerY, frameX - centerX) - rotation;
-                    double distance = Math
-                            .sqrt((frameX - centerX) * (frameX - centerX) + (y - centerY) * (y - centerY));
+                    double distance = Math.sqrt((frameX - centerX) * (frameX - centerX) + (y - centerY) * (y - centerY));
 
                     double starRadius = radius * (1 + Math.cos(STAR_POINTS * angle) * INNER_RATIO);
 
@@ -40,13 +38,23 @@ public class InstructionCreator {
 
                     if (distance <= starRadius) {
                         pixelChar = currentColor;
-                        colorCode = switch (currentColor) {
-                            case '.' -> "n";
-                            case '#' -> "b";
-                            case '+' -> "c";
-                            case '*' -> "m";
-                            default -> "n";
-                        };
+                        switch (currentColor) {
+                            case '.':
+                                colorCode = "n";
+                                break;
+                            case '#':
+                                colorCode = "b";
+                                break;
+                            case '+':
+                                colorCode = "c";
+                                break;
+                            case '*':
+                                colorCode = "m";
+                                break;
+                            default:
+                                colorCode = "n";
+                                break;
+                        }
                     }
 
                     Pixel pixel = new Pixel();

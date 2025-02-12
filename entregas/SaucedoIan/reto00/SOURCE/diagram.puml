@@ -69,6 +69,14 @@ class BufferFrame {
     +isEmpty(): boolean
 }
 
+class InstructionCreator {
+    -FRAME_WIDTH: int
+    -TOTAL_WIDTH: int
+    -STAR_POINTS: int
+    -INNER_RATIO: double
+    +createInstructions(totalRows: int, totalCols: int, frames: int, refreshRate: int, colors: char[]): List<List<Instruction>>
+}
+
 Renderer --> Frame
 Renderer --> RenderMode
 RendererEngine --> BufferFrame
@@ -77,5 +85,6 @@ RendererEngine --> Frame
 RendererEngine --> RenderMode
 Instruction --> Pixel
 BufferFrame --> Frame
+InstructionCreator --> Instruction
 
 @enduml
