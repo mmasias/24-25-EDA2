@@ -2,8 +2,9 @@
 public class Frame {
     private Pixel[][] pixeles;
 
-    public Frame(int ancho, int alto) {
-        pixeles = new Pixel[ancho][alto];
+    public Frame(Resolucion resolucion) {
+
+        pixeles = new Pixel[resolucion.obtenerAncho()][resolucion.obtenerAlto()];
         for (int y = 0; y < pixeles.length; y++) {
             for (int x = 0; x < pixeles[y].length; x++) {
                 pixeles[y][x] = new Pixel();
