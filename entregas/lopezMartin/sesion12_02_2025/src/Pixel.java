@@ -1,14 +1,14 @@
 
 public class Pixel {
 
-    private int color;
+    private Color color;
 
-    public void establecerColor(int i) {
-        color = i;
+    public Pixel(){
+        color = new Color();
     }
 
-    public int obtenerColor() {
-        return color;
+    public Color devolverColor(){
+        return this.color;
     }
-
+    
 }
