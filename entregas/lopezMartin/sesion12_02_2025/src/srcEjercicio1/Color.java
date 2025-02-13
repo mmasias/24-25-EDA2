@@ -1,3 +1,4 @@
+package srcEjercicio1;
 
 import java.util.Random;
 
@@ -5,9 +6,9 @@ public class Color {
 
     private char representacion;
 
-    public Color(){
+    public Color() {
 
-        switch(new Random().nextInt(4)+1){
+        switch (new Random().nextInt(4) + 1) {
             case 1:
                 this.representacion = '.';
                 break;
@@ -24,8 +25,8 @@ public class Color {
 
     }
 
-    public char devolverRepresentacion(){
+    public char devolverRepresentacion() {
         return this.representacion;
     }
-    
+
 }
