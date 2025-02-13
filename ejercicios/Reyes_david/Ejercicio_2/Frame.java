@@ -13,3 +13,4 @@ public class Frame {
     public Pixel obtenerPixel(Coordenada c) { return pixeles[c.obtenerX()][c.obtenerY()]; }
     public void establecerPixel(Coordenada c, int color) { pixeles[c.obtenerX()][c.obtenerY()].establecerColor(color); }
 }
+

@@ -1,6 +1,5 @@
 package ejercicios.Reyes_david.Ejercicio_2;
 
-
 import java.util.LinkedList;
 import java.util.Queue;
 public class ListaCircularFrames {
