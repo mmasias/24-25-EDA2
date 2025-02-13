@@ -1,0 +1,51 @@
+@startuml
+
+class Main{
+    +main(String[] args): void
+}
+
+class Pantalla {
+    -buffer: Frame[]
+    -grafica: Grafica
+    -tablaCombinaciones: final char[][]
+    +Pantalla()
+    +mostrar(): void
+    -pause(): void
+    -mezclarColores(Color colorFrame1, Color colorFrame2): char
+}
+
+class Grafica {
+    -colaFrames: Queue<Frame>
+    +Grafica()
+    +generarFrames(): void
+    +devolverDosFrames(): Frame[]
+}
+
+class Frame {
+    -pixeles: Pixel[][]
+    +Frame()
+    +rellenarPixeles(): void
+    +devolverPixeles(): Pixel[][]
+}
+
+class Pixel {
+    -color: Color
+    +Pixel()
+    +devolverColor(): Color
+}
+
+class Color {
+    -representacion: char
+    -valor: int
+    +Color()
+    +devolverRepresentacion(): char
+    +devolverValor(): int
+}
+
+Main --> Pantalla: "Llama a"
+Pantalla --> Grafica: "Contiene"
+Grafica--> Frame: "Tiene una cola de"
+Frame --> Pixel: "Tiene una matriz de"
+Pixel --> Color: "Tiene un"
+
+@enduml
