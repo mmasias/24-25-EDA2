@@ -1,0 +1,71 @@
+@startuml
+class Coordenada {
+    - int x
+    - int y
+    + Coordenada(int columna, int fila)
+    + int obtenerX()
+    + int obtenerY()
+}
+
+class Pixel {
+    - int color
+    + void establecerColor(int color)
+    + int obtenerColor()
+}
+
+class Resolucion {
+    - int ancho
+    - int alto
+    + Resolucion(int ancho, int alto)
+    + int obtenerAncho()
+    + int obtenerAlto()
+}
+
+class Frame {
+    - ArrayList<ArrayList<Pixel>> pixeles
+    - Resolucion resolucion
+    + Frame(Resolucion resolucion)
+    + Pixel obtenerPixel(Coordenada coordenada)
+    + void establecerPixel(Coordenada coordenada, int color)
+}
+
+class ListaCircularFrames {
+    - ArrayList<Frame> frames
+    - int indiceActual
+    + ListaCircularFrames(int tamaño, Resolucion resolucion)
+    + void siguiente()
+    + Frame obtenerActual()
+    + Frame obtenerFrame(int i)
+    + int tamaño()
+}
+
+class PantallaEntrelazada {
+    - Resolucion resolucion
+    - ListaCircularFrames listaFrames
+    + PantallaEntrelazada(Resolucion resolucion)
+    + void renderizar()
+    + void establecerPixel(Coordenada coordenada, int color)
+}
+
+class GestorPantalla {
+    - PantallaEntrelazada pantallaEntrelazada
+    + GestorPantalla(Resolucion resolucion)
+    + void establecerPixel(Coordenada coordenada, int color)
+    + void renderizar()
+}
+
+class Demo {
+    + static void main(String[] args)
+}
+
+Coordenada --> Pixel
+Frame --> Coordenada
+Frame --> Pixel
+Frame --> Resolucion
+ListaCircularFrames --> Frame
+PantallaEntrelazada --> Resolucion
+PantallaEntrelazada --> ListaCircularFrames
+PantallaEntrelazada --> Coordenada
+GestorPantalla --> PantallaEntrelazada
+Demo --> GestorPantalla
+@enduml
