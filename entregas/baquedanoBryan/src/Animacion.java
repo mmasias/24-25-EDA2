@@ -1,36 +1,33 @@
-import java.util.ArrayList;
-
 public class Animacion {
-    private ArrayList<Frame> frames;
+    private ListaFrame frames;
     private int timer;
-    private int indiceActual;
 
     public Animacion(int timer) {
-        this.frames = new ArrayList<>();
+        this.frames = new ListaFrame();
         this.timer = timer > 0 ? timer : 1000;
-        this.indiceActual = 0;
     }
 
     public void agregarFrame(Frame frame) {
-        frames.add(frame);
+        frames.agregar(frame);
     }
 
     public void reproducir() {
-        if (frames.size() < 2) {
+        if (frames.getTamaño() < 2) {
             System.out.println("Se necesitan al menos dos Frames para animar.");
             return;
         }
+
+        int indice = 0;
 
         while (true) {
             System.out.print("\033[H\033[2J");
             System.out.flush();
 
-            Frame frameIzquierdo = frames.get(indiceActual);
-            Frame frameDerecho = frames.get((indiceActual + 1) % frames.size());
-
+            Frame frameIzquierdo = frames.obtener(indice);
+            Frame frameDerecho = frames.obtener((indice + 1) % frames.getTamaño());
             Pantalla.mostrarFrames(frameIzquierdo, frameDerecho);
 
-            indiceActual = (indiceActual + 1) % frames.size(); 
+            indice = (indice + 1) % frames.getTamaño();
 
             try {
                 Thread.sleep(timer);
