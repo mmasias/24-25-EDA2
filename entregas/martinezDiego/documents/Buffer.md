@@ -17,7 +17,7 @@ Clase que mantiene dos frames y permite alternar entre ellos para evitar parpade
 ### 4. `Renderizador`  
 Clase encargada de imprimir en consola los frames de manera legible.
 
-### 5. `Main`  
+### 5. `Demo`  
 Clase principal que ejecuta el programa, crea un buffer doble, modifica los frames y los muestra en la consola.
 
 ## Funcionamiento  
