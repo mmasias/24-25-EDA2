@@ -1,0 +1,86 @@
+@startuml InstrumentosMusicales
+
+abstract class Instrumento {
+  # String nombre
+  # String tipo
+  # double precio
+  + Instrumento(nombre: String, tipo: String, precio: double)
+  + void mostrarInfo()
+}
+
+abstract class InstrumentoDigital {
+  # boolean conectado
+  # int volumenActual
+  + InstrumentoDigital(nombre: String, tipo: String, precio: double)
+  + void conectar()
+  + void ajustarVolumen(nivel: int)
+  # boolean estaConectado()
+  # int getVolumenActual()
+}
+
+class GuitarraElectrica {
+  - int numeroCuerdas
+  - String[] efectos
+  - int efectoActual
+  + GuitarraElectrica(nombre: String, precio: double, numeroCuerdas: int)
+  + void tocar()
+  + void afinar()
+  + void cambiarEfecto()
+  + void hacerSolo()
+  + String toString()
+}
+
+class PianoAnalogo {
+  - int numeroTeclas
+  - String tipoMadera
+  - boolean afinado
+  + PianoAnalogo(nombre: String, precio: double, numeroTeclas: int, tipoMadera: String)
+  - void validarDatos(numeroTeclas: int, tipoMadera: String)
+  + void tocar()
+  + void afinar()
+  + int getNumeroTeclas()
+  + String getTipoMadera()
+  + boolean isAfinado()
+  + void mostrarInfo()
+  + String toString()
+}
+
+class PianoDigital {
+  - int numeroTeclas
+  - String tipoSonido
+  + PianoDigital(nombre: String, precio: double, numeroTeclas: int)
+  + void tocar()
+  + void afinar()
+  + void cambiarSonido(nuevoSonido: String)
+  + String toString()
+}
+
+interface IMusical {
+  + void tocar()
+  + void afinar()
+}
+
+interface IElectronico {
+  + void conectar()
+  + void ajustarVolumen(nivel: int)
+}
+
+' Herencia
+Instrumento <|-- InstrumentoDigital
+InstrumentoDigital <|-- GuitarraElectrica
+InstrumentoDigital <|-- PianoDigital
+Instrumento <|-- PianoAnalogo
+
+' Implementación de interfaces
+Instrumento ..|> IMusical
+InstrumentoDigital ..|> IElectronico
+
+' Configuración de estilos
+skinparam classAttributeIconSize 0
+skinparam class {
+    BackgroundColor White
+    ArrowColor Black
+    BorderColor Black
+}
+
+@enduml
