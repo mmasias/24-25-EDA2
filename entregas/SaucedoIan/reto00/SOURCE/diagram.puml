@@ -1,0 +1,90 @@
+@startuml
+class Renderer {
+    -RESET_COLOR: String
+    -BLACK: String
+    -WHITE: String
+    -CYAN: String
+    -MAGENTA: String
+    -leftFrame: Frame
+    -rightFrame: Frame
+    -mode: RenderMode
+    +setMode(mode: RenderMode)
+    +renderFrames(frame: Frame)
+    +renderFrames(left: Frame, right: Frame)
+    -renderColorMode(frame: Frame)
+    -renderExtendedMode(left: Frame, right: Frame)
+    -getColorCode(pixel: char): String
+}
+
+enum RenderMode {
+    COLOR
+    EXTENDED
+}
+
+class Frame {
+    -HEIGHT: int
+    -WIDTH: int
+    -frame: char[][]
+    +updatePixel(x: int, y: int, value: char)
+    +getFrame(): char[][]
+}
+
+class RendererEngine {
+    -FRAME_WIDTH: int
+    -instructions: LinkedList<Instruction>
+    -buffer: BufferFrame
+    -mode: RenderMode
+    +processFrame()
+    +addInstruction(instruction: Instruction)
+    +getNextFrame(): Frame
+    +setMode(mode: RenderMode)
+    +hasFrames(): boolean
+}
+
+class Instruction {
+    -color: char
+    -posX: int
+    -posY: int
+    -pixelChar: char
+    +createInstruction(pixel: Pixel, x: int, y: int)
+    +getPosX(): int
+    +getPosY(): int
+    +getPixelChar(): char
+    +getColor(): char
+}
+
+class Pixel {
+    -asciiValue: String
+    -pixelColor: Color
+    +setAsciiValue(value: String)
+    +setColor(colorCode: String)
+    +getPixelValue(): String
+    +getColorCode(): String
+}
+
+class BufferFrame {
+    -bufferFrameQueue: Queue<Frame>
+    +addFrame(frame: Frame)
+    +getFrame(): Frame
+    +isEmpty(): boolean
+}
+
+class InstructionCreator {
+    -FRAME_WIDTH: int
+    -TOTAL_WIDTH: int
+    -STAR_POINTS: int
+    -INNER_RATIO: double
+    +createInstructions(totalRows: int, totalCols: int, frames: int, refreshRate: int, colors: char[]): List<List<Instruction>>
+}
+
+Renderer --> Frame
+Renderer --> RenderMode
+RendererEngine --> BufferFrame
+RendererEngine --> Instruction
+RendererEngine --> Frame
+RendererEngine --> RenderMode
+Instruction --> Pixel
+BufferFrame --> Frame
+InstructionCreator --> Instruction
+
+@enduml
