@@ -1,15 +1,16 @@
+mport java.util.ArrayList;
 
 public class ListaCircularFrames {
 
-    private Frame[] frames;
+    private ArrayList<Frame> frames;
     private int indiceActual;
     private int tamaño;
 
-    public ListaCircularFrames(int tamaño, int ancho, int alto) {
+    public ListaCircularFrames(int tamaño, Resolucion resolucion) {
         this.tamaño = tamaño;
-        this.frames = new Frame[tamaño];
+        this.frames = new ArrayList<>(tamaño);
         for (int i = 0; i < tamaño; i++) {
-            frames[i] = new Frame(ancho, alto);
+            frames.add(new Frame(resolucion));
         }
         indiceActual = 0;
     }
@@ -22,15 +23,14 @@ public class ListaCircularFrames {
     public Frame obtenerActual() {
         int indicePorDevolver = indiceActual;
         this.siguiente();
-        return frames[indicePorDevolver];
+        return frames.get(indicePorDevolver);
     }
 
     public Frame obtenerFrame(int i) {
-        return frames[i];
+        return frames.get(i);
     }
 
     public int tamaño(){
         return tamaño;
     }
-
 }
