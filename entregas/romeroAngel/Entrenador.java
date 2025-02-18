@@ -10,7 +10,7 @@ public class Entrenador {
 
     public void entrenar(int sesiones) throws InterruptedException{
         Scanner scanner = new Scanner(System.in);
-        System.out.println("¡" + pokemon.getNombre() + " esta listo para entrenar! Presiona Enter para empezar.");
+        System.out.println("" + pokemon.getNombre() + " esta listo para entrenar! Presiona Enter para empezar.");
         scanner.nextLine();
 
         for(int i = 0;i<sesiones;i++){
@@ -18,9 +18,25 @@ public class Entrenador {
             
             Thread.sleep(2000 + new Random().nextInt(1000));
         }
+
+        System.out.println("¡Entrenamiento de " + pokemon.getNombre() + " terminado!");
     }
 
-    public void ordernarAccionAleatoria(){
+    public void ordernarAccionAleatoria() throws InterruptedException{
+        Random random = new Random();
+        int accion = random.nextInt(3);
+
+        if(accion == 0){
+            System.out.println("\n¡" + pokemon.getNombre() + " ataca!");
+            pokemon.atacar();
+        } else if (accion == 1) {
+            System.out.println("\n¡" + pokemon.getNombre() + " gana experiencia y sube de nivel!");
+            pokemon = pokemon.subirNivel();
+        } else {
+            System.out.println(" \n" + pokemon.getNombre() + " descansa...");
+        }
+
+        Thread.sleep(2000 + random.nextInt(1000));
     }
 
     public void cambiarPokemon(Pokemon pokemon){
