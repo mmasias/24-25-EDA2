@@ -39,6 +39,9 @@ public class Entrenador {
         Thread.sleep(2000 + random.nextInt(1000));
     }
 
-    public void cambiarPokemon(Pokemon pokemon){
+    public void cambiarPokemon(Pokemon nuevoPokemon){
+        System.out.println("Fuera " + pokemon.getNombre() + "! Vamos, " + nuevoPokemon.getNombre() + "!");
+        this.pokemon = nuevoPokemon;
+        this.pokemon.mosrarInfo();
     }
 }
