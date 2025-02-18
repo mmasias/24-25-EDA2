@@ -16,7 +16,7 @@ public class Entrenador {
         for(int i = 0;i<sesiones;i++){
             ordernarAccionAleatoria();
             
-            Thread.sleep(2000 + new Random().nextInt(1000));
+            Thread.sleep(1000 + new Random().nextInt(1000));
         }
 
         System.out.println("¡Entrenamiento de " + pokemon.getNombre() + " terminado!");
@@ -36,7 +36,7 @@ public class Entrenador {
             System.out.println(" \n" + pokemon.getNombre() + " descansa...");
         }
 
-        Thread.sleep(2000 + random.nextInt(1000));
+        Thread.sleep(1000 + random.nextInt(1000));
     }
 
     public void cambiarPokemon(Pokemon nuevoPokemon){
