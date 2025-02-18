@@ -15,4 +15,9 @@ abstract class Pokemon {
         System.out.println(nombre + " (Nivel " + nivel + ")");
     }
 
+    public Pokemon subirNivel() {
+        nivel++;
+        System.out.println(nombre + " ha subido al nivel " + nivel + "!");
+        return evolucionar(); 
+    }
 }
