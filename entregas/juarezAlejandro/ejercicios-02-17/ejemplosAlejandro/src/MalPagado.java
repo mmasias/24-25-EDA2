@@ -1,0 +1,3 @@
+interface MalPagado {
+    String pedirAumento();
+}
