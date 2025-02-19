@@ -45,7 +45,7 @@ public class Main {
         Reproductor reproductor1 = new CD("A Night at the Opera", "Queen");
         Reproductor reproductor2 = new Digital("Smells Like teen spirit", "Nirvana");
 
-        r1.reproducir();
-        r2.reproducir();
+        reproductor1.reproducir();
+        reproductor2.reproducir();
     }
 }
