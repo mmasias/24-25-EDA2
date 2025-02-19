@@ -8,18 +8,18 @@ public class CD extends MedioFisico {
     @Override
     public void reproducir() {
         mostrarInfo();
-        System.out.println("🎵 Sonido digital con lectura láser...");
+        System.out.println(" Sonido digital con lectura láser...");
     }
 
     @Override
     public void pausar() {
-        System.out.println("CD en pausa... ⏸️");
+        System.out.println("CD en pausa... ");
     }
 
     @Override
     public void detener() {
         super.detener(); 
-        System.out.println("CD detenido completamente. ⏹️");
+        System.out.println("CD detenido completamente. ");
     }
 }
 

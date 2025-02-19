@@ -8,17 +8,17 @@ public class Vinilo extends MedioFisico {
     @Override
     public void reproducir() {
         mostrarInfo();
-        System.out.println("🎵 Sonido cálido y clásico con aguja...");
+        System.out.println(" Sonido cálido y clásico con aguja...");
     }
 
     @Override
     public void pausar() {
-        System.out.println("Aguja levantada. ⏸️");
+        System.out.println("Aguja levantada. ");
     }
 
     @Override
     public void detener() {
-        System.out.println("Vinilo detenido. ⏹️ Aguja en reposo...");
+        System.out.println("Vinilo detenido.  Aguja en reposo...");
     }
 }
 

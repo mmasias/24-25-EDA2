@@ -11,7 +11,7 @@ public class BluRay extends CD {
     @Override
     public void reproducir() {
         mostrarInfo();
-        System.out.println("📀 Reproduciendo Blu-Ray en " + resolucion + " HD...");
+        System.out.println(" Reproduciendo Blu-Ray en " + resolucion + " HD...");
     }
 
     public void mostrarResolucion() {

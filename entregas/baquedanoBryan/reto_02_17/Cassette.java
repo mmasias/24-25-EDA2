@@ -8,17 +8,17 @@ public class Cassette extends MedioFisico {
     @Override
     public void reproducir() {
         mostrarInfo();
-        System.out.println("🎵 Sonido analógico con cinta magnética...");
+        System.out.println("Sonido analógico con cinta magnética...");
     }
 
     @Override
     public void pausar() {
-        System.out.println("Cassette en pausa... ⏸️");
+        System.out.println("Cassette en pausa... ");
     }
 
     @Override
     public void detener() {
-        System.out.println("Cassette detenido. ⏹️ Rebobinando...");
+        System.out.println("Cassette detenido.  Rebobinando...");
     }
 }
 

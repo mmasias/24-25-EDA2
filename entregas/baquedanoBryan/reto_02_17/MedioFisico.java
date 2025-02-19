@@ -15,6 +15,6 @@ public abstract class MedioFisico implements Reproductor {
 
     @Override
     public void detener() {
-        System.out.println("Medio físico detenido. ⏹️");
+        System.out.println("Medio físico detenido. ");
     }
 }
