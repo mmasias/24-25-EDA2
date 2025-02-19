@@ -1,5 +1,3 @@
-package entregas.osorioMario.src;
-
 class LaptopGaming extends Laptop {
     @Override
     public void encender() {

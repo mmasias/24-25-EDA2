@@ -1,5 +1,3 @@
-package entregas.osorioMario.src;
-
 class Laptop extends Computadora implements Configurable {
     @Override
     public void encender() {

@@ -1,5 +1,3 @@
-package entregas.osorioMario.src;
-
 class Computadora {
     public void encender() {
         System.out.println("Encendiendo la computadora...");
