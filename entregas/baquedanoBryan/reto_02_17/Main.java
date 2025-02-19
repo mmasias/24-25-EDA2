@@ -42,8 +42,8 @@ public class Main {
 
         System.out.println("\n🔹 **Interacción entre interfaces y herencia** 🔹");
 
-        Reproductor r1 = new CD("A Night at the Opera", "Queen");
-        Reproductor r2 = new Digital("Smells Like teen spirit", "Nirvana");
+        Reproductor reproductor1 = new CD("A Night at the Opera", "Queen");
+        Reproductor reproductor2 = new Digital("Smells Like teen spirit", "Nirvana");
 
         r1.reproducir();
         r2.reproducir();
