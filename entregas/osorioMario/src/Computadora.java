@@ -1,4 +1,4 @@
-package entregas.osorioMario;
+package entregas.osorioMario.src;
 
 class Computadora {
     public void encender() {

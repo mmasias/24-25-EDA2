@@ -1,4 +1,4 @@
-package entregas.osorioMario;
+package entregas.osorioMario.src;
 
 public class Main {
     public static void main(String[] args) {

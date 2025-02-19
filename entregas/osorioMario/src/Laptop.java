@@ -1,4 +1,4 @@
-package entregas.osorioMario;
+package entregas.osorioMario.src;
 
 class Laptop extends Computadora implements Configurable {
     @Override
