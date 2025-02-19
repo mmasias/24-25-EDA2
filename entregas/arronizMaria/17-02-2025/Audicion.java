@@ -28,7 +28,11 @@ class Audicion {
         Piano piano2 = new Piano();
         Instrumento instrumento4 = piano2;
         System.out.println(piano2.equals(instrumento4));
-        
+
+
+
+        Piano piano3 = new Piano();
+        System.out.println(piano3.afinar());
     }
 
 }

@@ -1,0 +1,3 @@
+interface Afinar {
+    String afinar();
+}
