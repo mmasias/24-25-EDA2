@@ -16,6 +16,8 @@ class Main {
     System.out.println(elementoMayoritario(new int[] { 3, 2, 2, 2, 4 }));
 
     System.out.println(productoDefectuoso(new boolean[] { false, false, false, true, true }));
+
+    System.out.println(arrayRotado(new int[] { 4, 5, 6, 1, 2, 3, }));
   }
 
   private static int[] sumaObjetivo(int[] numeros, int objetivo) {
@@ -152,5 +154,21 @@ class Main {
     }
     return indice;
 
+  }
+
+  public static int arrayRotado(int[] numeros) {
+    int izquierda = 0;
+    int derecha = numeros.length - 1;
+
+    while (izquierda < derecha) {
+      int medio = izquierda + (derecha - izquierda) / 2;
+      if (numeros[medio] > numeros[derecha]) {
+        izquierda = medio + 1;
+      } else {
+        derecha = medio;
+      }
+    }
+
+    return izquierda;
   }
 }
