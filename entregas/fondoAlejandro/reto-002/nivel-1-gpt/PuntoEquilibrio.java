@@ -1,15 +1,6 @@
 public class PuntoEquilibrio {
     public static int encontrarPuntoEquilibrio(int[] equilibrio) {
-        if (equilibrio == null) {
-            return -1;
-        }
-        
-        int numero = 0;
-        for (int punto : equilibrio) {
-            numero++;
-        }
-        
-        if (numero == 0) {
+        if (equilibrio == null || equilibrio.length == 0) {
             return -1;
         }
         
@@ -19,7 +10,7 @@ public class PuntoEquilibrio {
         }
         
         int sumaIzquierda = 0;
-        for (int i = 0; i < numero; i++) {
+        for (int i = 0; i < equilibrio.length; i++) {
             if (sumaIzquierda == sumaTotal - sumaIzquierda - equilibrio[i]) {
                 return i;
             }
