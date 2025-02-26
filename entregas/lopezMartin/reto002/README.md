@@ -55,6 +55,8 @@ Complejidad O(n * log n) porque tiene un while metido dentro de un for.
 ### [Contador de inversiones](src/ContadorDeInversiones.java)
 Complejidad O(n^2) porque tiene dos bucles for, uno dentro del otro.
 
+## Nivel 4
+
 ### [Triangulos posibles](src/TriangulosPosibles.java)
 Complejidad O(n * log n) porque tiene un while metido dentro de un for.
 
