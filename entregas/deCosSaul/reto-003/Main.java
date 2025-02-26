@@ -1,6 +1,12 @@
 class Main {
   public static void main(String[] args) {
 
+    int[] resultado = sumaObjetivo(new int[] { 3, 2, 9, 8 }, 10);
+    System.out.println("Indices: " + resultado[0] + " " + resultado[1]);
+
+    resultado = busquedaPalabra(new char[] { 'a', 'c', 'd', 'i', 'm', 'r', 't', 'u' }, "dia");
+    System.out.println("Indices: " + resultado[0] + " " + resultado[1] + " " + resultado[2]);
+
     numeroFaltante(new int[] { 1, 2, 4, 5, 6 });
 
     System.out.println(montana(new int[] { 1, 3, 5, 4, 2 }));
@@ -8,14 +14,39 @@ class Main {
     System.out.println(puntoDeEquilibrio(new int[] { 1, 2, 3, 4, 6 }));
 
     System.out.println(elementoMayoritario(new int[] { 3, 2, 2, 2, 4 }));
+
+    System.out.println(productoDefectuoso(new boolean[] { false, false, false, true, true }));
   }
 
-  private static void sumaObjetivo(int[] numeros, int objetivo) {
+  private static int[] sumaObjetivo(int[] numeros, int objetivo) {
 
+    for (int i = 0; i < numeros.length; i++) {
+      for (int j = 0; j < numeros.length; j++) {
+        if (numeros[i] + numeros[j] == objetivo) {
+          return new int[] { i, j };
+        }
+      }
+    }
+    return null;
   }
 
-  private static void busquedaPalabra(int[] numeros, int objetivo) {
-
+  private static int[] busquedaPalabra(char[] caracteres, String palabra) {
+    int[] indices = new int[palabra.length()];
+    for (int i = 0; i < palabra.length(); i++) {
+      char c = palabra.charAt(i);
+      boolean found = false;
+      for (int j = 0; j < caracteres.length; j++) {
+        if (caracteres[j] == c) {
+          indices[i] = j;
+          found = true;
+          break;
+        }
+      }
+      if (!found) {
+        return null;
+      }
+    }
+    return indices;
   }
 
   private static void numeroFaltante(int[] numeros) {
@@ -108,5 +139,18 @@ class Main {
       return candidato;
     }
     return -1;
+  }
+
+  private static int productoDefectuoso(boolean[] elementos) {
+
+    int indice = -1;
+    boolean defectuoso = false;
+
+    while (!defectuoso) {
+      indice++;
+      defectuoso = elementos[indice] == true ? true : false;
+    }
+    return indice;
+
   }
 }
