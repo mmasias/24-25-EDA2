@@ -1,12 +1,14 @@
 public class Subsecuencia {
-// Completado
+    // Completado
     public static void main(String[] args) {
-       imprimirSubsecuencia();
-    }
-    public void mostrar(){
         imprimirSubsecuencia();
     }
-    public static void imprimirSubsecuencia(){
+
+    public void mostrar() {
+        imprimirSubsecuencia();
+    }
+
+    public static void imprimirSubsecuencia() {
         String s = "abc";
         String t = "ahbgdc";
         boolean resultado = esSubsecuencia(s, t);

@@ -1,10 +1,11 @@
 public class SumaObjetivo {
-    //Completado
+    // Completado
     public static void main(String[] args) {
         imprimirObjetivos();
-        
+
     }
-    public void mostrar(){
+
+    public void mostrar() {
         imprimirObjetivos();
     }
 
@@ -22,11 +23,12 @@ public class SumaObjetivo {
         }
         return resultados;
     }
+
     public static void imprimirObjetivos() {
-        int[] numeros = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+        int[] numeros = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
         int objetivo = 10;
         int[][] resultados = sumaObjetivo(numeros, objetivo);
-        
+
         System.out.println("Resultados:");
         for (int[] resultado : resultados) {
             if (resultado[0] != 0 || resultado[1] != 0) {

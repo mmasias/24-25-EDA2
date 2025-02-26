@@ -1,14 +1,15 @@
 public class ElementoUnico {
-    //Completado
+    // Completado
     public static void main(String[] args) {
         imprimirElementoUnico();
     }
-    public void mostrar(){
+
+    public void mostrar() {
         imprimirElementoUnico();
     }
 
     public static void imprimirElementoUnico() {
-        int[] array = {1, 2, 1, 4, 2};
+        int[] array = { 1, 2, 1, 4, 2 };
         int elementoUnico = encontrarElementoUnico(array);
         System.out.println("Elemento único: " + elementoUnico);
     }

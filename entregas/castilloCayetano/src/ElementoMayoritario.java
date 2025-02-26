@@ -1,14 +1,15 @@
 public class ElementoMayoritario {
-    //Completado
+    // Completado
     public static void main(String[] args) {
         imprimirElementoMayoritario();
     }
-    public void mostrar(){
+
+    public void mostrar() {
         imprimirElementoMayoritario();
     }
 
     public static void imprimirElementoMayoritario() {
-        int[] array = { 1, 1, 2, 2, 2};
+        int[] array = { 1, 1, 2, 2, 2 };
         int elementoMayoritario = encontrarElementoMayoritario(array);
         if (elementoMayoritario == -1) {
             System.out.println("No hay elemento mayoritario");
@@ -18,23 +19,22 @@ public class ElementoMayoritario {
 
     }
 
-    public static int encontrarElementoMayoritario(int[] array){
+    public static int encontrarElementoMayoritario(int[] array) {
         int n = array.length;
         int candidato = array[n / 2];
 
         int primeraPosicion = encontrarPrimeraPosicion(array, candidato);
         int ultimaPosicion = encontrarUltimaPosicion(array, candidato);
-        
+
         if (ultimaPosicion - primeraPosicion + 1 > n / 2) {
             return candidato;
-        }else { 
+        } else {
             return -1;
         }
 
-
     }
 
-    public static int encontrarPrimeraPosicion(int[] array, int objetivo){
+    public static int encontrarPrimeraPosicion(int[] array, int objetivo) {
         int inicio = 0;
         int fin = array.length - 1;
         while (inicio < fin) {
@@ -48,7 +48,7 @@ public class ElementoMayoritario {
         return inicio;
     }
 
-    public static int encontrarUltimaPosicion(int[] array, int objetivo){
+    public static int encontrarUltimaPosicion(int[] array, int objetivo) {
         int inicio = 0;
         int fin = array.length - 1;
         while (inicio < fin) {

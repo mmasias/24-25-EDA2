@@ -3,12 +3,13 @@ public class SumaMaxima {
     public static void main(String[] args) {
         imprimirSumaMaxima();
     }
-    public void mostrar(){
+
+    public void mostrar() {
         imprimirSumaMaxima();
     }
 
     public static void imprimirSumaMaxima() {
-        int[] array = {-2, 1, -3, 4, -1, 2, 1, -5, 4};
+        int[] array = { -2, 1, -3, 4, -1, 2, 1, -5, 4 };
         int[] resultado = encontrarSumaMaxima(array);
         System.out.println("Suma máxima: " + resultado[0]);
         System.out.print("Subarreglo con suma máxima: [");
@@ -23,7 +24,7 @@ public class SumaMaxima {
 
     public static int[] encontrarSumaMaxima(int[] array) {
         if (array == null || array.length < 1) {
-            return new int[]{0, -1, -1};
+            return new int[] { 0, -1, -1 };
         }
         int sumaMaxima = array[0];
         int sumaActual = array[0];
@@ -45,6 +46,6 @@ public class SumaMaxima {
                 fin = i;
             }
         }
-        return new int[]{sumaMaxima, inicio, fin};
+        return new int[] { sumaMaxima, inicio, fin };
     }
 }

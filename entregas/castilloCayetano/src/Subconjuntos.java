@@ -1,13 +1,15 @@
 public class Subconjuntos {
-// Completado
+    // Completado
     public static void main(String[] args) {
         imprimirSubconjuntos();
     }
-    public void mostrar(){
+
+    public void mostrar() {
         imprimirSubconjuntos();
     }
-    public static void imprimirSubconjuntos(){
-        int[] conjunto = {1, 2, 3};
+
+    public static void imprimirSubconjuntos() {
+        int[] conjunto = { 1, 2, 3 };
         System.out.println("Todos los subconjuntos:");
         subconjuntos(conjunto);
         int k = 2;

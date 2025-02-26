@@ -1,15 +1,16 @@
 public class ParesDiferencia {
-// Completado
+    // Completado
     public static void main(String[] args) {
         imprimirParesDiferencia();
     }
-    public void mostrar(){
+
+    public void mostrar() {
         imprimirParesDiferencia();
     }
 
     public static void imprimirParesDiferencia() {
-        int[] array = {1, 7, 5, 9, 2, 12, 3};
-        int[] ks = {2};
+        int[] array = { 1, 7, 5, 9, 2, 12, 3 };
+        int[] ks = { 2 };
         for (int k : ks) {
             System.out.println("Pares con diferencia " + k + ":");
             int[][] resultado = encontrarParesDiferencia(array, k);

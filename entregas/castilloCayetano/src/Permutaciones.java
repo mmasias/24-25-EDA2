@@ -1,9 +1,10 @@
 public class Permutaciones {
-// Completado
+    // Completado
     public static void main(String[] args) {
         imprimirPermutaciones("abc");
     }
-    public void mostrar(){
+
+    public void mostrar() {
         imprimirPermutaciones("abc");
     }
 

@@ -3,7 +3,8 @@ public class KElementosCercanos {
     public static void main(String[] args) {
         imprimirElementosCercanos();
     }
-    public void mostrar(){
+
+    public void mostrar() {
         imprimirElementosCercanos();
     }
 

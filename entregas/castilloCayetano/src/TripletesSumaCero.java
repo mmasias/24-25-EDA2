@@ -3,17 +3,20 @@ public class TripletesSumaCero {
     public static void main(String[] args) {
         imprimirTripletesSumaCero();
     }
-    public void mostrar(){
+
+    public void mostrar() {
         imprimirTripletesSumaCero();
     }
-    public static void imprimirTripletesSumaCero(){
-        int[] array = {-1, 0, 1, 2, -1, -4};
+
+    public static void imprimirTripletesSumaCero() {
+        int[] array = { -1, 0, 1, 2, -1, -4 };
         boolean existeTriplete = encontrarTriplete(array);
         System.out.println("¿Existe al menos un triplete? " + existeTriplete);
         int count = contarTripletesSumaCero(array);
         System.out.println("Número de tripletes con suma cero: " + count);
     }
-    public static boolean encontrarTriplete(int[] array){
+
+    public static boolean encontrarTriplete(int[] array) {
         if (array == null || array.length < 3) {
             return false;
         }
@@ -28,7 +31,8 @@ public class TripletesSumaCero {
         }
         return false;
     }
-    public static int contarTripletesSumaCero(int[] array){
+
+    public static int contarTripletesSumaCero(int[] array) {
         if (array == null || array.length < 3) {
             return 0;
         }
@@ -37,7 +41,8 @@ public class TripletesSumaCero {
             for (int j = i + 1; j < array.length - 1; j++) {
                 for (int k = j + 1; k < array.length; k++) {
                     if (array[i] + array[j] + array[k] == 0) {
-                        System.out.println("Triplete con suma cero: (" + array[i] + ", " + array[j] + ", " + array[k] + ")");
+                        System.out.println(
+                                "Triplete con suma cero: (" + array[i] + ", " + array[j] + ", " + array[k] + ")");
                         count++;
                     }
                 }

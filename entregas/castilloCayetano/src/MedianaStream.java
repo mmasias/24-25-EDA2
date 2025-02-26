@@ -1,71 +1,72 @@
 public class MedianaStream {
-    //Completado
-    private Node head;
-    private int size;
+    // Completado
+    private Nodo cabeza;
+    private int tamaño;
 
     public MedianaStream() {
-        head = null;
-        size = 0;
+        cabeza = null;
+        tamaño = 0;
     }
 
     public static void main(String[] args) {
         imprimirMedianaStream();
     }
-    public void mostrar(){
+
+    public void mostrar() {
         imprimirMedianaStream();
     }
 
     public static void imprimirMedianaStream() {
         MedianaStream medianaStream = new MedianaStream();
-        int[] stream = {1, 3, 2, 4, 5};
+        int[] stream = { 1, 3, 2, 4, 5 };
         for (int num : stream) {
-            medianaStream.addNumber(num);
-            System.out.println(medianaStream.findMedian());
+            medianaStream.agregarNumero(num);
+            System.out.println(medianaStream.encontrarMediana());
         }
     }
 
-    public void addNumber(int num) {
-        head = insertNode(head, num);
-        size++;
+    public void agregarNumero(int num) {
+        cabeza = insertarNodo(cabeza, num);
+        tamaño++;
     }
 
-    public double findMedian() {
-        if (size == 0) {
+    public double encontrarMediana() {
+        if (tamaño == 0) {
             throw new IllegalStateException("No hay elementos en el stream");
         }
-        Node current = head;
-        for (int i = 0; i < (size - 1) / 2; i++) {
-            current = current.next;
+        Nodo actual = cabeza;
+        for (int i = 0; i < (tamaño - 1) / 2; i++) {
+            actual = actual.siguiente;
         }
-        if (size % 2 == 0) {
-            return (current.value + current.next.value) / 2.0;
+        if (tamaño % 2 == 0) {
+            return (actual.valor + actual.siguiente.valor) / 2.0;
         } else {
-            return current.value;
+            return actual.valor;
         }
     }
 
-    private Node insertNode(Node head, int value) {
-        Node newNode = new Node(value);
-        if (head == null || value < head.value) {
-            newNode.next = head;
-            return newNode;
+    private Nodo insertarNodo(Nodo cabeza, int valor) {
+        Nodo nuevoNodo = new Nodo(valor);
+        if (cabeza == null || valor < cabeza.valor) {
+            nuevoNodo.siguiente = cabeza;
+            return nuevoNodo;
         }
-        Node current = head;
-        while (current.next != null && current.next.value < value) {
-            current = current.next;
+        Nodo actual = cabeza;
+        while (actual.siguiente != null && actual.siguiente.valor < valor) {
+            actual = actual.siguiente;
         }
-        newNode.next = current.next;
-        current.next = newNode;
-        return head;
+        nuevoNodo.siguiente = actual.siguiente;
+        actual.siguiente = nuevoNodo;
+        return cabeza;
     }
 
-    private class Node {
-        int value;
-        Node next;
+    private class Nodo {
+        int valor;
+        Nodo siguiente;
 
-        Node(int value) {
-            this.value = value;
-            this.next = null;
+        Nodo(int valor) {
+            this.valor = valor;
+            this.siguiente = null;
         }
     }
 }
