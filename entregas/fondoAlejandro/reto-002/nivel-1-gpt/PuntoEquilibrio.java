@@ -1,4 +1,4 @@
-public class PuntoEquilibrio {
+class PuntoEquilibrio {
     public static int encontrarPuntoEquilibrio(int[] equilibrio) {
         if (equilibrio == null || equilibrio.length == 0) {
             return -1;
