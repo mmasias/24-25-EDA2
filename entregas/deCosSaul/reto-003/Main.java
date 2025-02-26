@@ -4,6 +4,8 @@ class Main {
     numeroFaltante(new int[] { 1, 2, 4, 5, 6 });
 
     System.out.println(montana(new int[] { 1, 3, 5, 4, 2 }));
+
+    System.out.println(puntoDeEquilibrio(new int[] { 1, 2, 3, 4, 6 }));
   }
 
   private static void sumaObjetivo(int[] numeros, int objetivo) {
@@ -52,5 +54,28 @@ class Main {
       indice++;
     }
     return true;
+  }
+
+  private static int puntoDeEquilibrio(int[] numero) {
+    int indice = 1;
+    int sumaIzquierda;
+    int sumaDerecha;
+    while (indice < numero.length) {
+      sumaIzquierda = 0;
+      sumaDerecha = 0;
+
+      for (int i = 0; i < indice; i++) {
+        sumaIzquierda += numero[i];
+      }
+      for (int j = indice + 1; j < numero.length; j++) {
+        sumaDerecha += numero[j];
+      }
+      if (sumaIzquierda == sumaDerecha) {
+        return indice;
+      }
+      indice++;
+
+    }
+    return 0;
   }
 }
