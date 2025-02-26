@@ -1,1 +1,3 @@
-# 24-25-EDA2
+# Pequeñas conclusiones...
+
+### En general creo que Claude es mejor para codificar, ya que Deepseek dio algunos resultados donde ignoraba por completo el prompt.
