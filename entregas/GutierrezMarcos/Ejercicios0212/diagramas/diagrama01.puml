@@ -1,0 +1,45 @@
+@startuml
+package Ejercicio01 {
+    class Color {
+        - char[] representacion = {'.', '#', '+', '*'}
+        - char colorSeleccionado
+        + Color()
+        + char devolverRepresentacion()
+    }
+
+    class Pixel {
+        - Color color
+        + Pixel()
+        + Color devolverColor()
+    }
+
+    class Frame {
+        - Pixel[][] pixeles
+        + Frame()
+        + void rellenarPixeles()
+        + Pixel[][] devolverPixeles()
+    }
+
+    class Grafica {
+        - Queue<Frame> colaFrames
+        + Grafica()
+        + void generarFrames()
+        + Frame[] devolverDosFrames()
+    }
+
+    class Pantalla {
+        - Frame[] buffer
+        - final Grafica grafica
+        + Pantalla()
+        + void mostrar()
+        - static void pause()
+        + static void main(String[] args)
+    }
+
+    Color "1" <-- "1" Pixel : tiene >
+    Pixel "m" <-- "1" Frame : contiene >
+    Frame "m" <-- "1" Grafica : gestiona >
+    Grafica "1" <-- "1" Pantalla : usa >
+    Pantalla "1" *-- "2" Frame : buffer de >
+}
+@enduml
