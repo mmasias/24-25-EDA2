@@ -1,6 +1,6 @@
 package entregas.romeroAngel.reto002.Nivel1;
 
-public class wordSearch {
+public class WordSearch {
     public static int[] searchIndexes(char[] letterArray, char[] word) {
         int[] indexes = new int[word.length];
         for (int i = 0; i < word.length; i++) {
