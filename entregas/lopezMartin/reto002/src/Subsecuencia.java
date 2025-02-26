@@ -1,4 +1,4 @@
-package entregas.lopezMartin.ejerciciosAlgoritmos;
+package entregas.lopezMartin.reto002.src;
 
 public class Subsecuencia {
     

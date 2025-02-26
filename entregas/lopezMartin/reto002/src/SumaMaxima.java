@@ -1,8 +1,8 @@
-package entregas.lopezMartin.ejerciciosAlgoritmos;
+package entregas.lopezMartin.reto002.src;
 
 public class SumaMaxima {
     
-    public static int[] encontrarSubarregloMaximo(int[] arr) {
+    public static int[] encontrarSubarregloMaximo1(int[] arr) {
         int n = arr.length;
         int sumaMaxima = arr[0];  
         int sumaActual = arr[0];  
@@ -32,9 +32,31 @@ public class SumaMaxima {
         return resultado;
     }
 
+    public static int[] encontrarSubarregloMaximo2(int[] arr) {
+        int n = arr.length;
+        int sumaMaxima = Integer.MIN_VALUE; 
+        int[] resultado = new int[0]; 
+
+        for (int i = 0; i < n; i++) { 
+            int sumaActual = 0; 
+            for (int j = i; j < n; j++) { 
+                sumaActual += arr[j];
+
+                if (sumaActual > sumaMaxima) {
+                    sumaMaxima = sumaActual;
+                    resultado = new int[j - i + 1]; 
+                    for (int k = i; k <= j; k++) {
+                        resultado[k - i] = arr[k]; 
+                    }
+                }
+            }
+        }
+        return resultado;
+    }
+
     public static void main(String[] args) {
         int[] arr = {-2, 1, -3, 4, -1, 2, 1, -5, 4};
-        int[] resultado = encontrarSubarregloMaximo(arr);
+        int[] resultado = encontrarSubarregloMaximo2(arr);
 
         System.out.print("Subarreglo con suma máxima: [");
         for (int i = 0; i < resultado.length; i++) {

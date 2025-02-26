@@ -1,8 +1,8 @@
-package entregas.lopezMartin.ejerciciosAlgoritmos;
+package entregas.lopezMartin.reto002.src;
 
 public class ProductoDefectuoso {
 
-    public static int encontrarPrimerDefectuoso(boolean[] productos) {
+    public static int encontrarPrimerDefectuoso1(boolean[] productos) {
         int inicio = 0;
         int fin = productos.length - 1;
         
@@ -17,9 +17,18 @@ public class ProductoDefectuoso {
         return productos[inicio] ? inicio : -1;
     }
 
+    public static int encontrarPrimerDefectuoso2(boolean[] productos) {
+        for (int i = 0; i < productos.length; i++) {
+            if (productos[i]) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
     public static void main(String[] args) {
         boolean[] productos = {false, false, false, true, true};
-        int resultado = encontrarPrimerDefectuoso(productos);
+        int resultado = encontrarPrimerDefectuoso2(productos);
         System.out.println("Primer producto defectuoso en la posición: " + resultado);
     }
 }

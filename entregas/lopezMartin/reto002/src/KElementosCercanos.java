@@ -1,8 +1,8 @@
-package entregas.lopezMartin.ejerciciosAlgoritmos;
+package entregas.lopezMartin.reto002.src;
 
 public class KElementosCercanos {
 
-    public static int[] encontrarKCercanos(int[] arr, int k, double target) {
+    public static int[] encontrarKCercanos1(int[] arr, int k, double target) {
         int n = arr.length;
         int[] resultado = new int[k];
         
@@ -28,12 +28,42 @@ public class KElementosCercanos {
         
         return resultado;
     }
+
+    public static int[] encontrarKCercanos2(int[] arr, int k, double target) {
+        int n = arr.length;
+        int[] resultado = new int[k];
+        boolean[] seleccionado = new boolean[n];
+
+        for (int i = 0; i < k; i++) {
+            double minDif = -1; 
+            int minIndice = -1;
+
+            for (int j = 0; j < n; j++) {
+                if (!seleccionado[j]) {
+                    double dif = calcularValorAbsoluto(arr[j] - target);
+                    if (minIndice == -1 || dif < minDif) {
+                        minDif = dif;
+                        minIndice = j;
+                    }
+                }
+            }
+
+            resultado[i] = arr[minIndice];
+            seleccionado[minIndice] = true;
+        }
+
+        return resultado;
+    }
+
+    public static double calcularValorAbsoluto(double valor) {
+        return valor < 0 ? -valor : valor;
+    }
     
     public static void main(String[] args) {
         int[] arr = {1, 2, 3, 4, 5};
         int k = 2;
         double target = 3.7;
-        int[] resultado = encontrarKCercanos(arr, k, target);
+        int[] resultado = encontrarKCercanos2(arr, k, target);
         System.out.print("K números más cercanos: ");
         for (int num : resultado) {
             System.out.print(num + " ");

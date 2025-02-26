@@ -1,10 +1,9 @@
-package entregas.lopezMartin.ejerciciosAlgoritmos;
+package entregas.lopezMartin.reto002.src;
 
 public class TriangulosPosibles {
     
     public static boolean encontrarTriangulo(int[] arr) {
         int n = arr.length;
-        
         ordenarArray(arr);
         
         for (int i = 0; i < n - 2; i++) {

@@ -1,8 +1,8 @@
-package entregas.lopezMartin.ejerciciosAlgoritmos;
+package entregas.lopezMartin.reto002.src;
 
 public class ArrayRotado {
 
-    public static int encontrarPuntoRotacion(int[] arr) {
+    public static int encontrarPuntoRotacion1(int[] arr) {
         int inicio = 0;
         int fin = arr.length - 1;
         
@@ -17,9 +17,18 @@ public class ArrayRotado {
         return inicio;
     }
 
+    public static int encontrarPuntoRotacion2(int[] arr) {
+        for (int i = 1; i < arr.length; i++) {
+            if (arr[i] < arr[i - 1]) {
+                return i;
+            }
+        }
+        return 0;
+    }
+
     public static void main(String[] args) {
         int[] arr = {4, 5, 6, 1, 2, 3};
-        int resultado = encontrarPuntoRotacion(arr);
+        int resultado = encontrarPuntoRotacion1(arr);
         System.out.println("Punto de rotación en la posición: " + resultado);
     }
 }

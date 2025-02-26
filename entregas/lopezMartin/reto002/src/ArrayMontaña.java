@@ -1,8 +1,8 @@
-package entregas.lopezMartin.ejerciciosAlgoritmos;
+package entregas.lopezMartin.reto002.src;
 
 public class ArrayMontaña {
     
-    public static boolean esMontana(int[] array) {
+    public static boolean esMontaña1(int[] array) {
         if (array == null || array.length < 3) {
             return false;
         }
@@ -24,11 +24,31 @@ public class ArrayMontaña {
         
         return i == n - 1;
     }
+
+    public static boolean esMontaña2(int[] array) {
+        if (array == null || array.length < 3) {
+            return false;
+        }
+
+        int n = array.length;
+        int ascenso = 0;
+        int descenso = n - 1;
+
+        while (ascenso + 1 < n && array[ascenso] < array[ascenso + 1]) {
+            ascenso++;
+        }
+
+        while (descenso > 0 && array[descenso - 1] > array[descenso]) {
+            descenso--;
+        }
+
+        return ascenso > 0 && descenso < n - 1 && ascenso == descenso;
+    }
     
     public static void main(String[] args) {
 
         int[] array1 = {1, 3, 5, 4, 2};
-        System.out.println("¿Es montaña? " + esMontana(array1));
+        System.out.println("¿Es montaña? " + esMontaña2(array1));
         
     }
 }
