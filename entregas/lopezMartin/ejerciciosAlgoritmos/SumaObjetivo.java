@@ -1,7 +1,7 @@
 package entregas.lopezMartin.ejerciciosAlgoritmos;
 
 
-public class SumaDosNumerosVanilla {
+public class SumaObjetivo {
     
     public static int[] encontrarIndices(int[] numeros, int objetivo) {
 
