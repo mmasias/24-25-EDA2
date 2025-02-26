@@ -1,5 +1,5 @@
-# 24-25-EDA2
+# 24-25-EDA2 - Rama de entregas
 
-- [Temario](https://github.com/mmasias/EDA2)
-- [Retos](/retos/README.md)
-- [Ejercicios](/ejercicios/README.md)
+Esta rama es exclusivamente para entregas, sea de ejercicios o retos.
+
+De acuerdo a lo comentado en clase, con esto evitaremos enviar documentos que no se correspondan con la entrega, haciendo más eficiente el almacenamiento, seguimiento y revisión.
