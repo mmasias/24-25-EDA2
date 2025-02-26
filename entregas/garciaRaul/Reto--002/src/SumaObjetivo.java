@@ -1,4 +1,4 @@
-public class BuscadorSumaObjetivo {
+public class SumaObjetivo {
     public int[] buscarIndices(int[] numeros, int objetivo) {
 
         int desplazamiento = 1000;
