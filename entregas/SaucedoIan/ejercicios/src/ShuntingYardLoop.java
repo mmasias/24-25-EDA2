@@ -1,9 +1,9 @@
 import java.util.Stack;
 
 public class ShuntingYardLoop {
-  private Stack<String> operators;
-  private Stack<String> output;
-  private Stack<Double> evaluation;
+  private final Stack<String> operators;
+  private final Stack<String> output;
+  private final Stack<Double> evaluation;
 
   public ShuntingYardLoop() {
     operators = new Stack<>();
@@ -12,49 +12,104 @@ public class ShuntingYardLoop {
   }
 
   public String infixToPostfix(String expression) {
+    resetStacks();
     String[] tokens = expression.split(" ");
+    processTokens(tokens);
+    processRemainingOperators();
+    return buildResult();
+  }
 
+  private void resetStacks() {
+    operators.clear();
+    output.clear();
+    evaluation.clear();
+  }
+
+  private void processTokens(String[] tokens) {
     for (String token : tokens) {
       if (isNumber(token)) {
         output.push(token);
       } else if (isOperator(token)) {
-        while (!operators.isEmpty() &&
-            isOperator(operators.peek()) &&
-            getPrecedence(operators.peek()) >= getPrecedence(token)) {
-          output.push(operators.pop());
-        }
-        operators.push(token);
+        processOperator(token);
       } else if (token.equals("(")) {
         operators.push(token);
       } else if (token.equals(")")) {
-        while (!operators.isEmpty() && !operators.peek().equals("(")) {
-          output.push(operators.pop());
-        }
-        if (!operators.isEmpty()) {
-          operators.pop();
-        }
+        processRightParenthesis();
       }
     }
+  }
 
+  private void processOperator(String token) {
+    while (!operators.isEmpty() &&
+        isOperator(operators.peek()) &&
+        getPrecedence(operators.peek()) >= getPrecedence(token)) {
+      output.push(operators.pop());
+    }
+    operators.push(token);
+  }
+
+  private void processRightParenthesis() {
+    while (!operators.isEmpty() && !operators.peek().equals("(")) {
+      output.push(operators.pop());
+    }
+    if (!operators.isEmpty()) {
+      operators.pop();
+    }
+  }
+
+  private void processRemainingOperators() {
     while (!operators.isEmpty()) {
-      if (!operators.peek().equals("(")) {
+      String operator = operators.peek();
+      if (!operator.equals("(")) {
         output.push(operators.pop());
       } else {
         operators.pop();
       }
     }
+  }
 
+  private String buildResult() {
+    Stack<String> reversed = reverseStack(output);
+    return stackToString(reversed);
+  }
+
+  private Stack<String> reverseStack(Stack<String> original) {
     Stack<String> reversed = new Stack<>();
-    while (!output.isEmpty()) {
-      reversed.push(output.pop());
+    while (!original.isEmpty()) {
+      reversed.push(original.pop());
     }
+    return reversed;
+  }
 
+  private String stackToString(Stack<String> stack) {
     StringBuilder result = new StringBuilder();
-    while (!reversed.isEmpty()) {
-      result.append(reversed.pop()).append(" ");
+    while (!stack.isEmpty()) {
+      result.append(stack.pop()).append(" ");
     }
-
     return result.toString().trim();
+  }
+
+  public double evaluate(String expression) {
+    String postfix = infixToPostfix(expression);
+    return evaluatePostfix(postfix.split(" "));
+  }
+
+  private double evaluatePostfix(String[] tokens) {
+    evaluation.clear();
+    for (String token : tokens) {
+      if (isNumber(token)) {
+        evaluation.push(Double.parseDouble(token));
+      } else if (isOperator(token)) {
+        processOperation(token);
+      }
+    }
+    return evaluation.pop();
+  }
+
+  private void processOperation(String operator) {
+    double operand2 = evaluation.pop();
+    double operand1 = evaluation.pop();
+    evaluation.push(calculate(operand1, operand2, operator));
   }
 
   private boolean isNumber(String token) {
@@ -79,41 +134,14 @@ public class ShuntingYardLoop {
     };
   }
 
-  public double evaluate(String expression) {
-    String postfix = infixToPostfix(expression);
-    String[] tokens = postfix.split(" ");
-
-    for (String token : tokens) {
-      if (isNumber(token)) {
-        evaluation.push(Double.parseDouble(token));
-      } else if (isOperator(token)) {
-        double b = evaluation.pop();
-        double a = evaluation.pop();
-        evaluation.push(calculate(a, b, token));
-      }
-    }
-
-    return evaluation.pop();
-  }
-
   private double calculate(double a, double b, String operator) {
-    switch (operator) {
-      case "+" -> {
-        return a + b;
-      }
-      case "-" -> {
-        return a - b;
-      }
-      case "*" -> {
-        return a * b;
-      }
-      case "/" -> {
-        return a / b;
-      }
-      case "^" -> {
-        return Math.pow(a, b);
-      }
+    return switch (operator) {
+      case "+" -> a + b;
+      case "-" -> a - b;
+      case "*" -> a * b;
+      case "/" -> a / b;
+      case "^" -> Math.pow(a, b);
       default -> throw new IllegalArgumentException("Invalid operator: " + operator);
-    }
+    };
   }
 }

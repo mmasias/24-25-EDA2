@@ -1,9 +1,9 @@
 import java.util.Stack;
 
 public class ShuntingYardRecursive {
-  private Stack<String> operators;
-  private Stack<String> output;
-  private Stack<Double> evaluation;
+  private final Stack<String> operators;
+  private final Stack<String> output;
+  private final Stack<Double> evaluation;
 
   public ShuntingYardRecursive() {
     operators = new Stack<>();
@@ -12,10 +12,17 @@ public class ShuntingYardRecursive {
   }
 
   public String infixToPostfix(String expression) {
+    resetStacks();
     String[] tokens = expression.split(" ");
     processTokens(tokens, 0);
     processRemainingOperators();
     return buildResult();
+  }
+
+  private void resetStacks() {
+    operators.clear();
+    output.clear();
+    evaluation.clear();
   }
 
   private void processTokens(String[] tokens, int index) {
@@ -24,6 +31,11 @@ public class ShuntingYardRecursive {
     }
 
     String token = tokens[index];
+    processToken(token);
+    processTokens(tokens, index + 1);
+  }
+
+  private void processToken(String token) {
     if (isNumber(token)) {
       output.push(token);
     } else if (isOperator(token)) {
@@ -33,8 +45,6 @@ public class ShuntingYardRecursive {
     } else if (token.equals(")")) {
       processRightParenthesis();
     }
-
-    processTokens(tokens, index + 1);
   }
 
   private void processOperator(String token) {
@@ -57,9 +67,17 @@ public class ShuntingYardRecursive {
   }
 
   private void processRightParenthesis() {
+    processUntilLeftParenthesis();
+    removeLeftParenthesis();
+  }
+
+  private void processUntilLeftParenthesis() {
     while (!operators.isEmpty() && !operators.peek().equals("(")) {
       output.push(operators.pop());
     }
+  }
+
+  private void removeLeftParenthesis() {
     if (!operators.isEmpty()) {
       operators.pop();
     }
@@ -70,12 +88,16 @@ public class ShuntingYardRecursive {
       return;
     }
 
+    processNextOperator();
+    processRemainingOperators();
+  }
+
+  private void processNextOperator() {
     if (!operators.peek().equals("(")) {
       output.push(operators.pop());
     } else {
       operators.pop();
     }
-    processRemainingOperators();
   }
 
   private String buildResult() {
@@ -99,7 +121,7 @@ public class ShuntingYardRecursive {
     }
     String item = stack.pop();
     String result = stackToString(stack);
-    return (result.isEmpty() ? "" : result + " ") + item;
+    return result.isEmpty() ? item : result + " " + item;
   }
 
   public double evaluate(String expression) {
@@ -113,15 +135,22 @@ public class ShuntingYardRecursive {
     }
 
     String token = tokens[index];
+    processPostfixToken(token);
+    return evaluatePostfix(tokens, index + 1);
+  }
+
+  private void processPostfixToken(String token) {
     if (isNumber(token)) {
       evaluation.push(Double.parseDouble(token));
     } else if (isOperator(token)) {
-      double b = evaluation.pop();
-      double a = evaluation.pop();
-      evaluation.push(calculate(a, b, token));
+      processPostfixOperation(token);
     }
+  }
 
-    return evaluatePostfix(tokens, index + 1);
+  private void processPostfixOperation(String operator) {
+    double operand2 = evaluation.pop();
+    double operand1 = evaluation.pop();
+    evaluation.push(calculate(operand1, operand2, operator));
   }
 
   private boolean isNumber(String token) {
