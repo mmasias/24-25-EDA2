@@ -1,104 +1,87 @@
 package entregas.lopezMartin.reto003;
 
 import java.util.Scanner;
+import java.util.Stack;
 
 public class ShuntingYard {
     
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
         System.out.println("Ingrese una expresión matemática en notación infija:");
-        String expresionInfija = scanner.nextLine();
+        String expresionInfija = sc.nextLine();
         
         System.out.println(shuntingYard(expresionInfija));
     }
     
     public static String shuntingYard(String expresionInfija) {
-        String[] pila = new String[100];
-        String[] salida = new String[100];
-        int topeIndice = -1;
-        int salidaIndice = 0;
+        Stack <Character> pila = new Stack<>();
+        Stack <Character> salida = new Stack<>();
+        char[] tokens = tokenizar(expresionInfija);
 
-        String[] tokens = tokenizar(expresionInfija);
-        
-        for (int i = 0; i < tokens.length && tokens[i] != null; i++) {
-            String token = tokens[i];
-            
-            if (esNumero(token)) {
-                salida[salidaIndice++] = token;
-            } else if (esOperador(token)) {
-                while (topeIndice >= 0 && esOperador(pila[topeIndice]) && 
-                       obtenerPrecedencia(pila[topeIndice]) >= obtenerPrecedencia(token)) {
-                    salida[salidaIndice++] = pila[topeIndice--];
-                }
-                pila[++topeIndice] = token;
-            } else if (token.equals("(")) {
-                pila[++topeIndice] = token;
-            } else if (token.equals(")")) {
-                while (topeIndice >= 0 && !pila[topeIndice].equals("(")) {
-                    salida[salidaIndice++] = pila[topeIndice--];
-                }
-                if (topeIndice >= 0 && pila[topeIndice].equals("(")) {
-                    topeIndice--;
+        for(int i= 0; i<tokens.length; i++){
+            if (esNumero(tokens[i])){
+                salida.push(tokens[i]);
+            }else{
+                if (esOperador(tokens[i])) {
+                    while(!pila.isEmpty() && esOperador(pila.peek()) && precedencia(pila.peek()) >= precedencia(tokens[i]) ){
+                        salida.push(pila.pop());
+                    }
+                    pila.push(tokens[i]);
+                }else if(tokens[i]=='('){
+                    pila.push(tokens[i]);
+                }else{
+                    while(pila.peek()!='('){
+                        salida.push(pila.pop());
+                    }
+                    pila.pop();
                 }
             }
         }
-        
-        while (topeIndice >= 0) {
-            salida[salidaIndice++] = pila[topeIndice--];
-        }
-        
-        return salida;
-    }
-    
-    private static String[] tokenizar(String expresion) {
-        String[] tokens = new String[100];
-        int tokenIndice = 0;
-        
-        for (int i = 0; i < expresion.length(); i++) {
-            char c = expresion.charAt(i);
 
-            if (c >= '0' && c <= '9') {
-                char[] numArray = new char[30];
-                int numIndice = 0;
-                
-                while (i < expresion.length() && ((expresion.charAt(i) >= '0' && expresion.charAt(i) <= '9') || expresion.charAt(i) == '.')) {
-                    numArray[numIndice++] = expresion.charAt(i);
-                    i++;
-                }
-                i--;
-                
-                String numero = new String(numArray, 0, numIndice);
-                tokens[tokenIndice++] = numero;
-            } 
-            else if (c == '+' || c == '-' || c == '*' || c == '/' || c == '^' || c == '(' || c == ')') {
-                tokens[tokenIndice++] = String.valueOf(c);
-            }
+        while(!pila.isEmpty()){
+            salida.push(pila.pop());
+        }
+
+        String resultado = "";
+        while (!salida.isEmpty()) {
+        resultado = salida.pop() + resultado;
+        }
+
+        return resultado;
+         
+    }
+    
+    private static char[] tokenizar(String expresionInfija) {
+        char[] caracteres = new char[expresionInfija.length()];
+        
+        for (int i = 0; i < expresionInfija.length(); i++) {
+            caracteres[i] = expresionInfija.charAt(i);
         }
         
-        return tokens;
+        return caracteres;
     }
-    
-    private static boolean esNumero(String token) {
-        return !token.isEmpty() && Character.isDigit(token.charAt(0));
+
+    private static boolean esNumero(char caracter) {
+        return caracter >= '0' && caracter <= '9';
     }
-    
-    private static boolean esOperador(String token) {
-        return token.equals("+") || token.equals("-") || token.equals("*") || 
-               token.equals("/") || token.equals("^");
+
+    private static boolean esOperador(char caracter) {
+        return caracter == '+' || caracter == '-' || caracter == '*' || caracter == '/' || caracter == '^';
     }
-    
-    private static int obtenerPrecedencia(String operador) {
+
+    private static int precedencia(char operador) {
         switch (operador) {
-            case "+":
-            case "-":
+            case '+':
+            case '-':
                 return 1;
-            case "*":
-            case "/":
+            case '*':
+            case '/':
                 return 2;
-            case "^":
+            case '^':
                 return 3;
             default:
-                return 0;
+                return -1;
         }
     }
+
 }
