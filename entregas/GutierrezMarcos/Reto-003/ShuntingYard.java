@@ -7,9 +7,9 @@ public class ShuntingYard {
         int indiceSalida = 0;
         
         for (String token : expresion) {
-            if (token.matches("\\d+")) {
+            if (token.matches("\\d+")) { // Si es un número
                 salida[indiceSalida++] = token;
-            } else if (esOperador(token)) {
+            } else if (esOperador(token)) { // Si es un operador
                 while (!pila.estaVacia() && esOperador(pila.cima()) && 
                         precedencia(pila.cima()) >= precedencia(token)) {
                     salida[indiceSalida++] = pila.desapilar();
@@ -21,7 +21,7 @@ public class ShuntingYard {
                 while (!pila.estaVacia() && !pila.cima().equals("(")) {
                     salida[indiceSalida++] = pila.desapilar();
                 }
-                pila.desapilar();
+                pila.desapilar(); // Eliminar '('
             }
         }
         
@@ -50,11 +50,18 @@ public class ShuntingYard {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Ingrese una expresión infija separada por espacios:");
+        System.out.println("Ingrese una expresión infija:");
         String input = scanner.nextLine();
         scanner.close();
         
-        String[] infixExpression = input.split(" ");
+        // Separar números y operadores correctamente
+        String[] infixExpression = input.split("(?<=[-+*/()])|(?=[-+*/()])");
+        
+        // Eliminar espacios innecesarios
+        for (int i = 0; i < infixExpression.length; i++) {
+            infixExpression[i] = infixExpression[i].trim();
+        }
+        
         String[] postfixExpression = shuntingYard(infixExpression);
         
         System.out.println("Expresión en notación postfija:");
