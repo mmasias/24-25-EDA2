@@ -7,9 +7,9 @@ public class ShuntingYard {
         int indiceSalida = 0;
         
         for (String token : expresion) {
-            if (token.matches("\\d+")) { // Si es un número
+            if (token.matches("\\d+")) {
                 salida[indiceSalida++] = token;
-            } else if (esOperador(token)) { // Si es un operador
+            } else if (esOperador(token)) {
                 while (!pila.estaVacia() && esOperador(pila.cima()) && 
                         precedencia(pila.cima()) >= precedencia(token)) {
                     salida[indiceSalida++] = pila.desapilar();
@@ -21,7 +21,7 @@ public class ShuntingYard {
                 while (!pila.estaVacia() && !pila.cima().equals("(")) {
                     salida[indiceSalida++] = pila.desapilar();
                 }
-                pila.desapilar(); // Eliminar '('
+                pila.desapilar();
             }
         }
         
@@ -53,11 +53,9 @@ public class ShuntingYard {
         System.out.println("Ingrese una expresión infija:");
         String input = scanner.nextLine();
         scanner.close();
-        
-        // Separar números y operadores correctamente
+
         String[] infixExpression = input.split("(?<=[-+*/()])|(?=[-+*/()])");
-        
-        // Eliminar espacios innecesarios
+
         for (int i = 0; i < infixExpression.length; i++) {
             infixExpression[i] = infixExpression[i].trim();
         }
