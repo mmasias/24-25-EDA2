@@ -1,6 +1,8 @@
+package entregas.Reyes_David.Reto_003;
+
 import java.util.*;
 
-public class ShuntingYard {
+public class ShutingYard {
 
     public static List<String> shuntingYard(List<String> expresionInfija) {
         Stack<String> pila = new Stack<>();
@@ -40,19 +42,54 @@ public class ShuntingYard {
     }
 
     private static boolean isNumber(String token) {
-        
         return token.matches("\\d+");
     }
 
     private static boolean isOperator(String token) {
-        
         return Arrays.asList("+", "-", "*", "/").contains(token);
     }
 
+    private static List<String> tokenize(String expresion) {
+        List<String> tokens = new ArrayList<>();
+        StringBuilder numero = new StringBuilder();
+
+        for (int i = 0; i < expresion.length(); i++) {
+            char c = expresion.charAt(i);
+
+            if (Character.isDigit(c)) {
+
+                numero.append(c);
+            } else {
+
+                if (numero.length() > 0) {
+                    tokens.add(numero.toString());
+                    numero.setLength(0);
+                }
+
+                if (c == '+' || c == '-' || c == '*' || c == '/' || c == '(' || c == ')') {
+                    tokens.add(String.valueOf(c));
+                }
+            }
+        }
+
+        if (numero.length() > 0) {
+            tokens.add(numero.toString());
+        }
+
+        return tokens;
+    }
+
     public static void main(String[] args) {
-        
-        List<String> expresionInfija = Arrays.asList("3", "+", "4", "*", "2", "-", "1");
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Ingrese la expresión aritmética en notación infija (por ejemplo, 3+4*2-1):");
+        String entrada = scanner.nextLine();
+
+        List<String> expresionInfija = tokenize(entrada);
+
         List<String> resultado = shuntingYard(expresionInfija);
-        System.out.println("Postfix: " + String.join(" ", resultado)); 
+
+        System.out.println("Notación Postfija: " + String.join(" ", resultado));
+
+        scanner.close();
     }
 }
