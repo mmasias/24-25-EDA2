@@ -1,7 +1,7 @@
 import java.util.Scanner;
 import java.util.Stack;
 
-public class ExpresionMatematica {
+public class Shuntingard {
 
     public static void main(String[] args) {
         Scanner entrada = new Scanner(System.in);
