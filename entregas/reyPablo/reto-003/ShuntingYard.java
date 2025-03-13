@@ -1,7 +1,7 @@
 import java.util.Scanner;
 import java.util.Stack;
 
-public class Shuntingard {
+public class ShuntingYard {
 
     public static void main(String[] args) {
         Scanner entrada = new Scanner(System.in);
