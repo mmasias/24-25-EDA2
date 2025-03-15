@@ -1,0 +1,26 @@
+@startuml
+
+class Shunting {
+    + static String shuntingYard(String expression)
+    - static boolean isLetterOrDigit(char c)
+    - static int getPrecedence(char ch)
+    - static boolean hasLeftAssociativity(char ch)
+    + static void main(String[] args)
+}
+
+class Stack {
+    + void push(T item)
+    + T pop()
+    + T peek()
+    + boolean isEmpty()
+}
+
+class Scanner {
+    + String nextLine()
+    + void close()
+}
+
+Shunting --> Stack : "Usa"
+Shunting --> Scanner : "Usa"
+
+@enduml

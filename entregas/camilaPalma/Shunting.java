@@ -1,112 +1,84 @@
 import java.util.Stack;
-import java.lang.Character;
+import java.util.Scanner;
 
 class Shunting {
 
-    private static boolean letterOrDigit(char c)
-    {
-        if (Character.isLetterOrDigit(c))
-            return true;
-        else
-            return false;
+    private static boolean isLetterOrDigit(char c) {
+        return Character.isLetterOrDigit(c);
     }
 
-    static int getPrecedence(char ch)
-    {
-
+    private static int getPrecedence(char ch) {
         if (ch == '+' || ch == '-')
             return 1;
-        else if (ch == '*' || ch == '/')
+        if (ch == '*' || ch == '/')
             return 2;
-        else if (ch == '^')
+        if (ch == '^')
             return 3;
-        else
-            return -1;
+        return -1;
     }
-    
-      static boolean hasLeftAssociativity(char ch) {
-        if (ch == '+' || ch == '-' || ch == '/' || ch == '*') {
-            return true;
-        } else {
-            return false;
-        }
+
+    private static boolean hasLeftAssociativity(char ch) {
+        return ch == '+' || ch == '-' || ch == '*' || ch == '/';
     }
-  
-    // Method converts  given infixto postfix expression
-    // to illustrate shunting yard algorithm
-    static String infixToRpn(String expression)
-    {
-        // Initialising an empty String
-        // (for output) and an empty stack
+
+    public static String shuntingYard(String expression) {
         Stack<Character> stack = new Stack<>();
+        StringBuilder output = new StringBuilder();
 
-        // Initially empty string taken
-        String output = new String("");
-
-        // Iterating over tokens using inbuilt
-        // .length() function
-        for (int i = 0; i < expression.length(); ++i) {
-            // Finding character at 'i'th index
-            char c = expression.charAt(i);
-
-            // If the scanned Token is an
-            // operand, add it to output
-            if (letterOrDigit(c))
-                output += c;
-
-            // If the scanned Token is an '('
-            // push it to the stack
-            else if (c == '(')
-                stack.push(c);
-
-            // If the scanned Token is an ')' pop and append
-            // it to output from the stack until an '(' is
-            // encountered
-            else if (c == ')') {
-                while (!stack.isEmpty()
-                       && stack.peek() != '(')
-                    output += stack.pop();
-
-                stack.pop();
-            }
-
-            // If an operator is encountered then taken the
-            // further action based on the precedence of the
-            // operator
-
-            else {
-                while (
-                    !stack.isEmpty()
-                    && getPrecedence(c)
-                           <= getPrecedence(stack.peek()) 
-                    && hasLeftAssociativity(c)) {
-                    // peek() inbuilt stack function to
-                    // fetch the top element(token)
-
-                    output += stack.pop();
+        for (char token : expression.toCharArray()) {
+            if (isLetterOrDigit(token)) {
+                output.append(token);
+            } else if (token == '(') {
+                stack.push(token);
+            } else if (token == ')') {
+                if (!processRightParenthesis(stack, output)) {
+                    return "Expresión inválida";
                 }
-                stack.push(c);
+            } else {
+                processOperator(token, stack, output);
             }
         }
 
-        // pop all the remaining operators from
-        // the stack and append them to output
         while (!stack.isEmpty()) {
-            if (stack.peek() == '(')
-                return "This expression is invalid";
-            output += stack.pop();
+            if (stack.peek() == '(') {
+                return "Expresión inválida";
+            }
+            output.append(stack.pop());
         }
-        return output;
+
+        return output.toString();
     }
 
-    // Main driver code
-    public static void main(String[] args)
-    {
-        // Considering random infix string notation
-        String expression = "5+2/(3-8)^5^2";
+    private static boolean processRightParenthesis(Stack<Character> stack, StringBuilder output) {
+        while (!stack.isEmpty() && stack.peek() != '(') {
+            output.append(stack.pop());
+        }
+        if (!stack.isEmpty()) {
+            stack.pop();
+            return true;
+        }
+        return false;
+    }
 
-        // Printing RPN for the above infix notation
-        // Illustrating shunting yard algorithm
-        System.out.println(infixToRpn(expression));
+    private static void processOperator(char token, Stack<Character> stack, StringBuilder output) {
+        while (!stack.isEmpty() && shouldPopOperator(token, stack.peek())) {
+            output.append(stack.pop());
+        }
+        stack.push(token);
+    }
+
+    private static boolean shouldPopOperator(char current, char top) {
+        int currentPrecedence = getPrecedence(current);
+        int topPrecedence = getPrecedence(top);
+        return currentPrecedence < topPrecedence ||
+                (!hasLeftAssociativity(current) && currentPrecedence == topPrecedence);
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Ingrese una expresión matemática:");
+        String expression = scanner.nextLine();
+        System.out.println("Expresión en notación postfija: " + shuntingYard(expression));
+        scanner.close();
     }
 }
