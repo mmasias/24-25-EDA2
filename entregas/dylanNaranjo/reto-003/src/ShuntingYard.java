@@ -4,48 +4,52 @@ public class ShuntingYard {
     public static List<String> convertToPostfix(String infix) {
         Stack<String> stack = new Stack<>();
         List<String> output = new ArrayList<>();
-        String[] tokens = infix.split(" ");
-        Scanner scanner = new Scanner(System.in);
+        StringBuilder number = new StringBuilder();
 
-        System.out.println("Paso a paso del algoritmo Shunting Yard:");
-        for (String token : tokens) {
-            if (isNumber(token)) {
-                output.add(token);
-            } else if (isOperator(token)) {
-                while (!stack.isEmpty() && isOperator(stack.peek()) && precedence(stack.peek()) >= precedence(token)) {
-                    output.add(stack.pop());
+        for (char c : infix.toCharArray()) {
+            if (Character.isDigit(c) || c == '.') {
+                number.append(c);
+            } else {
+                if (number.length() > 0) {
+                    output.add(number.toString());
+                    number = new StringBuilder();
                 }
-                stack.push(token);
-            } else if (token.equals("(")) {
-                stack.push(token);
-            } else if (token.equals(")")) {
-                while (!stack.peek().equals("(")) {
-                    output.add(stack.pop());
+                if (c == ' ')
+                    continue;
+
+                String token = String.valueOf(c);
+                if (isOperator(token)) {
+                    while (!stack.isEmpty() && isOperator(stack.peek())
+                            && precedence(stack.peek()) >= precedence(token)) {
+                        output.add(stack.pop());
+                    }
+                    stack.push(token);
+                } else if (token.equals("(")) {
+                    stack.push(token);
+                } else if (token.equals(")")) {
+                    while (!stack.isEmpty() && !stack.peek().equals("(")) {
+                        output.add(stack.pop());
+                    }
+                    if (stack.isEmpty()) {
+                        throw new IllegalArgumentException("Paréntesis desbalanceados");
+                    }
+                    stack.pop(); // Eliminar el "("
                 }
-                stack.pop();
             }
-            printState(token, stack, output);
-            System.out.println("Presiona Enter para continuar...");
-            scanner.nextLine();
+        }
+
+        if (number.length() > 0) {
+            output.add(number.toString());
         }
 
         while (!stack.isEmpty()) {
+            if (stack.peek().equals("(")) {
+                throw new IllegalArgumentException("Paréntesis desbalanceados");
+            }
             output.add(stack.pop());
-            printState("Final", stack, output);
-            System.out.println("Presiona Enter para continuar...");
-            scanner.nextLine();
         }
 
         return output;
-    }
-
-    private static boolean isNumber(String token) {
-        try {
-            Double.parseDouble(token);
-            return true;
-        } catch (NumberFormatException e) {
-            return false;
-        }
     }
 
     private static boolean isOperator(String token) {
@@ -67,10 +71,35 @@ public class ShuntingYard {
         }
     }
 
-    private static void printState(String token, Stack<String> stack, List<String> output) {
-        System.out.println("Token: " + token);
-        System.out.println("Pila: " + stack);
-        System.out.println("Salida: " + output);
-        System.out.println("-------------------------");
+    public static double evaluatePostfix(List<String> postfix) {
+        Stack<Double> stack = new Stack<>();
+        for (String token : postfix) {
+            if (isOperator(token)) {
+                double b = stack.pop();
+                double a = stack.pop();
+                switch (token) {
+                    case "+":
+                        stack.push(a + b);
+                        break;
+                    case "-":
+                        stack.push(a - b);
+                        break;
+                    case "*":
+                        stack.push(a * b);
+                        break;
+                    case "/":
+                        if (b == 0)
+                            throw new ArithmeticException("División por cero");
+                        stack.push(a / b);
+                        break;
+                    case "^":
+                        stack.push(Math.pow(a, b));
+                        break;
+                }
+            } else {
+                stack.push(Double.parseDouble(token));
+            }
+        }
+        return stack.pop();
     }
 }
