@@ -24,7 +24,7 @@ class ShutingYard {
             }
 
             if (isOp(token)) {
-                while (!operadores.isEmpty() && isOp(operadores.peek()) && priority(operadores.peek()) >= priority(token)) {
+                while (!operadores.isEmpty() && isOp(operadores.peek()) && priority(operadores.peek()) <= priority(token)) {
                     salida.push(operadores.peek());
                     operadores.pop();
                 }
@@ -67,9 +67,9 @@ class ShutingYard {
 
     static int priority(String token) {
         switch (token) {
-            case "*":
-                return 3;
             case "/":
+                return 3;
+            case "*":
                 return 2;
             case "+":
                 return 1;
