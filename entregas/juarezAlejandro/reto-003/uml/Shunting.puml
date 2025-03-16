@@ -1,0 +1,55 @@
+@startuml
+class Shunting {
+    +main(String[] args)
+    +convertirAPostfija(String[] tokens) : List<String>
+    -esNumero(String token) : boolean
+    -prioridad(String operador) : int
+    -formatearExpresion(String expresion) : String
+    -evaluarPostfija(List<String> expresionPostfija) : double
+}
+
+class Scanner
+class List
+class ArrayList
+class Stack
+class Double
+class System
+
+Shunting --> Scanner : usa
+Shunting --> List : usa
+Shunting --> ArrayList : usa
+Shunting --> Stack : usa
+Shunting --> Double : usa
+Shunting --> System : usa
+
+class "Pila de operadores" {
+    - Stack<String> operadores
+    + push(String operador)
+    + pop() : String
+    + peek() : String
+    + isEmpty() : boolean
+}
+
+class "Pila de valores" {
+    - Stack<Double> valores
+    + push(Double valor)
+    + pop() : Double
+    + peek() : Double
+    + isEmpty() : boolean
+}
+
+Shunting --> "Pila de operadores" : usa
+Shunting --> "Pila de valores" : usa
+
+note right of "Pila de operadores"
+  - Almacena operadores en la conversión de infija a postfija
+  - Extrae operadores cuando se encuentra un paréntesis de cierre
+  - Aplica precedencia para decidir cuándo desapilar
+end note
+
+note right of "Pila de valores"
+  - Almacena operandos para la evaluación de la expresión postfija
+  - Desapila dos valores cuando encuentra un operador y aplica la operación
+  - Guarda el resultado de la operación en la pila
+end note
+@enduml
