@@ -1,53 +1,18 @@
-# Algoritmo de Shunting Yard
+# Problema del asensor
 
-Para complementar [la calculadora](https://github.com/mmasias/24-25-PRG2/blob/main/src/calculadora/README.md) que hemos hecho con los alumnos de Programación II, usaremos el algoritmos de [ShuntingYard@Wikipedia](https://es.wikipedia.org/wiki/Algoritmo_shunting_yard)
+El ascensor tiene estos atributos:
 
-```
-FUNCIÓN shuntingYard(expresiónInfija):
-    pila = []
-    salida = []
-    PARA cada token EN expresiónInfija HACER:
-        SI token ES un número ENTONCES:
-            AÑADIR token A salida
-        SI token ES un operador ENTONCES:
-            MIENTRAS pila NO esté vacía Y el tope de pila sea un operador Y la precedencia del tope de pila >= precedencia de token) HACER:
-                AÑADIR el tope de pila A salida
-                SACAR el tope de pila
-            FIN MIENTRAS
-            AÑADIR token A pila
-        SI token ES '(' ENTONCES:
-            AÑADIR token A pila
-        SI token ES ')' ENTONCES:
-            MIENTRAS el tope de pila NO sea '(' HACER:
-                AÑADIR el tope de pila A salida
-                SACAR el tope de pila
-            FIN MIENTRAS
-            SACAR '(' DE pila
-    FIN PARA
+Planta en la que se encuentra
+Dirección en la que se mueve (arriba, abajo y para)
+Lista de personas que están dentro del ascensor
+Lista de plantas a las que se tiene que dirigir
+Capacidad maxima del ascensor 1 persona
 
-    MIENTRAS pila NO esté vacía HACER:
-        AÑADIR el tope de pila A salida
-        SACAR el tope de pila
-    FIN MIENTRAS
+Caso Base :
+El ascensor ha llegado a todas las plantas que tenía en su lista de destino.
+Si la lista de personas_en_ascensor está vacía y la lista_de_destinos también, el ascensor deja de moverse.
 
-    DEVOLVER salida
-FIN FUNCIÓN
-```
+Mi planta actual es igual a mi planta destino 
 
-## Otra explicación
-
-For each token in turn in the input infix expression:
-
-- If the token is an operand, append it to the postfix output.
-- If the token is an operator A then:
-  - While there is an operator B of higher or equal precidence than A at the top of the stack, pop B off the stack and append it to the output.
-  - Push A onto the stack.
-- If the token is an opening bracket, then push it onto the stack.
-- If the token is a closing bracket:
-  - Pop operators off the stack and append them to the output, until the operator at the top of the stack is a opening bracket.
-  - Pop the opening bracket off the stack.
-
-When all the tokens have been read:
-
-- While there are still operator tokens in the stack:
-  - Pop the operator on the top of the stack, and append it to the output.
+Caso Recursivo:
+El caso recursivo en el método moverAscensorRecursivo(Ascensor ascensor) ocurre cuando el ascensor todavía tiene destinos pendientes y necesita seguir moviéndose hacia ellos.
