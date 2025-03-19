@@ -1,4 +1,4 @@
-package entregas.lopezMartin.sesion0319;
+package entregas.lopezMartin.sesion0319.conIfs;
 
 import java.util.Scanner;
 
