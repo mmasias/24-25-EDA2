@@ -1,10 +1,8 @@
-
 public class Lift {
   int destinationFloor;
   int currentFloor;
 
   public Lift(int currentFloor) {
-
     this.currentFloor = currentFloor;
   }
 
@@ -13,23 +11,16 @@ public class Lift {
   }
 
   public void moveLift(int destinationFloor) {
-    if (destinationFloor > this.currentFloor) {
-      this.currentFloor++;
-      System.out.println("Subiendo a" + this.currentFloor);
+    System.out.println(currentFloor == destinationFloor ? "Llego a " + currentFloor
+        : ((currentFloor = currentFloor + (currentFloor < destinationFloor ? 1 : -1)) > 0 ? "Moviendo a " + currentFloor
+            : "Moviendo a" + currentFloor));
+
+    if (currentFloor != destinationFloor)
       moveLift(destinationFloor);
-    } else if (destinationFloor < this.currentFloor) {
-      this.currentFloor--;
-      System.out.println("Bajando a " + this.currentFloor);
-      moveLift(destinationFloor);
-    } else {
-      System.out.println("se ha llegado a " + this.currentFloor);
-      this.destinationFloor = this.currentFloor;
-      return;
-    }
   }
 
   public static void main(String[] args) {
-    Lift lift = new Lift(5);
+    Lift lift = new Lift(-2);
     lift.moveLift(4);
   }
 }
