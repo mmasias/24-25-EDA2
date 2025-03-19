@@ -8,9 +8,9 @@ class Elevator {
       if (floor == currentFloor || stop == 1)
          return;
 
-      if (floor > currentFloor && (currentFloor + 1) <= topFloor) {
+      if (floor > currentFloor && (currentFloor + 1) <= topFloor && floor <= topFloor) {
          currentFloor++;
-      } else if (floor < currentFloor && (currentFloor - 1) >= bottomFloor) {
+      } else if (floor < currentFloor && (currentFloor - 1) >= bottomFloor && floor >= bottomFloor) {
          currentFloor--;
       } else {
          stop = 1;
