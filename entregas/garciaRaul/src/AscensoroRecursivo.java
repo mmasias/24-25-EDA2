@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Ascensor {
+public class AscensorSimple {
     private static int pisoActual = 0;
     private static final int PISO_MAX = 5;
     
