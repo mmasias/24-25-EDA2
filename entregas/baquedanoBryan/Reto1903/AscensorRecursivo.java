@@ -6,18 +6,21 @@ public class AscensorRecursivo {
     private int plantaDestino;
     private boolean estado;
 
-    // Constructor solo con planta actual
+  
     public AscensorRecursivo(int plantaActual) {
         this.plantaActual = plantaActual;
         this.estado = true;   
     }
 
-    // Método que mueve el ascensor hasta la planta destino
+   
     public void moverse(int plantaDestino) {
-        this.plantaDestino = plantaDestino;  // Ahora la planta destino se asigna aquí
-
-       
-
+        this.plantaDestino = plantaDestino;
+        if(plantaDestino == plantaActual){
+            detenerse();
+            return;
+        }
+        
+        
         System.out.println("Estoy en el piso " + plantaActual);
     
         if (calculoDirección() > 0) {
@@ -28,16 +31,12 @@ public class AscensorRecursivo {
             System.out.println("Bajando al piso " + plantaActual);
         }
 
-        moverse(plantaDestino);  // Llamada recursiva con el destino
+        moverse(plantaDestino);
     }
 
     public void detenerse() {
-
-        if(plantaActual == plantaDestino){
             estado = false;
             System.out.println("Ascensor detenido en el piso " + plantaActual);
-        }
-       
     }
 
     public int calculoDirección() {
