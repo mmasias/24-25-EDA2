@@ -8,6 +8,7 @@ public class RellenoInundacion {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         char[][] imagen = crearImagenEjemplo(PLANTILLA_001);
+        ImagenLogger logger = new ImagenLogger("log_relleno.txt");
 
         while (true) {
             imprimirImagen(imagen);
@@ -25,6 +26,7 @@ public class RellenoInundacion {
 
                 if (x >= 0 && x < anchura && y >= 0 && y < altura) {
                     rellenarRecursivo(imagen, x, y, relleno, '\0');
+                    logger.registrarCambio(imagen, String.format("Relleno en (%d,%d) con '%c'", x, y, relleno));
                 } else {
                     System.out.println("Coordenadas inválidas. Intente de nuevo.");
                 }
@@ -33,6 +35,7 @@ public class RellenoInundacion {
             }
         }
         scanner.close();
+        logger.close();
     }
 
     private static String[] PLANTILLA_000 = {
