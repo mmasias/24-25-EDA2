@@ -12,26 +12,27 @@ public class RellenoInundacion {
         System.out.println("Imagen original -- Pulse una tecla para empezar a pintarla");
         new Scanner(System.in).nextLine();
 
-        pintarHabitaciones(imagen);
+        pintarHabitaciones(imagen); 
         
         imprimirImagen(imagen);
         System.out.println("Imagen después del relleno por inundación automático");
     }
 
     public static void pintarHabitaciones(char[][] imagen) {
-        char[] colores = {'o', 'x', '|', '*'};
-        int colorActual = 0;
-
         rellenarRecursivo(imagen, 0, 0, '?', '.');
 
-        for (int y = 0; y < imagen.length; y++) {
-            for (int x = 0; x < imagen[0].length; x++) {
-                if (imagen[y][x] == '.') {
-                    rellenarRecursivo(imagen, x, y, colores[colorActual % colores.length], '.');
-                    colorActual++;
-                }
-            }
-        }
+        rellenarRecursivo(imagen, 3, 3, 'o', '.');
+        rellenarRecursivo(imagen, 20, 3, 'o', '.');
+        rellenarRecursivo(imagen, 37, 3, 'o', '.');
+
+        rellenarRecursivo(imagen, 3, 10, 'x', '.');
+        rellenarRecursivo(imagen, 15, 10, 'x', '.');
+        rellenarRecursivo(imagen, 27, 10, 'x', '.');
+        rellenarRecursivo(imagen, 39, 10, 'x', '.');
+
+        rellenarRecursivo(imagen, 3, 15, '|', '.');
+        rellenarRecursivo(imagen, 20, 15, '|', '.');
+        rellenarRecursivo(imagen, 37, 15, '|', '.');
 
         for (int y = 0; y < imagen.length; y++) {
             for (int x = 0; x < imagen[0].length; x++) {
