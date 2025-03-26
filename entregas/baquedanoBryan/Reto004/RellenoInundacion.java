@@ -5,15 +5,45 @@ import java.util.Stack;
 
 public class RellenoInundacion {
 
-    final static boolean MODO_DEBUG = false;
+    final static boolean MODO_DEBUG = true;
 
     public static void main(String[] args) {
 
         char[][] imagen = crearImagenEjemplo(PLANTILLA_001);
+        int[][] iniciosPintado = {
+            {3, 3},
+            {19, 3},
+            {35, 3},
+            {3, 9},
+            {15, 9},
+            {27, 9},
+            {39, 9},
+            {3, 14},
+            {19, 14},
+            {35, 14}
+
+        };
 
         imprimirImagen(imagen);
         System.out.println("Imagen original -- Pulse una tecla para empezar a pintarla");
         new Scanner(System.in).nextLine();
+        int contador = 1;
+        
+        for(int[] inicio : iniciosPintado){
+            char caracterAPintar;
+            if(contador < 4){
+                caracterAPintar = 'o';
+            } else if (contador < 8){
+                caracterAPintar = 'x';
+            } else {
+                caracterAPintar = '|';
+            }
+
+            rellenarRecursivo(imagen, inicio[0], inicio[1], caracterAPintar, '\0');
+            contador++;
+        }
+        imprimirImagen(imagen);
+        System.out.println("Imagen después del relleno por inundación habiendo empezado en (0,0)");
 
         // imagen = crearImagenEjemplo();
         // rellenarIterativo(imagen, 2, 2, '*');
@@ -24,13 +54,6 @@ public class RellenoInundacion {
         // int numHabitaciones = contarHabitaciones(imagen);
         // System.out.println("Número de habitaciones (áreas cerradas): " +
         // numHabitaciones);
-
-        int[][] coordenadas = {
-            {3, 3}
-        };
-    
-        rellenarConMultiplesCoordenadas(imagen, coordenadas, 'x');
-        imprimirImagen(imagen);
     }
 
     private static String[] PLANTILLA_000 = {
@@ -138,37 +161,30 @@ public class RellenoInundacion {
         return imagen;
     }
 
-    public static void rellenarConMultiplesCoordenadas(char[][] imagen, int[][] coordenadas, char nuevoCaracter) {
-        for (int[] coordenada : coordenadas) {
-            int x = coordenada[0];  
-            int y = coordenada[1];  
-            char caracterOriginal = imagen[y][x];
-            rellenarRecursivo(imagen, x, y, nuevoCaracter, caracterOriginal);
-        }
-    }
-
     public static void rellenarRecursivo(char[][] imagen, int x, int y, char nuevoCaracter, char caracterOriginal) {
+        if (caracterOriginal == '\0') {
+            caracterOriginal = imagen[y][x];
+        }
+
         if (y < 0 || y >= imagen.length || x < 0 || x >= imagen[0].length) {
             return;
         }
 
-        if (imagen[y][x] != caracterOriginal || imagen[y][x] == nuevoCaracter) {
+        if (imagen[y][x] != caracterOriginal || caracterOriginal == nuevoCaracter) {
             return;
         }
-    
-        imagen[y][x] = nuevoCaracter;
 
+        imagen[y][x] = nuevoCaracter;
         if (MODO_DEBUG) {
             imprimirImagen(imagen);
             new Scanner(System.in).nextLine();
         }
-    
-        rellenarRecursivo(imagen, x + 1, y, nuevoCaracter, caracterOriginal);  
-        rellenarRecursivo(imagen, x - 1, y, nuevoCaracter, caracterOriginal);  
-        rellenarRecursivo(imagen, x, y + 1, nuevoCaracter, caracterOriginal);  
-        rellenarRecursivo(imagen, x, y - 1, nuevoCaracter, caracterOriginal);  
+
+        rellenarRecursivo(imagen, x + 1, y, nuevoCaracter, caracterOriginal);
+        rellenarRecursivo(imagen, x - 1, y, nuevoCaracter, caracterOriginal);
+        rellenarRecursivo(imagen, x, y + 1, nuevoCaracter, caracterOriginal);
+        rellenarRecursivo(imagen, x, y - 1, nuevoCaracter, caracterOriginal);
     }
-    
 
     public static void rellenarIterativo(char[][] imagen, int x, int y, char nuevoCaracter) {
         char caracterOriginal = imagen[y][x];
