@@ -19,13 +19,11 @@ public class RellenoInundacion {
     }
 
     public static void pintarHabitaciones(char[][] imagen) {
-        char[] colores = {'o', 'x', '|', '*'}; // Diferentes caracteres para pintar
+        char[] colores = {'o', 'x', '|', '*'};
         int colorActual = 0;
 
-        // Primero marcamos el exterior con un carácter temporal
         rellenarRecursivo(imagen, 0, 0, '?', '.');
 
-        // Ahora pintamos solo las áreas interiores
         for (int y = 0; y < imagen.length; y++) {
             for (int x = 0; x < imagen[0].length; x++) {
                 if (imagen[y][x] == '.') {
@@ -35,7 +33,6 @@ public class RellenoInundacion {
             }
         }
 
-        // Restauramos el exterior a puntos
         for (int y = 0; y < imagen.length; y++) {
             for (int x = 0; x < imagen[0].length; x++) {
                 if (imagen[y][x] == '?') {
