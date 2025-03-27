@@ -1,0 +1,47 @@
+@startuml diagrama_2
+class Colores {
+    +colorBase()
+}
+
+class Pixel {
+    +ActualizarPixel()
+}
+
+class Frame {
+    +mostrarPixeles()
+    +resolucion()
+    +tamaño()
+}
+
+class Frame1 extends Frame {
+}
+
+class Frame2 extends Frame {
+}
+
+class DobleBuffer {
+}
+
+class Resultado {
+    +resultadosCombinado()
+    +mostrarResultados()
+}
+
+class Pantalla {
+    +alternarResultados()
+}
+
+Colores --> Pixel : "Define color"
+Pixel --> Colores : "Usa color"
+
+Pixel --> Frame1 : "Dibuja en"
+Pixel --> Frame2 : "Dibuja en"
+Frame1 --> Pixel : "Solicita datos"
+Frame2 --> Pixel : "Solicita datos"
+
+Frame1 --> DobleBuffer
+Frame2 --> DobleBuffer
+DobleBuffer --> Resultado
+Resultado --> Pantalla
+Pantalla --> Resultado
+@enduml
