@@ -27,12 +27,12 @@ public class RellenoInundacion {
         rellenarRecursivo(imagen, 5, 9, 'x', '.');   
         rellenarRecursivo(imagen, 17, 9, 'x', '.');  
         rellenarRecursivo(imagen, 29, 9, 'x', '.');  
-        rellenarRecursivo(imagen, 41, 9, 'x', '.');  
+       rellenarRecursivo(imagen, 41, 9, 'x', '.');  
 
    
-        rellenarRecursivo(imagen, 4, 14, '|', '.'); 
+    rellenarRecursivo(imagen, 4, 14, '|', '.'); 
         rellenarRecursivo(imagen, 20, 14, '|', '.');
-        rellenarRecursivo(imagen, 36, 14, '|', '.');  
+       rellenarRecursivo(imagen, 36, 14, '|', '.');  
 
         imprimirImagen(imagen);
         System.out.println("Imagen final tras el relleno de 4 colores.");
