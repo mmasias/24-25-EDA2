@@ -1,5 +1,8 @@
 package entregas.PinedaOscar.Reto_005;
 
+import java.util.Arrays;
+import java.util.Scanner;
+
 public class HojaDeCalculo {
 
     private Celda[][] celdas;
@@ -27,5 +30,25 @@ public class HojaDeCalculo {
 
     public int getNumeroDeColumnas() {
         return COLUMNAS;
-    }    
+    }
+
+    public void ordenarColumna(int columna) {
+        if (columna < 0 || columna >= COLUMNAS) {
+            System.out.println("Columna fuera de rango");
+            return;
+        }
+        
+        Arrays.sort(celdas, (fila1, fila2) -> {
+            String contenido1 = fila1[columna].getContenido();
+            String contenido2 = fila2[columna].getContenido();
+            
+            try {
+                int num1 = Integer.parseInt(contenido1);
+                int num2 = Integer.parseInt(contenido2);
+                return Integer.compare(num1, num2);
+            } catch (NumberFormatException e) {
+                return contenido1.compareTo(contenido2);
+            }
+        });
+    }
 }
