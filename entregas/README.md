@@ -1,3 +1,0 @@
-# Entregas
-
-Carpeta para entregas
