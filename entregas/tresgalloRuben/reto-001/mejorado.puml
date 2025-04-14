@@ -1,0 +1,46 @@
+@startuml
+class Pixel {
+    - int x
+    - int y
+    - char color
+    + Pixel(int, int, char)
+    + void setColor(char)
+    + char getColor()
+}
+
+class Frame {
+    - int altura
+    - int anchura
+    - Pixel[][] pixeles
+    + Frame(int, int)
+    + void setPixel(int, int, char)
+    + Pixel[][] getPixeles()
+    + void renderizar()
+}
+
+class Superposicion {
+    - char[][] tablaColores
+    + Superposicion()
+    + char combinarColores(char, char)
+}
+
+class Interfaz {
+    - Frame frame1
+    - Frame frame2
+    - int frameActual
+    - Superposicion superposicion
+    + Interfaz(Frame, Frame)
+    + void cambiarFrame()
+    + void actualizarPantalla()
+    + char[][] combinarFrames()
+}
+
+class Main {
+    + static void main(String[])
+}
+
+Frame "contiene" -> Pixel
+Interfaz "usa" -> Frame
+Interfaz "usa" -> Superposicion
+Superposicion "usa" -> Pixel
+@enduml
