@@ -1,0 +1,34 @@
+@startuml
+
+class Pixel{
+    - valor
+}
+
+class Frame{
+    - pixel
+    + add
+    + update
+    + delete
+}
+
+class Screen{
+    - frame
+    + combine
+    + translate 
+    + print
+}
+
+class Colour{
+
+}
+
+class Main{
+    + start
+}
+
+Pixel -- Frame
+Frame -- Screen
+Screen -- Main
+Screen -- Colour
+
+@enduml
