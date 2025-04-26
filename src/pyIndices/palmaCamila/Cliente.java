@@ -1,20 +1,22 @@
-package v000;
+package palmaCamila;
+
 public class Cliente {
+
     public static void main(String[] args) {
         GestorCSV gestor = new GestorCSV(100, 4);
 
         cargarDatos(gestor);
 
-//        gestor.imprimirDatos();
+        gestor.imprimirDatos();
 
-//        System.out.println("> ESTUDIANTES DE PROGRAMACIÓN 2");
-//        imprimirDataset(gestor.buscarPorIndice("Asignatura", "Programación 2"));
+        System.out.println("> ESTUDIANTES DE PROGRAMACIÓN 2");
+        imprimirDataset(gestor.buscarPorIndice("Asignatura", "Programación 2"));
 
-//        System.out.println("> ESTUDIANTE CON ID 1003");
-//        imprimirDataset(gestor.buscarPorIndice("ID", "1003"));
+        System.out.println("> ESTUDIANTE CON ID 1003");
+        imprimirDataset(gestor.buscarPorIndice("ID", "1003"));
 
-//        System.out.println("> ASIGNATURAS DISPONIBLES");
-//        imprimirDataset(gestor.obtenerValoresUnicos("Asignatura"));
+        System.out.println("> ASIGNATURAS DISPONIBLES");
+        imprimirDataset(gestor.obtenerValoresUnicos("Asignatura"));
     }
 
     private static void cargarDatos(GestorCSV gestor) {
@@ -124,7 +126,7 @@ public class Cliente {
 
         gestor.cargarDatos(cabeceras, datosEjemplo);
         gestor.crearIndice("Asignatura");
-        gestor.crearIndice("ID");        
+        gestor.crearIndice("ID");
     }
 
     private static void imprimirDataset(String[] resultado) {

@@ -1,0 +1,56 @@
+@startuml
+
+class Cliente {
+    + main(args: String[]): void
+    - cargarDatos(gestor: GestorCSV): void
+    - imprimirDataset(resultado: String[][]): void
+    - imprimirDataset(resultado: String[]): void
+}
+
+class GestorCSV {
+    - datos: String[][]
+    - cabeceras: String[]
+    - indicesOrdenados: IndiceOrdenado[]
+    - indicesNoOrdenados: IndiceNoOrdenado[]
+    - columnaIndexada: boolean[]
+    - filas: int
+    - columnas: int
+    + GestorCSV(capacidadMaxima: int, numColumnas: int)
+    + cargarDatos(cabeceras: String[], datosEntrada: String[][]): void
+    + crearIndiceOrdenado(nombreColumna: String): void
+    + crearIndiceNoOrdenado(nombreColumna: String): void
+    + buscarPorIndice(nombreColumna: String, valor: String): String[][]
+    + obtenerValoresUnicos(nombreColumna: String): String[]
+    + estaIndexada(nombreColumna: String): boolean
+    + imprimirDatos(): void
+}
+
+class IndiceOrdenado {
+    - claves: String[]
+    - posiciones: int[]
+    - cantidadValores: int
+    + IndiceOrdenado(capacidadMaxima: int)
+    + agregar(valor: String, posicion: int): void
+    + buscar(valor: String): int[]
+    + contiene(valor: String): boolean
+    + obtenerTodos(): String[]
+    + sort(claves: String[], posiciones: int[], low: int, high: int): void
+}
+
+class IndiceNoOrdenado {
+    - valores: String[]
+    - posiciones: int[][]
+    - contadores: int[]
+    - cantidadValores: int
+    + IndiceNoOrdenado(capacidadMaxima: int)
+    + agregar(valor: String, posicion: int): void
+    + buscar(valor: String): int[]
+    + contiene(valor: String): boolean
+    + obtenerTodos(): String[]
+}
+
+Cliente ..> GestorCSV : utiliza
+GestorCSV ..>  IndiceOrdenado : usa
+GestorCSV ..>  IndiceNoOrdenado : usa
+
+@enduml

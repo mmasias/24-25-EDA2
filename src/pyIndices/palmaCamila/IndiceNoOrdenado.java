@@ -1,11 +1,11 @@
-package v000;
-public class Indice {
+package palmaCamila;
+public class IndiceNoOrdenado {
     private String[] valores;
     private int[][] posiciones;
     private int[] contadores;
     private int cantidadValores;
 
-    public Indice(int capacidadMaxima) {
+    public IndiceNoOrdenado(int capacidadMaxima) {
         valores = new String[capacidadMaxima];
         posiciones = new int[capacidadMaxima][capacidadMaxima];
         contadores = new int[capacidadMaxima];

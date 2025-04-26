@@ -1,16 +1,17 @@
-package v000;
+package palmaCamila;
+
 public class GestorCSV {
     private String[][] datos;
     private String[] cabeceras;
     private int filas;
     private int columnas;
-    private Indice[] indices;
+    private IndiceOrdenado[] indices;
     private boolean[] columnaIndexada;
 
     public GestorCSV(int capacidadMaxima, int numColumnas) {
         datos = new String[capacidadMaxima][numColumnas];
         cabeceras = new String[numColumnas];
-        indices = new Indice[numColumnas];
+        indices = new IndiceOrdenado[numColumnas];
         columnaIndexada = new boolean[numColumnas];
         filas = 0;
         columnas = numColumnas;
@@ -35,7 +36,7 @@ public class GestorCSV {
             return;
         }
 
-        indices[indiceColumna] = new Indice(filas);
+        indices[indiceColumna] = new IndiceOrdenado(filas);
         columnaIndexada[indiceColumna] = true;
 
         for (int i = 0; i < filas; i++) {
