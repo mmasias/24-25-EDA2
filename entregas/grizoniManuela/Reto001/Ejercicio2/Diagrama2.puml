@@ -1,0 +1,58 @@
+@startuml
+
+class Pantalla {
+  - AlternarFrame(): void
+  - AlterarColor(): void
+  - MostrarColorBlanco(): void
+  - MostrarColorNegro(): void
+  - MostrarColorCyan(): void
+  - MostrarColorMagenta(): void
+  - MostrarFrameListSiguiente(): void
+}
+
+class FrameList {
+  - primero: NodoFrame
+  - segundo: NodoFrame
+  - tamaño: int
+}
+
+class NodoFrame {
+  - anterior: NodoFrame
+  - siguiente: NodoFrame
+  - frame: Frame
+}
+
+class Frame {
+  - PintarNegro(): void
+  - PintarBlanco(): void
+  - PintarCyan(): void
+  - PintarMagenta(): void
+  - TiempoDeAlternancia(): void
+  - Altura: int
+  - Anchura: int
+  - pixelList: PixelList
+}
+
+class PixelList {
+  - primero: NodoPixel
+  - ultimo: NodoPixel
+  - pixel: Pixel
+}
+
+class NodoPixel {
+  - pixel: Pixel
+  - siguiente: NodoPixel
+}
+
+class Pixel {
+  - resultado: char
+}
+
+FrameList --> NodoFrame
+NodoFrame --> Frame
+Frame --> Pantalla
+Pantalla --> PixelList
+PixelList --> NodoPixel
+NodoPixel --> Pixel
+
+@enduml
