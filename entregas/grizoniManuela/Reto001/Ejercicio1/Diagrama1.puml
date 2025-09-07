@@ -1,0 +1,55 @@
+@startuml
+
+title Diagrama de Clases - Ejercicio 1
+
+class Pantalla {
+  - AlternarFrame(): void
+  - MostrarFrameListActual(): void
+  - MostrarFrameListSiguiente(): void
+}
+
+class FrameList {
+  - primero: NodoFrame
+  - segundo: NodoFrame
+  - tamaño: int
+}
+
+class NodoFrame {
+  - anterior: NodoFrame
+  - siguiente: NodoFrame
+  - frame: Frame
+}
+
+class Frame {
+  - Pintar(): void
+  - Altura: int
+  - Anchura: int
+  - pixelList: PixelList
+}
+
+class PixelList {
+  - primero: NodoPixel
+  - ultimo: NodoPixel
+  - tamaño: int
+  + get(index: int): Pixel
+  + set(index: int, pixel: Pixel): void
+}
+
+class NodoPixel {
+  - anterior: NodoPixel
+  - siguiente: NodoPixel
+  - pixel: Pixel
+}
+
+class Pixel {
+  - valor: char
+}
+
+Pantalla --> FrameList
+FrameList --> NodoFrame
+NodoFrame --> Frame
+Frame --> PixelList
+PixelList --> NodoPixel
+NodoPixel --> Pixel
+
+@enduml
